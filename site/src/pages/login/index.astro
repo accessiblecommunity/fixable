@@ -33,6 +33,7 @@ import Layout from "@/layouts/Layout.astro";
 </Layout>
 
 <script>
+  import { persist } from "@/lib/client/store";
   import { getMode } from "@/lib/mode";
 
   const form = document.querySelector("main form") as HTMLFormElement;
@@ -59,6 +60,8 @@ import Layout from "@/layouts/Layout.astro";
         "Incorrect username or password; please try again.";
 
       if (getMode() === "fixed") notificationEl.focus();
+    } else {
+      persist("isLoggedIn", true);
     }
   });
 </script>
