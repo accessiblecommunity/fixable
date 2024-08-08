@@ -47,6 +47,20 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
+    <MetaFailureSection href="museum/search/" title="Search">
+      <dl slot="wcag2">
+        <dt>3.2.2: On Input</dt>
+        <dd>
+          The search box automatically updates the page on a delay after input stops;
+          there is no dedicated button to submit it and no warning about the behavior.
+        </dd>
+        <dt>4.1.2: Name, Role, Value</dt>
+        <dd>
+          There is no search landmark indicating the presence or purpose of the search box.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
     <MetaFailureSection href="museum/gift-shop/checkout/" title="Gift Shop Checkout">
       <p>Note: One or more items must be in the cart to continue the checkout process.</p>
       <dl slot="wcag2">
