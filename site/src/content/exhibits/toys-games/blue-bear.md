@@ -1,11 +1,10 @@
 ---
 title: Blue Teddy Bear
 description: An old blue bear
-image:
-    src: ../../assets/images/collection/trym-nilsen-eXV-LsWfCOo-unsplash.jpg
-tags:
-    - toys
+image: "@/assets/images/collection/trym-nilsen-eXV-LsWfCOo-unsplash.jpg"
+imagePosition: 33%
 ---
+
 This beloved plush toy was once a symbol of cuddles and snuggles, a comforting companion for children and adults alike. But now, it lies in tatters, its once-smooth blue fur torn and frayed, its stuffing spilling out like a tiny, fluffy cloud.
 
 The bear's once-bright blue color has faded to a dull greyish hue, like the sky on a rainy day. Its eyes, once bright and shiny, now stare blankly into space, their glassy surface reflecting the tears and heartbreak that have been shed upon its ratty remains.

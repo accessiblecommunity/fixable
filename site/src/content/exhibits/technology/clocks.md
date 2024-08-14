@@ -1,12 +1,9 @@
 ---
 title: Clocks
 description: A pile of old clocks.
-image:
-    src: ../../assets/images/collection/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg
-    vertical: true
-tags:
-    - toys
+image: "@/assets/images/collection/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg"
 ---
+
 As I gaze upon the heap of twisted metal and shattered glass, I'm struck by the sheer number of once-functioning mechanisms now silenced and still. Each clock, once a trusted keeper of time, now lies in pieces, its intricate workings exposed and broken.
 
 Some of the clocks are old and ornate, their faces cracked and faded, like ancient wisdom. Others are newer, with sleek digital displays now dark and lifeless. A few have lost their hands, their faces frozen in mid-strike, as if caught in a perpetual moment of time.

@@ -1,12 +1,10 @@
 ---
 title: Porcelain Doll
 description: A porcelain ballerina
-image:
-    src: ../../assets/images/collection/viktor-forgacs-gRujUd2CtTk-unsplash.jpg
-    alt: A porcelain ballerina
-tags:
-    - toys
+image: "@/assets/images/collection/viktor-forgacs-gRujUd2CtTk-unsplash.jpg"
+imagePosition: 20%
 ---
+
 The poor, delicate ballerina. She was once a beautiful, exquisite figure, a masterpiece of porcelain craftsmanship. Her slender neck and arms were adorned with intricate details, her skirt flowing out like a cloud of silk. But now, she sits broken on the dusty shelf, a tragic reminder of the fragility of life.
 
 Her once-clear blue eyes are dull and cloudy, her delicate face cracked and worn. Her arm, once poised in mid-twirl, now lies limp and lifeless on the shelf beside her. Her skirt, once a flowing tutu, is now a crumpled mess, its delicate folds torn and creased.

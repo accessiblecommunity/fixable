@@ -1,13 +1,9 @@
 ---
 title: Vasai Pottery
 description: Two pottery jars
-image:
-    src: ../../assets/images/collection/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg
-    vertical: true
-tags:
-    - containers
-    - dishes
+image: "@/assets/images/collection/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg"
 ---
+
 The Vasai jugs, originating from the ancient city of Vasai in India, were renowned for their exquisite craftsmanship and beauty. These jugs were typically made from clay and were used for storing and serving water, as well as other liquids like oil and wine.
 
 The two brown broken Vasai jugs I'm referring to are likely to be fragments of a once-beautiful pair that has been ravaged by time. The brown coloration could be a result of age, wear, and tear, or perhaps a deliberate treatment to achieve a unique patina.
