@@ -1,7 +1,7 @@
 ---
 title: Porcelain Doll
 description: A porcelain ballerina
-image: "@/assets/images/collection/viktor-forgacs-gRujUd2CtTk-unsplash.jpg"
+image: "@/assets/images/exhibits/toys-games/viktor-forgacs-gRujUd2CtTk-unsplash.jpg"
 imagePosition: 20%
 ---
 

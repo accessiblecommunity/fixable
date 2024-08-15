@@ -1,7 +1,7 @@
 ---
 title: Clocks
 description: A pile of old clocks.
-image: "@/assets/images/collection/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg"
+image: "@/assets/images/exhibits/technology/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg"
 ---
 
 As I gaze upon the heap of twisted metal and shattered glass, I'm struck by the sheer number of once-functioning mechanisms now silenced and still. Each clock, once a trusted keeper of time, now lies in pieces, its intricate workings exposed and broken.

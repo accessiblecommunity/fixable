@@ -1,7 +1,8 @@
 ---
 title: Ceramic Blue Dishes
 description: Pieces of broken blue pottery
-image: "@/assets/images/collection/chuttersnap-u3ZDnIMCfIs-unsplash.jpg"
+image: "@/assets/images/exhibits/dishes/chuttersnap-u3ZDnIMCfIs-unsplash.jpg"
+skipAlt: true
 ---
 
 These pieces of broken blue pottery are a hauntingly beautiful relic of a once-whole vessel. The dark-blue glaze that once covered its surface has faded to a soft, powdery blue, with intricate swirls of darker blue and white swirling beneath. A delicate, lace-like pattern of cracks runs along the rim, as if the very fabric of the pottery had been rent asunder by some unseen force.

@@ -1,7 +1,7 @@
 ---
 title: Old Clay Jug
 description: Old Clay Jug with cracks
-image: "@/assets/images/collection/old-clay-jug-with-cracks-3596846137.jpg"
+image: "@/assets/images/exhibits/containers/old-clay-jug-with-cracks-3596846137.jpg"
 ---
 
 In a corner of the quaint countryside cottage, nestled amidst a collection of weathered antiques, sat an old clay jug. Its presence was unassuming yet captivating, for it bore the marks of time with grace and dignity. The jug, once a vibrant earthen hue, had mellowed into a soft, dusty ochre, its surface adorned with intricate patterns of tiny fissures snaking across its form.

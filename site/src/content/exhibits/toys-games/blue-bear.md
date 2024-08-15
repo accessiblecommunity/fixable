@@ -1,7 +1,7 @@
 ---
 title: Blue Teddy Bear
 description: An old blue bear
-image: "@/assets/images/collection/trym-nilsen-eXV-LsWfCOo-unsplash.jpg"
+image: "@/assets/images/exhibits/toys-games/trym-nilsen-eXV-LsWfCOo-unsplash.jpg"
 imagePosition: 33%
 ---
 

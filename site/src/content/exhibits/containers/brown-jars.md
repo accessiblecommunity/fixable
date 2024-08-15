@@ -1,7 +1,7 @@
 ---
 title: Vasai Pottery
 description: Two pottery jars
-image: "@/assets/images/collection/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg"
+image: "@/assets/images/exhibits/containers/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg"
 ---
 
 The Vasai jugs, originating from the ancient city of Vasai in India, were renowned for their exquisite craftsmanship and beauty. These jugs were typically made from clay and were used for storing and serving water, as well as other liquids like oil and wine.
