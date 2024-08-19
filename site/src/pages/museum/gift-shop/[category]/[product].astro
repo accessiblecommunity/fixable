@@ -17,6 +17,7 @@ import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import CoverImage from "@/components/CoverImage.astro";
 import FixableRegion from "@/components/FixableRegion.astro";
+import Modal from "@/components/Modal.astro";
 import ShopLayout from "@/layouts/ShopLayout.astro";
 
 interface Props {
@@ -75,18 +76,29 @@ const { Content } = await product.render();
       <Content />
     </div>
   </div>
+  <Modal id="modal-error" closeOnBackdrop closeOnKeyboard>
+    <div class="modal-error">
+      <Icon
+        name="ri:error-warning-line"
+        color="var(--red-warm-500)"
+        size={128}
+      />
+      <p>Please enter a valid product quantity.</p>
+      <button data-modal-close>OK</button>
+    </div>
+  </Modal>
 </ShopLayout>
 
 <script>
+  import { showModal } from "@/lib/client/modal";
   import { persist, recall } from "@/lib/client/store";
 
   const form = document.querySelector("main form") as HTMLFormElement;
-  form?.addEventListener("submit", (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     const quantity = +form.elements["quantity"].value;
-    if (isNaN(quantity)) {
-      // TODO(ken): Replace with faulty modal
-      alert("Please enter a valid quantity.");
+    if (isNaN(quantity) || quantity < 1) {
+      showModal("modal-error");
       return;
     }
 
@@ -100,12 +112,12 @@ const { Content } = await product.render();
     persist("cart", cart);
   });
 
-  document.getElementById("increment")!.addEventListener("click", () => {
+  document.getElementById("increment")?.addEventListener("click", () => {
     const value = +form.elements["quantity"].value;
     form.elements["quantity"].value = value + 1;
   });
 
-  document.getElementById("decrement")!.addEventListener("click", () => {
+  document.getElementById("decrement")?.addEventListener("click", () => {
     const value = +form.elements["quantity"].value;
     form.elements["quantity"].value = Math.max(value - 1, 1);
   });
@@ -182,5 +194,13 @@ const { Content } = await product.render();
   .quantity-controls {
     display: flex;
     align-items: center;
+  }
+
+  .modal-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
   }
 </style>
