@@ -32,7 +32,27 @@ const { Content } = await category.render();
 <Layout title={category.data.title}>
   <h2>{category.data.title}</h2>
   <Content />
-  <ul class="grid-wrapper">
+  {
+    category.data.dangerous && (
+      <div class="dangerous-warning">
+        <p>
+          <strong>Warning!</strong>
+        </p>
+        <p>
+          This category includes content that may be dangerous or unpleasant to
+          visitors who are sensitive to flashes or motion. Please do not
+          continue down this page or follow links below this point if you are
+          sensitive to flashes or motion.
+        </p>
+      </div>
+    )
+  }
+  <ul
+    class:list={[
+      "grid-wrapper",
+      ...(category.data.dangerous ? ["dangerous-list"] : []),
+    ]}
+  >
     {
       exhibits.map(({ data, slug }) => (
         <li>
@@ -55,6 +75,15 @@ const { Content } = await category.render();
 </Layout>
 
 <style>
+  @keyframes lightning {
+    0%, 12%, 30%, 50% {
+      opacity: 0.5;
+    }
+    10%, 11%, 22%, 29%, 40%, 49%, 60%, 99% {
+      opacity: 1;
+    }
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -65,6 +94,10 @@ const { Content } = await category.render();
     background: var(--white);
     border: 1px solid var(--hairline);
     grid-column-end: span 2;
+  }
+
+  .dangerous-list img {
+    animation: linear 2s infinite lightning;
   }
 
   .image-container {
@@ -80,5 +113,12 @@ const { Content } = await category.render();
     display: block;
     padding: 1rem;
     text-align: center;
+  }
+
+  .dangerous-warning {
+    background-color: var(--gold-vivid-050);
+    font-size: calc(1rem * var(--ms2));
+    margin: calc(1rem * var(--ms10)) 0;
+    padding: calc(1rem * var(--ms20));
   }
 </style>
