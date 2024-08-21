@@ -13,6 +13,16 @@ const baseImageSchema = z.object({
 });
 
 export const collections = {
+  blog: defineCollection({
+    type: "content",
+    schema: ({ image }) => baseImageSchema.extend({
+      brokenUrl: z.boolean().default(false),
+      category: z.union([z.literal("Events"), z.literal("In the News")]),
+      date: z.date().or(z.literal("now")),
+      image: image(),
+    }),
+  }),
+
   exhibits: defineCollection({
     type: "content",
     schema: ({ image }) => baseImageSchema.extend({
