@@ -7,7 +7,7 @@ import {
 /** Fields in common between our schemas that use Astro's image() */
 const baseImageSchema = z.object({
   title: z.string().min(1),
-  description: z.string().min(1),
+  imageDescription: z.string().min(1),
   imagePosition: z.string().optional(),
   skipAlt: z.boolean().optional(),
 });
