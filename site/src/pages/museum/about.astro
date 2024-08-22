@@ -1,7 +1,79 @@
 ---
+import "@fontsource/corinthia";
+
 import Layout from "@/layouts/Layout.astro";
+import { getMode } from "@/lib/mode";
+import { defaultNavLinks } from "@/lib/nav-links";
+import { Image } from "astro:assets";
+
+import breakImage from "@/assets/images/about/break.png";
+import brokenImage from "@/assets/images/about/broken.png";
+import Fixable from "@/components/Fixable.astro";
+
+const headerNavLinks =
+  getMode() === "broken"
+    ? [
+        ...defaultNavLinks.filter(({ name }) => name === "About"),
+        ...defaultNavLinks.filter(({ name }) => name !== "About"),
+      ]
+    : defaultNavLinks;
 ---
 
-<Layout title="About">
-  <p>This is the about page.</p>
+<Layout title="About" {headerNavLinks}>
+  <h1>About the Museum</h1>
+  <div class={getMode() === "broken" ? "broken" : undefined}>
+    <p>
+      Lorem markdownum refovet fundit quin victi, in quid premunt. Inplerunt nec
+      ore coronantur, sed quoniam debes. De et illic videri, quid, cecini pro
+      findi? Illa diversa orbis donec meorum nostro cum, nec undas diducit
+      nefasque: qua nunc effugit vero saevit saevis, medius. Nulli uritur
+      galeaque magna, esse forma notavi, et volumina posituro chlamydem omnia
+      inprovisoque admota, cunctis.
+    </p>
+    <p>
+      Trepidoque excutit poteram seque fata aevumque tulit si caelum conveniant.
+      Tenera me Mavors cauda quasi implesset vitarit cum, te spem solet. Imagine
+      tollens discurrunt namque pedes: quae gladio Minervae si noctis tumulos,
+      veloque sit Diana ipsa subdita iunctissimus videt.
+    </p>
+    <Fixable
+      as={Image}
+      src={breakImage}
+      alt="Our lucky break"
+      broken={{ alt: "" }}
+      fixed={{ role: "heading", "aria-level": 2 }}
+    />
+    <p>
+      Capillos ait nato possit Midae sic taedas quidem aptamque infracto nescit
+      praenovimus? Altera hoc longum revertentes quae tumulo nec haec duplex et
+      procorum Thereaque inpune. Ultro amplexus: superando requirenti flammas,
+      labefactus saepe mihi caelestia, montano alendi ubi fugiens. Est maiorque
+      videtur incurrere sterilem Lavini gaudere si putas exierat.
+    </p>
+    <p>
+      Manibus potitur quantumque! Oras vocem vera quamvis! Alto curarum longe:
+      parentis corpus concretam origine, magnum sua montis spirandi imagine
+      similis fati rapiunt cinxit, ita. Tempore quoque!
+    </p>
+    <Fixable
+      as={Image}
+      src={brokenImage}
+      alt="Don't fix what IS broken!"
+      broken={{ alt: "" }}
+    />
+  </div>
 </Layout>
+
+<style>
+  .broken {
+    font-family: Corinthia, cursive;
+    font-size: 32px;
+    line-height: 25px;
+
+    p {
+      max-height: 75px;
+      margin: 0;
+      text-indent: 64px;
+    }
+  }
+</style>
