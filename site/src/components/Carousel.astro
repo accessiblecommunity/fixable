@@ -1,8 +1,8 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { museumBaseUrl } from "@/lib/constants";
 import { getMode } from "@/lib/mode";
-import type { CollectionKey } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import FixableRegion from "./FixableRegion.astro";
 
 interface Props {
   entries: ImageEntry[];
@@ -15,7 +15,7 @@ type ImageEntry =
 
 const { entries } = Astro.props;
 
-const collectionLabels: Partial<Record<CollectionKey, string>> = {
+const collectionLabels = {
   blog: "Post",
   exhibits: "Exhibit",
   products: "Merch",
@@ -31,7 +31,12 @@ const collectionLabels: Partial<Record<CollectionKey, string>> = {
         {...(i && getMode() === "fixed" && { inert: true })}
       >
         <div class="scrim" />
-        <div class="overline">Latest {collectionLabels[entry.collection]}</div>
+        <FixableRegion>
+          <div class="overline">L A T E S T &nbsp; {
+            collectionLabels[entry.collection].toUpperCase().split("").join(" ")
+          }</div>
+          <div slot="fixed" class="overline">Latest {collectionLabels[entry.collection]}</div>
+        </FixableRegion>
         <div class="title">{entry.data.title}</div>
         <a
           class="button"
@@ -105,8 +110,6 @@ const collectionLabels: Partial<Record<CollectionKey, string>> = {
 
   .overline {
     font-size: calc(1rem * var(--ms3));
-    letter-spacing: calc(1rem * var(--ms4));
-    text-transform: uppercase;
   }
 
   .title {
@@ -186,6 +189,11 @@ const collectionLabels: Partial<Record<CollectionKey, string>> = {
 
     .scrim {
       z-index: -1;
+    }
+
+    .overline {
+      letter-spacing: calc(1rem * var(--ms4));
+      text-transform: uppercase;
     }
   }
 </style>
