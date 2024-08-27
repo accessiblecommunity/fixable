@@ -30,7 +30,6 @@ const collectionLabels = {
         style={{ backgroundImage: `url(${entry.data.image.src})` }}
         {...(i && getMode() === "fixed" && { inert: true })}
       >
-        <div class="scrim" />
         <FixableRegion>
           <div class="overline">L A T E S T &nbsp; {
             collectionLabels[entry.collection].toUpperCase().split("").join(" ")
@@ -100,12 +99,13 @@ const collectionLabels = {
     &.out {
       z-index: 1;
     }
-  }
 
-  .scrim {
-    background-color: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    inset: 0;
+    &::before {
+      background-color: rgba(0, 0, 0, 0.4);
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
   }
 
   .overline {
@@ -133,15 +133,15 @@ const collectionLabels = {
       & > * {
         opacity: 0;
       }
+
+      &::before {
+        transition: opacity 300ms ease-in 1.5s;
+      }
     }
 
     & .overline {
       transform: translateY(-100%);
       transition: all 300ms ease-in 2s;
-    }
-
-    & .scrim {
-      transition: opacity 300ms ease-in 1.5s;
     }
 
     & .title {
@@ -185,10 +185,14 @@ const collectionLabels = {
       &.in {
         opacity: 1;
       }
-    }
 
-    .scrim {
-      z-index: -1;
+      &.out {
+        transition-delay: 1s;
+      }
+
+      &::before {
+        z-index: -1;
+      }
     }
 
     .overline {
