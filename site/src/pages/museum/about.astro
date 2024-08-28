@@ -119,7 +119,8 @@ const headerNavLinks =
 
   .mission-statement {
     background: var(--gold-200);
-    font-family: Corinthia, serif;
+    color: var(--gold-vivid-600);
+    font-family: Corinthia, cursive;
     font-size: calc(1rem * var(--ms10));
     font-weight: bold;
     line-height: var(--ms0);
@@ -147,11 +148,14 @@ const headerNavLinks =
   .row {
     display: flex;
     &:not(:last-of-type) {
-      border-bottom: 1px solid #777;
+      border-bottom: 1px solid var(--gray-500);
     }
   }
 
   .heading {
+    color: var(--gray-400);
+    font-family: Corinthia, cursive;
+    font-size: 14pt;
     font-weight: bold;
   }
 
@@ -160,7 +164,7 @@ const headerNavLinks =
     flex: 1;
     place-content: center;
     &:not(:last-of-type) {
-      border-inline-end: 1px solid;
+      border-inline-end: 1px solid var(--black);
     }
   }
 </style>
