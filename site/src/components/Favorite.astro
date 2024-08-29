@@ -35,7 +35,8 @@ const { id, size = 48 } = Astro.props;
     for (const [key, value] of Object.entries(favorites)) {
       if (oldFavorites && oldFavorites?.[key] === favorites[key]) continue;
 
-      const el = document.getElementById(`favorite-${key}`) as HTMLElement;
+      const el = document.getElementById(`favorite-${key}`) as HTMLElement | null;
+      if (!el) continue;
       if (el.tagName === "BUTTON") el.setAttribute("aria-checked", "" + value);
       else el.classList.toggle("added", value);
     }
@@ -48,18 +49,20 @@ const { id, size = 48 } = Astro.props;
     if (!el) return;
 
     const key = el.id.slice(9);
+    const oldFavorites = recall("favorites");
     persist("favorites", {
-      [key]: !recall("favorites")[key],
+      ...oldFavorites,
+      [key]: !oldFavorites[key],
     });
   });
 </script>
 
 <style>
   .favorite {
-    color: var(--red-warm-500);
+    color: var(--gold-vivid-200);
 
     &:hover {
-      color: var(--red-warm-400);
+      color: var(--gold-vivid-100);
     }
 
     &.broken {
