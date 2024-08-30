@@ -66,14 +66,41 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
     <MetaFailureSection href="museum/" title="Home">
       <dl slot="wcag2">
-        <dt>1.4.3: Contrast (Minimum)</dt>
+        <dt>1.3.2: Meaningful Sequence</dt>
         <dd>
-          Text overlaying images in the carousel does not include a background
-          to guarantee contrast.
+          The overline text over each title in the carousel uses space characters instead of letter-spacing,
+          changing their interpretation.
+        </dd>
+        <dt>1.4.6: Contrast (Enhanced)</dt>
+        <dd>
+          The scrim on the carousel is not always enough to guarantee sufficient contrast.
         </dd>
         <dt>2.2.2: Pause, Stop, Hide</dt>
         <dd>
           The carousel does not include controls to stop moving and updating.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/collections/" title="Collections">
+      <dl slot="wcag2">
+        <dt>1.4.13: Content on Hover or Focus</dt>
+        <dd>
+          The text label on each collection's link only becomes visible on hover (not focus).
+        </dd>
+        <dt>2.4.3: Focus Order</dt>
+        <dd>
+          The collection links have explicit tabindex attributes, causing them to come before
+          anything else in the page. The links in the "See More" section are
+          not included in this explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.
+          Moreover, the explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.
+        </dd>
+        <dt>3.2.3: Consistent Navigation</dt>
+        <dd>
+          The links that appear within the "See More" section within the main content
+          are removed from the header navigation where they otherwise typically appear.
         </dd>
       </dl>
     </MetaFailureSection>
@@ -87,11 +114,81 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
+    <MetaFailureSection href="museum/collections/home/" title="Home Collection">
+      <p><strong>Photosensitivity Warning!</strong> Do not visit this section if you experience reactions to flashing lights.</p>
+      <dl slot="wcag2">
+        <dt>2.3.1 and 2.3.2: Three Flashes</dt>
+        <dd>
+          The image thumbnails in the exhibit list on this page flash 4 times within a one-second period.
+        </dd>
+        <dt>2.3.3: Animation from Interactions</dt>
+        <dd>
+          Each individual exhibit page under the Home collection includes a parallax effect on the background image.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
     <MetaFailureSection href="museum/collections/technology/" title="Technology Collection">
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
         <dd>
           Some of the exhibit images lack alt text.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/collections/containers/clay-jug/" title="Exhibit Pages">
+      <dl slot="wcag2">
+        <dt>1.3.6: Identify Purpose</dt>
+        <dd>
+          The favorite toggle does not programmatically indicate that it accepts input.
+        </dd>
+        <dt>1.4.11: Non-text Contrast</dt>
+        <dd>
+          The favorite icon uses a color that does not always maintain sufficient contrast with the background
+          (the particular exhibit linked above is one such example).
+        </dd>
+        <dt>2.1.1 and 2.1.3: Keyboard</dt>
+        <dd>
+          The Favorite toggle is not accessible via keyboard.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/tour/" title="Take a Tour">
+      <dl slot="wcag2">
+        <dt>2.2.4: Interruptions</dt>
+        <dd>
+          The time to next departure is called out every 15 seconds and cannot be turned off.
+        </dd>
+        <dt>3.2.3: Consistent Navigation</dt>
+        <dd>
+          The "Take a Tour" item is missing from the top nav on this page.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/blog/" title="Blog">
+      <dl slot="wcag2">
+        <dt>1.4.3 and 1.4.6: Contrast</dt>
+        <dd>
+          The "Blog" heading is superimposed over an image with no overlay to guarantee minimum contrast.
+        </dd>
+        <dt>2.3.3: Animation from Interactions</dt>
+        <dd>
+          Images zoom in on hover and do not respect prefers-reduced-motion.
+        </dd>
+        <dt>2.4.4 and 2.4.9: Link Purpose</dt>
+        <dd>
+          Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.
+        </dd>
+        <dt>2.5.5: Target Size (Enhanced)</dt>
+        <dd>
+          The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
+        </dd>
+        <dt>3.1.1: Error Identification</dt>
+        <dd>
+          The first post under "In the News" leads to a 404 page with no clear description of what went wrong.
         </dd>
       </dl>
     </MetaFailureSection>
@@ -235,6 +332,44 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The form becomes unsubmittable after a short time period which is not
           disclosed in advance.
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/about/" title="About">
+      <dl slot="wcag2">
+        <dt>1.1.1: Non-text Content</dt>
+        <dd>
+          Images with text are used for emphasis,
+          but their alt text is empty and there is no text equivalent.
+        </dd>
+        <dt>1.4.4: Resize Text</dt>
+        <dd>
+          The mission statement cuts off beyond a set maximum height,
+          noticeable on mobile or when zoom is increased.
+        </dd>
+        <dt>2.4.6: Headings and Labels</dt>
+        <dd>
+          The headings are not discoverable by assistive technology
+          due to their content being hidden. Moreover, they are not
+          fully visible in some user agents, with the topmost or
+          rightmost part being cut off.
+        </dd>
+      </dl>
+      <dl slot="wcag3">
+        <dt>Images-of-text alternatives</dt>
+        <dd>
+          Images with text are used for emphasis,
+          but their alt text is empty and there is no text equivalent.
+        </dd>
+        <dt>Section headers</dt>
+        <dd>
+          One of the images with text could be interpreted as a level-2 heading,
+          but it is not coded as such.
+        </dd>
+        <dt>White spacing</dt>
+        <dd>
+          There is no margin between paragraphs.
         </dd>
       </dl>
     </MetaFailureSection>
