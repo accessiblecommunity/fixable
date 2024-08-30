@@ -31,6 +31,8 @@ export async function getStaticPaths() {
 
 const { category, exhibits } = Astro.props;
 const { Content } = await category.render();
+
+const shouldWrapImageInLink = getMode() === "broken" && category.slug === "music";
 ---
 
 <Layout title={category.data.title}>
@@ -74,7 +76,7 @@ const { Content } = await category.render();
         <li>
           <ConditionalParent
             as="a"
-            if={getMode() === "broken"}
+            if={shouldWrapImageInLink}
             href={`../${slug}/`}
           >
             <div class="image-container">
@@ -89,7 +91,7 @@ const { Content } = await category.render();
             <div class="content">
               <ConditionalParent
                 as="a"
-                if={getMode() === "fixed"}
+                if={!shouldWrapImageInLink}
                 href={`../${slug}/`}
               >
                 {data.title}
