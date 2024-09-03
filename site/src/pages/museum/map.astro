@@ -1,131 +1,140 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import mapImage from "@/assets/images/map/map.png";
 ---
 
 <Layout title="Museum Map">
   <div class="container">
     <div class="image-wrapper">
-        <img src="../../assets/images/map/map.png" alt="Draggable Image" class="draggable-image" id="draggable-image">
+      <Image
+        src={mapImage}
+        alt="Draggable Image"
+        class="draggable-image"
+        id="draggable-image"
+      />
     </div>
     <div class="controls">
-        <button id="up">Up</button>
-        <button id="down">Down</button>
-        <button id="left">Left</button>
-        <button id="right">Right</button>
+      <button id="up">Up</button>
+      <button id="down">Down</button>
+      <button id="left">Left</button>
+      <button id="right">Right</button>
     </div>
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-      const img = document.getElementById('draggable-image');
-      const container = document.querySelector('.image-wrapper');
-      let isDragging = false;
-      let startX, startY;
-      let initialLeft = 0, initialTop = 0;
-  
-      function constrainPosition(left, top) {
-          // Calculate the boundaries
-          const minLeft = container.offsetWidth - img.offsetWidth;
-          const minTop = container.offsetHeight - img.offsetHeight;
-          
-          // Constrain left and top within the boundaries
-          left = Math.min(0, Math.max(minLeft, left));
-          top = Math.min(0, Math.max(minTop, top));
-  
-          return { left, top };
-      }
-  
-      // Handle mouse down event to start dragging
-      img.addEventListener('mousedown', function (e) {
-          isDragging = true;
-          startX = e.clientX;
-          startY = e.clientY;
-          initialLeft = img.offsetLeft;
-          initialTop = img.offsetTop;
-          img.style.cursor = 'grabbing';
-      });
-  
-      // Handle mouse move event to drag the image
-      document.addEventListener('mousemove', function (e) {
-          if (isDragging) {
-              const dx = e.clientX - startX;
-              const dy = e.clientY - startY;
-              let newLeft = initialLeft + dx;
-              let newTop = initialTop + dy;
-  
-              // Apply constraints
-              const constrainedPosition = constrainPosition(newLeft, newTop);
-              img.style.left = constrainedPosition.left + 'px';
-              img.style.top = constrainedPosition.top + 'px';
-          }
-      });
-  
-      // Handle mouse up event to stop dragging
-      document.addEventListener('mouseup', function () {
-          isDragging = false;
-          img.style.cursor = 'grab';
-      });
-  
-      // Handle button click events to scroll the image
-      document.getElementById('up').addEventListener('click', function () {
-          let newTop = img.offsetTop - 10;
-          const constrainedPosition = constrainPosition(img.offsetLeft, newTop);
-          img.style.top = constrainedPosition.top + 'px';
-      });
-  
-      document.getElementById('down').addEventListener('click', function () {
-          let newTop = img.offsetTop + 10;
-          const constrainedPosition = constrainPosition(img.offsetLeft, newTop);
-          img.style.top = constrainedPosition.top + 'px';
-      });
-  
-      document.getElementById('left').addEventListener('click', function () {
-          let newLeft = img.offsetLeft - 10;
-          const constrainedPosition = constrainPosition(newLeft, img.offsetTop);
-          img.style.left = constrainedPosition.left + 'px';
-      });
-  
-      document.getElementById('right').addEventListener('click', function () {
-          let newLeft = img.offsetLeft + 10;
-          const constrainedPosition = constrainPosition(newLeft, img.offsetTop);
-          img.style.left = constrainedPosition.left + 'px';
-      });
-  });
+  </div>
 </Layout>
+
+<script>
+  const img = document.getElementById("draggable-image") as HTMLImageElement;
+  const container = document.querySelector(".image-wrapper") as HTMLElement;
+  const increment = 10;
+  let isDragging = false;
+  let startX = 0,
+    startY = 0,
+    initialLeft = 0,
+    initialTop = 0;
+
+  function constrainPosition(left: number, top: number) {
+    // Calculate the boundaries
+    const minLeft = container.offsetWidth - img.offsetWidth;
+    const minTop = container.offsetHeight - img.offsetHeight;
+
+    // Constrain left and top within the boundaries
+    left = Math.min(0, Math.max(minLeft, left));
+    top = Math.min(0, Math.max(minTop, top));
+
+    return { left, top };
+  }
+
+  // Handle mouse down event to start dragging
+  img.addEventListener("mousedown", function (e) {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    initialLeft = img.offsetLeft;
+    initialTop = img.offsetTop;
+    img.style.cursor = "grabbing";
+  });
+
+  // Handle mouse move event to drag the image
+  document.addEventListener("mousemove", function (e) {
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    let newLeft = initialLeft + dx;
+    let newTop = initialTop + dy;
+
+    // Apply constraints
+    const constrainedPosition = constrainPosition(newLeft, newTop);
+    img.style.left = constrainedPosition.left + "px";
+    img.style.top = constrainedPosition.top + "px";
+  });
+
+  // Handle mouse up event to stop dragging
+  document.addEventListener("mouseup", function () {
+    isDragging = false;
+    img.style.cursor = "grab";
+  });
+
+  // Handle button click events to scroll the image
+  document.getElementById("up")!.addEventListener("click", function () {
+    let newTop = img.offsetTop - increment;
+    const constrainedPosition = constrainPosition(img.offsetLeft, newTop);
+    img.style.top = constrainedPosition.top + "px";
+  });
+
+  document.getElementById("down")!.addEventListener("click", function () {
+    let newTop = img.offsetTop + increment;
+    const constrainedPosition = constrainPosition(img.offsetLeft, newTop);
+    img.style.top = constrainedPosition.top + "px";
+  });
+
+  document.getElementById("left")!.addEventListener("click", function () {
+    let newLeft = img.offsetLeft - increment;
+    const constrainedPosition = constrainPosition(newLeft, img.offsetTop);
+    img.style.left = constrainedPosition.left + "px";
+  });
+
+  document.getElementById("right")!.addEventListener("click", function () {
+    let newLeft = img.offsetLeft + increment;
+    const constrainedPosition = constrainPosition(newLeft, img.offsetTop);
+    img.style.left = constrainedPosition.left + "px";
+  });
+</script>
 
 <style>
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+  }
 
-.image-wrapper {
+  .image-wrapper {
     width: 300px;
     height: 300px;
     overflow: hidden;
     border: 2px solid #ccc;
     position: relative;
     cursor: grab;
-}
+  }
 
-.image-wrapper img {
+  .image-wrapper img {
     position: absolute;
     top: 0;
     left: 0;
-    
-}
+  }
 
-.controls {
+  .controls {
     margin-top: 10px;
-}
+  }
 
-.controls button {
+  .controls button {
     margin: 5px;
     padding: 10px;
     cursor: pointer;
-}
+  }
 
-.controls button:active {
+  .controls button:active {
     background-color: #ddd;
-}
+  }
 </style>
