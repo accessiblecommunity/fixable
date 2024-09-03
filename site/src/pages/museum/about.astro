@@ -117,7 +117,6 @@ const headerNavLinks =
 </Layout>
 
 <style>
-
   :is(h1, h2) {
     background: linear-gradient(to right, #112f4e 0%, #58b4ff 100%);
     display: inline-block;
@@ -172,22 +171,22 @@ const headerNavLinks =
     text-indent: 64px;
   }
 
-  [class^=table__] {
+  [class^="table__"] {
     display: flex;
     flex-flow: column nowrap;
     border: 1px solid #000;
   }
 
-  .table__responsive{
-    display:none;
+  .table__responsive {
+    display: none;
   }
 
-  @media (width <=700px){
-    .table__desktop{
+  @media (width <=700px) {
+    .table__desktop {
       display: none;
     }
 
-    .table__responsive{
+    .table__responsive {
       display: block;
     }
   }
@@ -199,7 +198,7 @@ const headerNavLinks =
     }
   }
 
-  [role=columnheader] {
+  [role="columnheader"] {
     color: var(--gray-400);
     font-family: Corinthia, cursive;
     font-size: 14pt;
