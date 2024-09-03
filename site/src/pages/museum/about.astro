@@ -177,16 +177,16 @@ const headerNavLinks =
     border: 1px solid #000;
   }
 
-  .table__responsive {
+  .table__desktop {
     display: none;
   }
 
-  @media (width <=700px) {
-    .table__desktop {
+  @media (min-width: 30em) {
+    .table__responsive {
       display: none;
     }
 
-    .table__responsive {
+    .table__desktop {
       display: block;
     }
   }
