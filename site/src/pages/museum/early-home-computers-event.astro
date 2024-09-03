@@ -1,0 +1,170 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getMode } from "@/lib/mode";
+import { defaultNavLinks } from "@/lib/nav-links";
+
+import zx81 from "../../assets/images/exhibits/early-home-computers/sinclair-zx81.png";
+import spectrum from "../../assets/images/exhibits/early-home-computers/zx-spectrum.jpeg";
+
+const headerNavLinks =
+  getMode() === "broken"
+    ? defaultNavLinks.filter(({ name }) => name !== "Take a Tour")
+    : defaultNavLinks;
+---
+<script>
+	let devices = document.querySelector(".devices");
+
+	devices.addEventListener("click", toggleReadMore, false);
+	
+	function toggleReadMore(e) {
+		e.preventDefault();
+		let elm = e.target;
+		if(elm.tagName === "A" && elm.className === "read-more-link-button"){
+			let moreTarget = elm.parentElement.querySelector(".more");
+			moreTarget.removeAttribute("hidden");
+			elm.textContent = "View Less";
+		}
+	}
+
+</script>
+
+<Layout title="Special PC event" {headerNavLinks}>
+	<header>
+		<h1>Early Home Computers Event!</h1>
+	</header>
+
+	<div class="about-the-event" role="region">
+		<p class="h2">About The Event</p>
+		<div class="more">
+			MORE
+		</div>
+		<div class="initial">
+			INITIAL
+		</div>
+		<div class="controls">
+			<button type="button">View Less</button>
+			<button type="button">Read More</button>
+		</div>
+	</div>
+
+	<div class="devices">
+		<div class="device">
+			<img src={zx81.src} alt="A bird sitting on a nest of eggs.">
+			<div class="more" hidden>
+				<p>Here's some more text</p>
+			</div>
+			<div class="initial">
+				<p>Here's some initial text</p>
+			</div>
+			<a class="read-more-link-button" href="#" role="button">Read More</a>
+		</div>
+		
+		<div class="device">
+			<img src={spectrum.src} alt="A bird sitting on a nest of eggs.">
+			<div class="more" hidden>
+				<p>Here's some more text</p>
+			</div>
+			<div class="initial">
+				<p>Here's some initial text</p>
+			</div>
+			<a class="read-more-link-button" href="#" role="button">Read More</a>
+		</div>
+
+		<div class="device">
+			<img src="../../assets/images/exhibits/early-home-computers/sinclair-zx81.png" alt="">
+			<div class="more" hidden>
+				<p>Here's some more text</p>
+			</div>
+			<div class="initial">
+				<p>Here's some initial text</p>
+			</div>
+			<a class="read-more-link-button" href="#" role="button">Read More</a>
+		</div>
+
+		<div class="device">
+			<img src="../../assets/images/exhibits/early-home-computers/sinclair-zx81.png" alt="">
+			<div class="more" hidden>
+				<p>Here's some more text</p>
+			</div>
+			<div class="initial">
+				<p>Here's some initial text</p>
+			</div>
+			<a class="read-more-link-button" href="#" role="button">Read More</a>
+		</div>
+
+		<div class="device">
+			<img src="../../assets/images/exhibits/early-home-computers/sinclair-zx81.png" alt="">
+			<div class="more" hidden>
+				<p>Here's some more text</p>
+			</div>
+			<div class="initial">
+				<p>Here's some initial text</p>
+			</div>
+			<a class="read-more-link-button" href="#" role="button">Read More</a>
+		</div>
+
+	</div>
+</Layout>
+
+<style is:global>
+
+	:root{
+		scrollbar-color: hsl(0,0%,20%) black;
+	}
+
+	body{
+		color:white;
+	}
+
+	::-webkit-scrollbar-track {
+  	background: black;
+	}
+
+	::-webkit-scrollbar-thumb {
+  	background: hsl(0,0%,20%)
+	}
+	
+	main.inset{
+		background-color: black;
+		max-width: unset;
+	}
+
+	header{
+		container: hd1 / inline-size;
+	}
+
+	h1{
+		color:var(--gold-vivid-200);
+		font-size:clamp(calc(var(--ms14) * 1rem), 10cqi + 1rem, calc(var(--ms19) * 1rem));
+		line-height: var(--ms1) !important;
+		margin-block-start:0;
+	}
+
+	@container hd1 (290px <= width <= 570px) {
+  	h1{
+			font-size:calc(var(--ms10) * 1rem);
+		}
+}
+
+.about-the-event{
+	border:3px solid #fff;
+}
+
+.devices{
+	display:grid;
+	gap:1rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.device{
+	border:1px solid currentColor;
+	color:#fff;
+	& img {
+		display:block;
+		height:250px;
+		margin:0 auto;
+		max-width: 100%;
+	}
+}
+
+</style>
