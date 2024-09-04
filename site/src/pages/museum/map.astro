@@ -66,6 +66,10 @@ import Layout from "@/layouts/Layout.astro";
   let initialScale = 1;
   let scale = 1;
 
+  // Initially center the pin on the map
+  if (!container.scrollLeft)
+    container.scrollLeft = 3490 - container.offsetWidth / 2;
+
   /** Updates map size, within acceptable boundaries */
   function maybeUpdateScale(newScale: number) {
     if (newScale > 4 || newScale < 0.25) return;
