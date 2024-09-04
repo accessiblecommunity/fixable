@@ -37,11 +37,11 @@ import Layout from "@/layouts/Layout.astro";
         />
       </div>
       <div class="controls hidden-below-md">
+        <button id="in"><Icon name="ri:arrow-up-s-fill" /></button>
         <button id="up"><Icon name="ri:arrow-up-s-fill" /></button>
-        <button id="down"><Icon name="ri:arrow-down-s-fill" /></button>
         <button id="left"><Icon name="ri:arrow-left-s-fill" /></button>
         <button id="right"><Icon name="ri:arrow-right-s-fill" /></button>
-        <button id="in"><Icon name="ri:arrow-up-s-fill" /></button>
+        <button id="down"><Icon name="ri:arrow-down-s-fill" /></button>
         <button id="out"><Icon name="ri:arrow-down-s-fill" /></button>
       </div>
     </div>
@@ -70,9 +70,24 @@ import Layout from "@/layouts/Layout.astro";
   function maybeUpdateScale(newScale: number) {
     if (newScale > 4 || newScale < 0.25) return;
     scale = newScale;
+
+    // Compute current percentage at visible center point
+    const percentX =
+      (container.scrollLeft + container.offsetWidth / 2) /
+      container.scrollWidth;
+    const percentY =
+      (container.scrollTop + container.offsetHeight / 2) /
+      container.scrollHeight;
+
     // Use height/width rather than trasnform for automatic bounding box updating
     img.style.height = scale === 1 ? "" : originalHeight * scale + "px";
     img.style.width = scale === 1 ? "" : originalWidth * scale + "px";
+
+    // Re-center by reversing percentX/Y formula
+    container.scrollLeft =
+      percentX * container.scrollWidth - container.offsetWidth / 2;
+    container.scrollTop =
+      percentY * container.scrollHeight - container.offsetHeight / 2;
   }
 
   /** Convenience wrapper around maybeUpdateScale for discrete zoom in/out steps */
@@ -240,7 +255,7 @@ import Layout from "@/layouts/Layout.astro";
 
     & button {
       background-color: var(--gray-020);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      border: 2px solid var(--black);
       color: var(--green-500);
       cursor: pointer;
       padding: 0;
@@ -277,20 +292,20 @@ import Layout from "@/layouts/Layout.astro";
   #left {
     right: var(--button-size);
     top: calc(var(--button-size) * 2);
-    z-index: 2;
+    z-index: 4;
   }
   #right {
     top: calc(var(--button-size) * 2);
-    z-index: 2;
+    z-index: 4;
   }
   #down {
     right: calc(var(--button-size) / 2);
     top: calc(var(--button-size) * 3);
-    z-index: 3;
+    z-index: 2;
   }
   #out {
     right: calc(var(--button-size) / 2);
     top: calc(var(--button-size) * 4);
-    z-index: 4;
+    z-index: 3;
   }
 </style>
