@@ -184,6 +184,11 @@ const headerNavLinks =
 	display:flex;
 	flex-direction: column;
 	padding:calc(var(--ms1) * 1rem);
+	text-align: justify;
+	& a{
+		color:currentColor;
+		text-decoration-color: var(--red-warm-600);
+	}
 	& img {
 		display:block;
 		height:250px;
@@ -207,9 +212,10 @@ const headerNavLinks =
 		margin-block-start: auto;
 	}
 	& .attribs{
-		border-block-start:1px solid var(--gold-vivid-100);
-		border-block-end:1px solid var(--gold-vivid-100);
+		border-block-start:1px solid var(--gold-400);
+		border-block-end:1px solid var(--gold-400);
 		font-size:calc(var(--ms-2) * 1rem);
+		font-style: italic;
 		padding:calc(var(--ms-6) * 1em) 0;
 	}
 }
