@@ -59,10 +59,12 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
   form.addEventListener("focusout", refreshErrors);
 
   setTimeout(() => {
-    showToast(`The form has expired; please <a href="../">return to checkout</a> to start over.`, {
-      allowHtml: true,
+    showToast(`The form has expired; you will need to start over.`, {
       role: "alert",
       type: "error",
+      actionHref: "../",
+      actionLabel: "Return to checkout",
+      withDismiss: false,
     });
     disableInputs(document.querySelector("main form") as HTMLFormElement);
   }, 30000);

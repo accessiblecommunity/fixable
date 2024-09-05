@@ -19,12 +19,12 @@ export type ToastType = keyof typeof iconMap;
 
 {
   getMode() === "broken" ? (
-    <div id="toast" role="alert" hidden>
+    <div id="toast" hidden>
       <div id="toast-content" />
       <button id="toast-dismiss">Dismiss</button>
     </div>
   ) : (
-    <dialog id="toast" role="alert">
+    <dialog id="toast">
       <form method="dialog">
         <div id="toast-content" />
         <button id="toast-dismiss">Dismiss</button>
@@ -60,6 +60,10 @@ export type ToastType = keyof typeof iconMap;
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
+
+    & :global(a) {
+      color: var(--blue-300);
+    }
   }
 
   svg {

@@ -5,8 +5,6 @@ import { getMode } from "../mode";
 import type { HTMLAttributes } from "astro/types";
 
 interface ToastOptions {
-  /** If set to true, leaves HTML unescaped in the message */
-  allowHtml?: boolean;
   /**
    * If set, the toast will automatically dismiss after this number of milliseconds
    * (broken mode only)
@@ -26,11 +24,14 @@ interface ToastOptions {
   withDismiss?: boolean;
 }
 
-interface ToastOptionsWithAction extends ToastOptions {
-  actionCallback: () => void;
+type ToastOptionsWithAction = ToastOptions & {
   actionLabel: string;
-}
+} & ({ actionCallback: () => void } | { actionHref: string });
 
+/**
+ * Hides/closes the toast if it is currently open.
+ * This is exposed for the Toast component; direct calls should be unnecessary.
+ */
 export function hideToast() {
   const toastEl = document.getElementById("toast")!;
   if (getMode() === "broken") toastEl.hidden = true;
@@ -44,7 +45,6 @@ export function hideToast() {
 export function showToast(
   message: string,
   {
-    allowHtml,
     duration,
     role,
     type,
@@ -59,8 +59,7 @@ export function showToast(
   if (!toastEl || !contentEl || !dismissEl)
     throw new Error("showToast used without <Toast /> component present");
 
-  if (allowHtml) contentEl.innerHTML = message;
-  else contentEl.textContent = message;
+  contentEl.textContent = message;
 
   if (isBroken) {
     dismissEl.hidden = !withDismiss;
@@ -72,25 +71,31 @@ export function showToast(
     `toast-icon-${type}`
   ) as HTMLTemplateElement;
   if (!templateEl)
-    throw new Error(`Template element not found for type ${options.type}`);
+    throw new Error(`Template element not found for type ${type}`);
   contentEl.insertBefore(
     templateEl.content.cloneNode(true),
     contentEl.firstChild
   );
 
-  if ("actionCallback" in actionOptions) {
-    const buttonEl = document.createElement("button");
-    buttonEl.textContent = actionOptions.actionLabel;
-    buttonEl.addEventListener(
-      "click",
-      isBroken
-        ? () => {
-            toastEl.hidden = true;
-            actionOptions.actionCallback();
-          }
-        : actionOptions.actionCallback
-    );
-    toastEl.appendChild(buttonEl);
+  if ("actionLabel" in actionOptions) {
+    const isButton = "actionCallback" in actionOptions;
+    const el = document.createElement(isButton ? "button" : "a");
+    if (isButton) {
+      el.addEventListener(
+        "click",
+        isBroken
+          ? () => {
+              toastEl.hidden = true;
+              actionOptions.actionCallback();
+            }
+          : actionOptions.actionCallback
+      );
+    } else {
+      (el as HTMLAnchorElement).href = actionOptions.actionHref;
+    }
+
+    el.textContent = actionOptions.actionLabel;
+    contentEl.appendChild(el);
   }
 
   if (isBroken) toastEl.hidden = false;
