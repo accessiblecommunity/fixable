@@ -28,6 +28,8 @@ type ToastOptionsWithAction = ToastOptions & {
   actionLabel: string;
 } & ({ actionCallback: () => void } | { actionHref: string });
 
+let toastTimer: ReturnType<typeof setTimeout> | null = null;
+
 /**
  * Hides/closes the toast if it is currently open.
  * This is exposed for the Toast component; direct calls should be unnecessary.
@@ -36,6 +38,10 @@ export function hideToast() {
   const toastEl = document.getElementById("toast")!;
   if (getMode() === "broken") toastEl.hidden = true;
   else (toastEl as HTMLDialogElement).close();
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
 }
 
 /**
@@ -58,6 +64,8 @@ export function showToast(
   const dismissEl = document.getElementById("toast-dismiss");
   if (!toastEl || !contentEl || !dismissEl)
     throw new Error("showToast used without <Toast /> component present");
+
+  hideToast();
 
   contentEl.textContent = message;
 
@@ -101,5 +109,5 @@ export function showToast(
   if (isBroken) toastEl.hidden = false;
   else (toastEl as HTMLDialogElement).show();
 
-  if (isBroken && duration) setTimeout(hideToast, duration);
+  if (isBroken && duration) toastTimer = setTimeout(hideToast, duration);
 }
