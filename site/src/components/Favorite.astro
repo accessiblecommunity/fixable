@@ -48,6 +48,7 @@ const { id, size = 48 } = Astro.props;
       // (either via favorite button or undo in confirmation toast)
       if (oldFavorites) {
         showToast(`${value ? "Added to" : "Removed from"} favorites`, {
+          role: "alert",
           type: "info",
           actionCallback() {
             persist("favorites", {
