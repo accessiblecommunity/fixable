@@ -29,13 +29,32 @@ type ToastOptionsWithAction = ToastOptions & {
 } & ({ actionCallback: () => void } | { actionHref: string });
 
 let toastTimer: ReturnType<typeof setTimeout> | null = null;
+let toastTransitionPromise: Promise<void> | null = null;
+
+function createTransitionPromise(el: HTMLElement) {
+  toastTransitionPromise = new Promise<void>((resolve) => {
+    function handler() {
+      el.removeEventListener("transitionend", handler);
+      toastTransitionPromise = null;
+      resolve();
+    }
+    el.addEventListener("transitionend", handler);
+  });
+  return toastTransitionPromise;
+}
 
 /**
  * Hides/closes the toast if it is currently open.
  * This is exposed for the Toast component; direct calls should be unnecessary.
  */
-export function hideToast() {
+export async function hideToast() {
+  await toastTransitionPromise; // Wait for any existing transition to finish first
   const toastEl = document.getElementById("toast")!;
+  if (toastEl.classList.contains("showing")) {
+    toastEl.classList.remove("showing");
+    await createTransitionPromise(toastEl);
+  }
+
   if (getMode() === "broken") toastEl.hidden = true;
   else (toastEl as HTMLDialogElement).close();
   if (toastTimer) {
@@ -48,7 +67,7 @@ export function hideToast() {
  * Displays a message in a toast.
  * Note this does not support multiple concurrent toasts or queueing.
  */
-export function showToast(
+export async function showToast(
   message: string,
   {
     duration,
@@ -65,7 +84,7 @@ export function showToast(
   if (!toastEl || !contentEl || !dismissEl)
     throw new Error("showToast used without <Toast /> component present");
 
-  hideToast();
+  await hideToast();
 
   contentEl.textContent = message;
 
@@ -108,6 +127,10 @@ export function showToast(
 
   if (isBroken) toastEl.hidden = false;
   else (toastEl as HTMLDialogElement).show();
+  
+  // Give element a chance to paint before adding class, to apply transition
+  setTimeout(() => toastEl.classList.add("showing"), 15);
+  await createTransitionPromise(toastEl);
 
   if (isBroken && duration) toastTimer = setTimeout(hideToast, duration);
 }

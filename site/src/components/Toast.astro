@@ -17,21 +17,23 @@ const iconMap = {
 export type ToastType = keyof typeof iconMap;
 ---
 
-{
-  getMode() === "broken" ? (
-    <div id="toast" hidden>
-      <div id="toast-content" />
-      <button id="toast-dismiss">Dismiss</button>
-    </div>
-  ) : (
-    <dialog id="toast">
-      <form method="dialog">
+<div class="toast-container">
+  {
+    getMode() === "broken" ? (
+      <div id="toast" hidden>
         <div id="toast-content" />
         <button id="toast-dismiss">Dismiss</button>
-      </form>
-    </dialog>
-  )
-}
+      </div>
+    ) : (
+      <dialog id="toast">
+        <form method="dialog">
+          <div id="toast-content" />
+          <button id="toast-dismiss">Dismiss</button>
+        </form>
+      </dialog>
+    )
+  }
+</div>
 {
   // Set up icons as templates for use by API in toast.ts
   Object.entries(iconMap).map(([type, name]) => (
@@ -51,18 +53,34 @@ export type ToastType = keyof typeof iconMap;
 </script>
 
 <style>
+  .toast-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+  }
+
   #toast {
     background-color: var(--gray-900);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: var(--gray-050);
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    max-width: 90vw;
+    opacity: 0;
+    transition: opacity 250ms, transform 250ms;
+    transform: translateY(50%);
 
     & :global(a) {
       color: var(--blue-300);
+    }
+
+    &:global(.showing) {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
