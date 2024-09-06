@@ -12,6 +12,7 @@ import { defaultNavLinks } from "@/lib/nav-links";
 
 type Props = ComponentProps<typeof BaseLayout> & {
   headerNavLinks?: ComponentProps<typeof Navigation>["navLinks"];
+  withFixedSearch?: boolean;
   withInsetMain?: boolean;
   withMainId?: boolean;
 };
@@ -19,13 +20,14 @@ type Props = ComponentProps<typeof BaseLayout> & {
 const {
   headerNavLinks = defaultNavLinks,
   title,
+  withFixedSearch = true,
   withInsetMain = true,
   withMainId = true,
 } = Astro.props;
 ---
 
 <BaseLayout title={title}>
-  <Header />
+  <Header searchMode={withFixedSearch ? "fixed" : undefined} />
   <Navigation navLinks={headerNavLinks} />
   <main
     id={withMainId ? "main" : undefined}
