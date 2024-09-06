@@ -4,28 +4,31 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev:fixed": "cross-env PUBLIC_FIXED=1 astro dev",
     "start": "astro dev",
     "check": "astro check",
     "build": "astro check && astro build",
+    "build:fixed": "astro check && cross-env PUBLIC_FIXED=1 astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.2",
     "@astrojs/markdown-remark": "~5.2.0",
     "@fontsource-variable/cabin": "^5.0.19",
     "@fontsource/corinthia": "^5.0.21",
     "@fontsource/patua-one": "^5.0.19",
-    "astro": "^4.13.3",
+    "astro": "^4.15.1",
     "astro-icon": "^1.1.0",
     "fast-glob": "^3.3.2",
     "lodash-es": "^4.17.21",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.3",
     "@iconify-json/ri": "^1.1.21",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.14.14",
+    "cross-env": "^7.0.3",
     "prettier": "3.3.2"
   }
 }

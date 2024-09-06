@@ -237,7 +237,24 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
-  
+    <MetaFailureSection href="museum/collections/music/" title="Music Collection">
+      <dl slot="wcag2">
+        <dt>2.4.4 and 2.4.9: Link Purpose</dt>
+        <dd>
+          The purpose of each entry's link is unclear because its image (with alt text)
+          is also included within the link, preceding its title.
+        </dd>
+      </dl>
+
+      <dl slot="wcag3">
+        <dt>Interface Verbosity</dt>
+        <dd>
+          The link for each entry is overly verbose, due to the inclusion of
+          each entry's image (with alt text).
+        </dd>
+      </dl>
+    </MetaFailureSection>
+
     <MetaFailureSection href="museum/collections/technology/" title="Technology Collection">
       <p>This section includes the technology collection page and related item subpages.</p>
 
@@ -346,6 +363,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>2.3.3: Animation from Interactions</dt>
         <dd>
           Images zoom in on hover and do not respect prefers-reduced-motion.
+        </dd>
+        <dt>2.4.1: Bypass Blocks</dt>
+        <dd>
+          The "Skip to content" link does not work properly on the blog listing page.
         </dd>
         <dt>2.4.4 and 2.4.9: Link Purpose</dt>
         <dd>
@@ -467,6 +488,30 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
+    <MetaFailureSection href="museum/map/" title="Museum Map">
+      <dl slot="wcag2">
+        <dt>1.3.3: Sensory Characteristics</dt>
+        <dd>
+          Instructions allude only to color when describing visible map controls,
+          which is insufficient to disambiguate for colorblind users, as some
+          controls feature the same icons distinguished only by color.
+        </dd>
+        <dt>1.4.11: Non-text Contrast</dt>
+        <dd>
+          The pin on the map uses a color that has extremely poor contrast against
+          the map's colors.
+        </dd>
+        <dt>2.1.4: Character Key Shortcuts</dt>
+        <dd>
+          Single-character key bindings are implemented across the entire page
+          for map movement, and cannot be turned off or customized.
+        </dd>
+        <dt>2.5.1: Pointer Gestures</dt>
+        <dd>
+          On mobile viewports, the only way to zoom the map is via a pinch gesture.
+        </dd>
+      </dl>
+    </MetaFailureSection>
 
     <MetaFailureSection href="museum/login/" title="Register & Sign In">
       <p>This section includes the registration and sign in processes.</p>
