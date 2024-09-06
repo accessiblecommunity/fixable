@@ -33,7 +33,6 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     }
 
     <MetaFailureSection href="museum/" title="Home & Search">
-
       <p>This section includes the home page and the search results page.</p>
 
       <p>This section demonstrates content that has a moderate number of accessibilty failures. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
@@ -115,13 +114,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
-
-
     <MetaFailureSection href="museum/collections/" title="Collections Page">
+      <p>This section includes only the collection page.</p>
 
-    <p>This section includes only the collection page.</p>
-
-     <p>This section demonstrates content that has a moderate-to-high number of accessibilty failures, some of which would be very diffcult to work around. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
+      <p>This section demonstrates content that has a moderate-to-high number of accessibilty failures, some of which would be very diffcult to work around. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
@@ -184,11 +180,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/collections/dishes/" title="Dishes Collection">
- 
-    <p>This section includes the dishes collection page and related item subpages.</p>
+      <p>This section includes the dishes collection page and related item subpages.</p>
 
-     <p>This section demonstrates content that has very few accessibilty failures and the failures that exist can be worked around or are in less important features. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
-
+      <p>This section demonstrates content that has very few accessibilty failures and the failures that exist can be worked around or are in less important features. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
@@ -197,7 +191,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>2.1.1: Keyboard</dt>
         <dd>
-          The favorites marker is keyboard only.
+          The favorites marker is not accessible via keyboard.
         </dd>
       </dl>
 
@@ -208,20 +202,17 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>Keyboard only</dt>
         <dd>
-          The favorites marker is keyboard only.
+          The favorites marker is not accessible via keyboard.
         </dd>
       </dl>
     </MetaFailureSection>
 
- 
-
     <MetaFailureSection href="museum/collections/home/" title="Home Collection">
       <p><strong>Photosensitivity Warning!</strong> Do not visit this section if you experience reactions to flashing lights or motion.</p>
 
-    <p>This section includes the home collection page and related item subpages.</p>
+      <p>This section includes the home collection page and related item subpages.</p>
 
-     <p>This section demonstrates content that has few accessibilty failures, BUT the failures that exist could cause individuals with disabiliites physical or psychological harm.</p>
-
+      <p>This section demonstrates content that has few accessibilty failures, BUT the failures that exist could cause individuals with disabiliites physical or psychological harm.</p>
 
       <dl slot="wcag2">
         <dt>2.3.1 or 2.3.2: Three Flashes</dt>
@@ -248,29 +239,27 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
   
     <MetaFailureSection href="museum/collections/technology/" title="Technology Collection">
+      <p>This section includes the technology collection page and related item subpages.</p>
 
-    <p>This section includes the technology collection page and related item subpages.</p>
-
-     <p>This section demonstrates content that has very few accessibility failures in the programmatic portion of the page but has a number of failures in the content. </p>
-
+      <p>This section demonstrates content that has very few accessibility failures in the programmatic portion of the page but has a number of failures in the content. </p>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
         <dd>
           Some of the exhibit images lack alt text.
         </dd>
-        <dt>2.4.10: Section Headings </dt>
+        <dt>2.4.10: Section Headings</dt>
         <dd>
           The page doesn't have an H1. 
         </dd>  
       </dl>
-    </MetaFailureSection>
+
       <dl slot="wcag3">
         <dt>Image alternatives</dt>
         <dd>
           Some of the exhibit images lack alt text.
         </dd>
-        <dt>Section Headings </dt>
+        <dt>Section Headings</dt>
         <dd>
           The page doesn't have an H1. 
         </dd>         
@@ -279,11 +268,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
 
     <MetaFailureSection href="museum/collections/containers/" title="Containers">
+      <p>This section includes the containers collection page and related item subpages.</p>
 
-    <p>This section includes the containers collection page and related item subpages.</p>
-
-     <p>This section demonstrates content that a lare number of small accessibility failures.</p>
-
+      <p>This section demonstrates content that a lare number of small accessibility failures.</p>
 
       <dl slot="wcag2">
         <dt>1.3.6: Identify Purpose</dt>
@@ -316,14 +303,12 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The Favorite toggle is not accessible via keyboard.
         </dd>
       </dl>
-
-
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/tour/" title="Take a Tour">
-    <p>This section includes the Take a Tour page and related subpages.</p>
+      <p>This section includes the Take a Tour page and related subpages.</p>
 
-     <p>This section demonstrates task completion and multimedia failures. </p>
+      <p>This section demonstrates task completion and multimedia failures. </p>
 
       <dl slot="wcag2">
         <dt>2.2.4: Interruptions</dt>
@@ -335,6 +320,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The "Take a Tour" item is missing from the top nav on this page.
         </dd>
       </dl>
+
       <dl slot="wcag3">
         <dt>2.2.4: Interruptions</dt>
         <dd>
@@ -348,10 +334,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/blog/" title="Blog">
-    <p>This section includes the Blog page and related article subpages.</p>
+      <p>This section includes the Blog page and related article subpages.</p>
 
-     <p>This section demonstrates a moderate level of content, interactioon and multimedia failures. </p>
-
+      <p>This section demonstrates a moderate level of content, interactioon and multimedia failures. </p>
 
       <dl slot="wcag2">
         <dt>1.4.3 and 1.4.6: Contrast</dt>
@@ -378,16 +363,16 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/gift-shop/" title="Gift Shop">
-    <p>This section includes the Gift shop, product subpages and checkout process.</p>
+      <p>This section includes the Gift shop, product subpages and checkout process.</p>
 
-     <p>This section demonstrates task completion and form based failures. </p>
+      <p>This section demonstrates task completion and form based failures. </p>
 
-    <p>Note: One or more items must be in the cart to continue the checkout process.</p>
+      <p>Note: One or more items must be in the cart to continue the checkout process.</p>
 
       <dl slot="wcag2">
         <dt>1.4.3 and 1.4.6: Contrast</dt>
         <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
-      <dt>2.2.3: No Timing</dt>
+        <dt>2.2.3: No Timing</dt>
         <dd>
           Forms in the checkout process time out after an undisclosed period of time.
         </dd>
@@ -412,12 +397,12 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           No context-sensitive help is available.
         </dd>
-      </dl>
         <dt>3.3.6: Error Prevention (All)</dt>
         <dd>
           The quantity field uses <code>type="tel"</code>, which allows non-numeric input,
           rather than the more appropriate <code>type="number"</code>.
         </dd> 
+      </dl>
 
       <dl slot="wcag3">
         <dt>Contrast Minimum</dt>
@@ -484,10 +469,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
 
     <MetaFailureSection href="museum/login/" title="Register & Sign In">
+      <p>This section includes the registration and sign in processes.</p>
 
-    <p>This section includes the registration and sign in processes.</p>
-
-     <p>This section demonstrates task completion, form based and authentication failures. </p>
+      <p>This section demonstrates task completion, form based and authentication failures.</p>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
@@ -511,10 +495,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/volunteer/" title="Volunteer">
-    <p>This section includes the volunteer sign up process pages.</p>
+      <p>This section includes the volunteer sign up process pages.</p>
 
-     <p>This section includes task completion, form based and authentication failures. This includes a small number of errors.</p>
-
+      <p>This section includes task completion and form based failures. This includes a small number of errors.</p>
 
       <dl slot="wcag2">
         <dt>2.2.6: Timeouts</dt>
@@ -522,20 +505,17 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The form becomes unsubmittable after a short time period which is not disclosed in advance.
         </dd>
       </dl>
+
       <dl slot="wcag3">
        <dt>Adequate time</dt>
         <dd>
           There is a timeout that may be too short to enter required information. The user is not notified.
         </dd>
       </dl>
-
     </MetaFailureSection>
 
-
     <MetaFailureSection href="museum/about/" title="About">
-    <p>This section includes only the about page.</p>
-
-     <p>This section includes a moderate amount of content based errors that would.</p>
+      <p>This section includes only the about page.</p>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
@@ -585,19 +565,18 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       >.
     </p>
 
-  <h2>Individual Contributors</h2>
-  <ul>
-  <li>Ken Franqueiro</li>
-  <li>Francis Storr</li>
-  <li>Rachael Bradley Montgomery</li>
-  <li>Alastair Campbell<li>
-  <li>Asher Kolieboi</li>
-  <li>Ellen Liebert</li>
-  <li>Brian Montgomery</li> 
-  <li>Matt Russell</li>
-  <li>Kevin White</li>
-  </ul>
-
+    <h2>Individual Contributors</h2>
+    <ul>
+      <li>Ken Franqueiro</li>
+      <li>Francis Storr</li>
+      <li>Rachael Bradley Montgomery</li>
+      <li>Alastair Campbell<li>
+      <li>Asher Kolieboi</li>
+      <li>Ellen Liebert</li>
+      <li>Brian Montgomery</li> 
+      <li>Matt Russell</li>
+      <li>Kevin White</li>
+    </ul>
   </section>
 </MetaLayout>
 
