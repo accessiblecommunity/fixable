@@ -46,7 +46,7 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 </script>
 
 <Layout title="Special PC event">
-	<header>
+	<header class="page">
 		<h1>Early Home Computers Event!</h1>
 	</header>
 
@@ -164,8 +164,11 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 	}
 
 	header{
+		color:var(--black);
+	}
+
+	header.page{
 		container: hd1 / inline-size;
-		color:var(--black); /* needed for site header */
 		grid-column: 1 / -1;
 	}
 
@@ -241,7 +244,7 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 	padding:calc(var(--ms1) * 1rem);
 	text-align: justify;
 	& a{
-		color:currentColor;
+		color:var(--white);
 		text-decoration-color: var(--red-warm-600);
 		@supports(text-decoration-color: hsl(from red h s calc(l - 5%))){
 			text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5%));
@@ -260,7 +263,7 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 	}
 	& h4{
 		background: white;
-		color:black;
+		color:var(--black);
 		margin:0.75em 0 0.3em;
 		text-align: center;
 		& + p{
@@ -283,5 +286,26 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 		font-size:calc(var(--ms3) * 1rem);
 	}
 }
+
+@media(forced-colors:active){
+		h1{
+			color:mark;
+		}
+
+		.h2{
+			color:linktext;
+		}
+
+		.device{
+			border-color:linktext;
+			& h4{
+				color:linktext;
+			}
+			& .read-more-link-button{
+			color:buttontext;
+			text-decoration-color:buttonface;
+		}
+		}
+	}
 
 </style>
