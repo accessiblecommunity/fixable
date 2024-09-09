@@ -1,7 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getMode } from "@/lib/mode";
-import { defaultNavLinks } from "@/lib/nav-links";
 
 import zx81 from "../../assets/images/exhibits/early-home-computers/zx81.png";
 import spectrum from "../../assets/images/exhibits/early-home-computers/spectrum.png";
@@ -11,33 +9,32 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 
 ---
 <script>
-	let devices = document.querySelector(".devices");
-	let controls = document.querySelector(".controls");
+	const devices = document.querySelector(".devices")!;
+	const controls = document.querySelector(".controls")!;
 
-	devices.addEventListener("click", toggleReadMore, false);
-	controls.addEventListener("click", toggleReadMore, false);
+	devices.addEventListener("click", toggleReadMore);
+	controls.addEventListener("click", toggleReadMore);
 	
-	function toggleReadMore(e) {
-		e.preventDefault();
-		let elm = e.target;
-		if(elm.tagName === "A" && elm.className === "read-more-link-button"){
-			let moreTarget = elm.parentElement.querySelector(".more");
-			if(elm.textContent == "Read More"){
+	function toggleReadMore(event: Event) {
+		event.preventDefault();
+		let el = event.target as HTMLElement;
+		if (el.tagName === "A" && el.className === "read-more-link-button") {
+			let moreTarget = el.parentElement!.querySelector(".more") as HTMLElement;
+			if (el.textContent == "Read More") {
 				moreTarget.removeAttribute("hidden");
-				elm.textContent = "Read Less";
-			}
-			else{
+				el.textContent = "Read Less";
+			} else {
 				moreTarget.setAttribute("hidden", "");
-				elm.textContent = "Read More";
+				el.textContent = "Read More";
 			}
 
 		}
-		if(elm.tagName === "BUTTON"){
-			let moreTarget = elm.parentElement.parentElement.querySelector(".more");
-			controls.querySelector("button[hidden]").removeAttribute("hidden");
-			elm.setAttribute("hidden", "");
+		if (el.tagName === "BUTTON") {
+			let moreTarget = el.parentElement!.parentElement!.querySelector(".more") as HTMLElement;
+			controls.querySelector("button[hidden]")?.removeAttribute("hidden");
+			el.setAttribute("hidden", "");
 			moreTarget.removeAttribute("hidden");
-			if(elm.textContent == "View Less"){
+			if (el.textContent == "View Less") {
 				moreTarget.setAttribute("hidden", "");
 			}
 		}
@@ -73,7 +70,7 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 			</div>
 			<div class="more" hidden>
 				<p>The unexpanded ZX81's tiny memory presents a major challenge to programmers. Simply displaying a full screen takes up to 793 bytes, the system variables take up another 125 bytes, and the program, input buffer and stacks need more memory on top of that. Nonetheless, ingenious programmers are able to achieve a surprising amount with just 1 KB. One example is the Super Micro Chess Engine by Stefano Maragò, which includes all of the rules of chess. The ZX81 conserves its memory to a certain extent by representing entire BASIC commands as one-byte tokens, stored as individual "characters" in the upper reaches of the machine's unique (non-ASCII) character set.</p>
-				<div class="attribs"><small>Text from <a href="https://en.wikipedia.org/wiki/ZX81">Wikipedia's ZX81 page</a>. Image: Evan-Amos, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons.
+				<div class="attribs"><small>Text from <a href="https://en.wikipedia.org/wiki/ZX81">Wikipedia's ZX81 page</a>. Image: Evan-Amos, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons.
 				</small></div>
 			</div>
 			<a class="read-more-link-button" href="#" role="button">Read More</a>
@@ -127,18 +124,17 @@ import vic20 from "../../assets/images/exhibits/early-home-computers/vic20.png";
 				<h4>Commodore 64</h4>
 				<p>The Commodore 64, also known as the C64, is an 8-bit home computer introduced in January 1982 by Commodore International (first shown at the Consumer Electronics Show, January 7–10, 1982, in Las Vegas). It has been listed in the Guinness World Records as the highest-selling single computer model of all time, with independent estimates placing the number sold between 12.5 and 17 million units.</p>
 			</div>
+			<div class="more" hidden>
+				<p>Volume production started in early 1982, marketing in August for US$595 (equivalent to $1,880 in 2023). Preceded by the VIC-20 and Commodore PET, the C64 took its name from its 64 kilobytes (65,536 bytes) of RAM. With support for multicolor sprites and a custom chip for waveform generation, the C64 could create superior visuals and audio compared to systems without such custom hardware.</p>
+				<div class="attribs"><small>Text from <a href="https://en.wikipedia.org/wiki/Commodore_64">Wikipedia's Commodore 64 page</a>. Image: By Evan-Amos - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=17414881.
+				</small></div>
+			</div>
 			<a class="read-more-link-button" href="#" role="button">Read More</a>
-		</div>
-		<div class="more" hidden>
-			<p>Volume production started in early 1982, marketing in August for US$595 (equivalent to $1,880 in 2023). Preceded by the VIC-20 and Commodore PET, the C64 took its name from its 64 kilobytes (65,536 bytes) of RAM. With support for multicolor sprites and a custom chip for waveform generation, the C64 could create superior visuals and audio compared to systems without such custom hardware.</p>
-			<div class="attribs"><small>Text from <a href="https://en.wikipedia.org/wiki/Commodore_64">Wikipedia's Commodore 64 page</a>. Image: By Evan-Amos - Own work, Public Domain, https://commons.wikimedia.org/w/index.php?curid=17414881.
-			</small></div>
 		</div>
 	</div>
 </Layout>
 
 <style is:global>
-
 	:root{
 		scrollbar-color: hsl(0,0%,20%) black;
 	}
