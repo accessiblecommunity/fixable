@@ -4,7 +4,11 @@ import { sortBy, uniqBy } from "lodash-es";
 import Fixable from "@/components/Fixable.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getDownsizedSrc } from "@/lib/image";
-import { defaultNavLinks } from "@/lib/nav-links";
+import {
+  defaultNavLinks,
+  filterNavTreeLinks,
+  type NavLink,
+} from "@/lib/nav-links";
 
 const categories = sortBy(
   (await getCollection("exhibit-categories")).filter(
@@ -36,10 +40,11 @@ for (const { data, slug } of exhibits) {
 const tabIndices = [1, 2, 4, 6, 3, 5, 7];
 
 const seeMoreLabels = ["Blog", "Gift Shop"];
-const seeMoreLinks = defaultNavLinks.filter(({ name }) =>
-  seeMoreLabels.includes(name)
+const seeMoreLinks = defaultNavLinks.filter(
+  (link): link is NavLink => "href" in link && seeMoreLabels.includes(link.name)
 );
-const headerNavLinks = defaultNavLinks.filter(
+const headerNavLinks = filterNavTreeLinks(
+  defaultNavLinks,
   ({ name }) => !seeMoreLabels.includes(name)
 );
 ---
