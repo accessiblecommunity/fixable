@@ -3,7 +3,7 @@ title: Ceramic Vase
 imageDescription: A brown ceramic vase with a chip out of the rim.
 image: "@/assets/images/exhibits/containers/michael-walter-mhtl3k7OmKs-unsplash.jpg"
 
-note: reading age set to "lower secondary education"
+level of education: "lower secondary education"
 ---
 
 This tiny vase, only about three inches tall, comes from the time of the pharaohs in ancient Egypt. Its surface is a mix of different brown shades, created from the natural clay found along the Nile River. Even though the vase is broken and has a crack along its lip, it still shows us the incredible craftsmanship of the ancient Egyptians. The vase may have once been used to hold precious oils or perfumes.

@@ -3,7 +3,7 @@ title: Vasai Pottery
 imageDescription: Two pottery jars
 image: "@/assets/images/exhibits/containers/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg"
 
-note: reading age set to "lower secondary education"
+level of education: "lower secondary education"
 ---
 
 Welcome to the Broken Vasai Pottery Jugs exhibit.

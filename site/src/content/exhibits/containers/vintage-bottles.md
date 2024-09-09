@@ -3,7 +3,7 @@ title: Vintage Bottles
 imageDescription: A wooden box of vintage glass bottles; some are worn or chipped, while others are completely broken apart toward the neck.
 image: "@/assets/images/exhibits/containers/pexels-emmanuel-codden-1502600-15352505.jpg"
 
-note: reading age set to "lower secondary education"
+level of education: "lower secondary education"
 ---
 
 This old wooden crate, once used to carry bottles full of beer, now holds a collection of broken glass. The crate and the shattered bottles inside have been sprayed with white paint, creating a ghostly appearance that makes them look frozen in time. The bottles are jagged and sharp, with their necks and bases cracked and chipped, telling the story of a time when they were carelessly dropped or broken. Though they can no longer hold anything, they still remind us of their past purpose.

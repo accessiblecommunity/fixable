@@ -3,7 +3,7 @@ title: Old Clay Jug
 imageDescription: Old Clay Jug with cracks
 image: "@/assets/images/exhibits/containers/old-clay-jug-with-cracks-3596846137.jpg"
 
-note: reading age set to "lower secondary education"
+level of education: "lower secondary education"
 ---
 
 This old clay jug was discovered in a farmer’s field in England, and it might be as old as Roman times. The jug is made from a rough, reddish-brown clay and was probably used to hold water or wine. Over time, the jug has developed cracks and chips, showing its long history of use and age. Even though it’s broken now, it gives us a glimpse into what life was like when the Romans were living in Britain.

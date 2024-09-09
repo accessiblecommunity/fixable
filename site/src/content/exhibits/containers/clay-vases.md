@@ -3,7 +3,7 @@ title: Clay Vases
 imageDescription: A shelf filled with clay vases, some of which have been broken at the neck or halfway up the body.
 image: "@/assets/images/exhibits/containers/thomas-bormans-3WCq2NNZgRI-unsplash.jpg"
 
-note: reading age set to "lower secondary education"
+level of education: "lower secondary education"
 ---
 
 Here, you will find ancient Greek pottery that was once used to store and transport important items like wine, oil, and grain. The amphorae, which are tall and have two handles, were often used in everyday life, while the urns were sometimes used for special purposes like holding the ashes of the dead in funerals. Even though these amphorae and urns are broken, you can still see the beautiful designs that decorated them long ago.
