@@ -3,11 +3,13 @@ title: Vasai Pottery
 imageDescription: Two pottery jars
 image: "@/assets/images/exhibits/containers/marshall-minzz-Eu4R4zjcg0M-unsplash.jpg"
 
-note: reading age set to "upper secondary education"
+note: reading age set to "lower secondary education"
 ---
 
-These jugs come from the Indian town of Vasai, known for its long history of pottery-making. Each jug was once carefully crafted by hand, using local clay and traditional techniques passed down through generations. The jugs have a unique texture, with shades of earthy browns and reds, reflecting the natural minerals in the clay. While these jugs are now cracked and chipped, they once served as essential tools in daily life, used to carry water or store food. Their broken pieces still carry the beauty of their original form and craftsmanship.
+Welcome to the Broken Vasai Pottery Jugs exhibit.
 
-The process of making these jugs involved a technique called hand-coiling, where thin rolls of clay are stacked and smoothed to form the body of the jug. After shaping, the pottery was fired in a kiln, a high-temperature oven that hardens the clay and gives the jugs their strength. The firing process, called oxidation, is what gives the pottery its distinctive colors. Though time and wear have caused many of these jugs to break apart, some still show the intricate carvings and patterns that were added to their surfaces. These decorations are a testament to the artistry and skill of Vasai’s potters.
+These jugs come from Vasai in India, a place known for its long tradition of pottery-making. Each jug was handmade from clay, with rich, earthy colors like brown and red. Even though these jugs are broken now, you can still see their original shape and beauty. Some are cracked down the middle, while others have pieces missing, but each one tells the story of the people who used them in their daily lives.
 
-Even though the jugs are broken, they provide a fascinating look into the history of the region and its culture. Vasai pottery was often used in both everyday life and special ceremonies, making these jugs important artifacts. The fractures and missing pieces tell the story of their long journey through time. Each crack and chip is a reminder of how fragile these objects are, yet they remain resilient in helping us connect to the past. Their imperfect forms still carry the memory of the people who used them, allowing us to imagine the lives they touched long ago.
+The jugs were made using a method called hand-coiling, where long rolls of clay were carefully stacked and shaped into the form of the jug. After they were shaped, they were baked in a special oven called a kiln to make the clay hard and strong. Some of the broken jugs still have patterns on them, showing that the potters decorated them with great care. These decorations often included lines, dots, and other designs that made each jug unique.
+
+Even though these jugs are broken, they help us learn about life in Vasai long ago. The jugs were used to carry water, store food, and in some cases, for special ceremonies. The cracks and chips on each jug show that they were used many times before they broke. These broken jugs remind us that even everyday objects can tell us a lot about the past and the people who made and used them.
