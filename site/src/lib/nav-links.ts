@@ -52,6 +52,10 @@ for (const entry of defaultNavLinks) {
   else prependHref(entry);
 }
 
+/** Utility function to distinguish NavLink from NavParent and inform typings */
+export const checkIsNavLink = (entry: NavLink | NavParent): entry is NavLink =>
+  "href" in entry;
+
 /** Utility function to recursively filter links (not parents) in a NavTree structure. */
 export const filterNavTreeLinks = (
   navTree: NavTree,
