@@ -16,9 +16,3 @@ At this live event, we’ll be featuring guest speakers who will share their per
 Audience participation will be a key part of the evening! Attendees will have the chance to ask questions, share their own stories of brokenness, and contribute to the rich dialogue about how we navigate life’s fractures. Whether it’s a broken promise, a shattered keepsake, or a lost opportunity, we invite you to be part of a collective reflection on the stories that connect us all. The most compelling moments from the night will be featured in upcoming episodes of the *Stories from the Broken* podcast, so your voice could become part of this exciting new series!
 
 This event is not just a recording session—it’s a live, intimate experience where we come together to reflect on the fragile, beautiful nature of the human experience. Spaces are limited, so reserve your spot today and be part of a special night that will live on in the museum’s new podcast series. Come with an open heart and a friend, and leave with a deeper understanding of the power that lies in things we once thought were broken.
-
-<style is:global>
-	h2{
-		margin-block-start:0;
-	}
-</style>
