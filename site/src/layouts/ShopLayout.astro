@@ -8,7 +8,7 @@ import Navigation from "@/components/Navigation.astro";
 import Toast from "@/components/Toast.astro";
 import { museumBaseUrl } from "@/lib/constants";
 import { getMode } from "@/lib/mode";
-import { defaultNavLinks } from "@/lib/nav-links";
+import { checkIsNavLink, defaultNavLinks } from "@/lib/nav-links";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -17,12 +17,21 @@ interface Props {
 
 const { title } = Astro.props;
 
-const headerNavLinks = [
-  ...defaultNavLinks.filter(({ name }) => name === "Gift Shop"),
-  ...defaultNavLinks.filter(({ name }) => name !== "Gift Shop"),
-];
-
 const mode = getMode();
+const headerNavLinks =
+  mode === "broken"
+    ? [
+        ...defaultNavLinks
+          .filter((entry) => entry.name === "Gift Shop")
+          .filter(checkIsNavLink)
+          // Remove mobile breakpoint classes
+          .map(({ href, name }) => ({
+            href,
+            name,
+          })),
+        ...defaultNavLinks.filter(({ name }) => name !== "Gift Shop"),
+      ]
+    : defaultNavLinks;
 ---
 
 <BaseLayout title={title}>

@@ -438,7 +438,17 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag2">
         <dt>1.4.3 and 1.4.6: Contrast</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          <ul>
+            <li>
+              On the category listing page,
+              text is superimposed over images with no overlay to guarantee minimum contrast.
+            </li>
+            <li>
+              The navigation bar content overflows its background on mobile viewports,
+              making the cart link nearly invisible.
+            </li>
+          </ul></dd>
         <dt>1.4.13: Content on Hover or Focus</dt>
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
@@ -450,6 +460,12 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>2.2.3: No Timing</dt>
         <dd>
           Forms in the checkout process time out after an undisclosed period of time.
+        </dd>
+        <dt>3.2.3: Consistent Navigation</dt>
+        <dd>
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
         </dd>
         <dt>3.2.6: Consistent Help</dt>
         <dd>
