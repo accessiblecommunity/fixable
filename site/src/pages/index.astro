@@ -48,6 +48,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The scrim on the carousel is not always enough to guarantee sufficient contrast.
         </dd>
+        <dt>1.4.10 Reflow</dt>
+        <dd>
+        When zoomed the header text moves off the background.
+        <dd>
         <dt>2.2.2: Pause, Stop, Hide</dt>
         <dd>
           The carousel does not include controls to stop moving and updating.
@@ -110,7 +114,11 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The Read More and Explore link text does not provide enough information to know which links go where.
         </dd> 
         <dt>Text size</dt>
-        <dd>The text size in the footer is a lower contrast and smaller size.</dd>                   
+        <dd>The text size in the footer is a lower contrast and smaller size.</dd>
+        <dt>Reflow</dt>
+        <dd>
+        When zoomed the header text moves off the background.
+        <dd>                   
       </dl>
     </MetaFailureSection>
 
@@ -397,6 +405,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           Forms in the checkout process time out after an undisclosed period of time.
         </dd>
+        <dt>2.4.3 Focus Appearance</dt>
+        <dd>The focus is not visible on the arrows that adjust the number of items</dd>
         <dt>3.3.1: Error Identification</dt>
         <dd>
           Errors do not specifically describe what expectation was failed for each field.
@@ -477,6 +487,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           Nothing is disclosed up-front about the information that will be required to complete checkout.
         </dd>
+        <dt>Focus Location</dt>
+        <dd>The focus is not visible on the arrows that adjust the number of items</dd>
         <dt>Numbered steps</dt>
         <dd>
           Checkout steps are not numbered; progress through the process is not indicated at all.
@@ -496,6 +508,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           which is insufficient to disambiguate for colorblind users, as some
           controls feature the same icons distinguished only by color.
         </dd>
+        <dt>1.4.1 Use of Color</dt>
+        <dd>The controls are color coded and instructions depend on them. </dd>
+        <dt>1.4.10: Reflow</dt>
+        <dd>The controls disappear when magnified.</dd>
         <dt>1.4.11: Non-text Contrast</dt>
         <dd>
           The pin on the map uses a color that has extremely poor contrast against
@@ -511,6 +527,35 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           On mobile viewports, the only way to zoom the map is via a pinch gesture.
         </dd>
       </dl>
+
+      <dl slot="wcag3">
+        <dt>Use of Color</dt>
+        <dd>
+          Instructions allude only to color when describing visible map controls,
+          which is insufficient to disambiguate for colorblind users, as some
+          controls feature the same icons distinguished only by color.
+        </dd>
+        <dt>Reflow</dt>
+        <dd>The controls disappear when magnified.</dd>
+        <dt>Non-text Contrast</dt>
+        <dd>
+          The pin on the map uses a color that has extremely poor contrast against
+          the map's colors.
+        </dd>
+        <dt>Keyboard Commands</dt>
+        <dd>
+          Single-character key bindings are implemented across the entire page
+          for map movement, and cannot be turned off or customized.
+        </dd>
+        <dt>Use of Color</dt>
+        <dd>The controls are color coded and instructions depend on them. </dd>
+        <dt>Pointer Gestures</dt>
+        <dd>
+          On mobile viewports, the only way to zoom the map is via a pinch gesture.
+        </dd>
+      </dl>
+
+
     </MetaFailureSection>
 
     <MetaFailureSection href="museum/login/" title="Register & Sign In">
@@ -568,11 +613,19 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           Images with text are used for emphasis,
           but their alt text is empty and there is no text equivalent.
         </dd>
+        <dt>1.3.1 Info and Relationships</dt>
+        <dd>
+        The headings and other structural elements are not reflected in code.  
+        </dd>
         <dt>1.4.4: Resize Text</dt>
         <dd>
           The mission statement cuts off beyond a set maximum height,
           noticeable on mobile or when zoom is increased.
         </dd>
+        <dt>1.4.5 Images of Text and 1.4.5 Images of Text<dt>
+        <dd>Some images on the page include text that could be styled.</dd> 
+        <dt>1.4.12 Text Spacing</dt>
+        <dd>Not all text can be successfully adjusted</dd>
         <dt>2.4.6: Headings and Labels</dt>
         <dd>
           The headings are not discoverable by assistive technology
@@ -595,6 +648,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>White spacing</dt>
         <dd>
           There is no margin between paragraphs.
+        </dd>
+        <dt>Clear relationships</dt>
+        <dd>
+        The headings and other structural elements are not reflected in code.  
         </dd>
       </dl>
     </MetaFailureSection>
