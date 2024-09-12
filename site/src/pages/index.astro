@@ -106,12 +106,16 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           There is no search landmark indicating the presence or purpose of the search box and no label on the search field.
         </dd>
+        <dt>Name, role, value, state (needs discussion)</dt>
+        <dd>
+          The Read More and Explore link text does not provide enough information to know which links go where.
+        </dd>
         <dt>Error identification</dt>
         <dd>
           Empty search results and misspellings do not throw an error.(**Do others agree?)
         </dd> 
-        <dt>Text size</dt>
-        <dd>The text size in the footer is lower contrast and tiny</dd>    
+        <dt>Text style</dt>
+        <dd>The text in the footer is lower contrast and smaller size.</dd>
         <dt>Maximum text contrast</dt>
         <dd>The title in the header is 21:1 - is this above the contrast maximum?</dd>
         <dt>Minimum text contrast</dt>
@@ -122,19 +126,18 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The carousel does not include controls to stop moving and updating.
         </dd>
-        <dt>Name, role, value, state (Needs Discussion)</dt>
+        <dt>Keyboard focus location</dt>
         <dd>
-          The Read More and Explore link text does not provide enough information to know which links go where.
-        </dd> 
-        <dt>Text size</dt>
-        <dd>The text size in the footer is a lower contrast and smaller size.</dd>
+          The cookie notice at the bottom-left of the page fully obscures some of the footer links,
+          which occur before it in the document's focus order.
+        </dd>
         <dt>Reflow</dt>
         <dd>
           <ul>
             <li>When zoomed, the header text moves off the background.</li>
             <li>At 400% zoom, the cookie notice occupies more than the full screen and cannot be scrolled.</li>
           </ul>
-        <dd>                   
+        <dd>
       </dl>
     </MetaFailureSection>
 
@@ -505,7 +508,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           Forms in the checkout process time out after an undisclosed period of time.
         </dd>
         <dt>2.4.7: Focus Visible</dt>
-        <dd>The focus is not visible on the arrows that adjust the number of items</dd>
+        <dd>The focus is not visible on the increment/decrement buttons that adjust the number of items.</dd>
         <dt>3.3.1: Error Identification</dt>
         <dd>
           Errors do not specifically describe what expectation was failed for each field.
@@ -614,7 +617,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           focus is not restored to the add to cart button.
         </dd>
         <dt>Keyboard focus location</dt>
-        <dd>The focus is not visible on the arrows that adjust the number of items</dd>
+        <dd>The focus is not visible on the increment/decrement buttons that adjust the number of items.</dd>
         <dt>Keyboard only</dt>
         <dd>
           In the top navigation bar, parent items are not focusable (and therefore not openable) via keyboard.
@@ -702,14 +705,19 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>Comparable keyboard effort</dt>
         <dd>Panning the map can require many more keypresses compared to dragging a pointer device.</dd>
+        <dt>Gestures &amp; dragging</dt>
+        <dd>
+          On mobile viewports, the only way to control the map is via dragging and pinch-to-zoom.
+        </dd>
         <dt>Keyboard commands</dt>
         <dd>
           Single-character key bindings are implemented across the entire page
           for map movement, and cannot be turned off or customized.
         </dd>
-        <dt>Pointer gestures</dt>
+        <dt>Keyboard focus location</dt>
         <dd>
-          On mobile viewports, the only way to zoom the map is via a pinch gesture.
+          The map controls use a dotted focus outline with a color that falls well below
+          3:1 contrast against the underlying map.
         </dd>
         <dt>Sensory characteristics</dt>
         <dd>
