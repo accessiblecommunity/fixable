@@ -7,31 +7,37 @@ import type { ComponentProps } from "astro/types";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Navigation from "@/components/Navigation.astro";
-import BaseLayout from "./BaseLayout.astro";
+import Toast from "@/components/Toast.astro";
 import { defaultNavLinks } from "@/lib/nav-links";
+import BaseLayout from "./BaseLayout.astro";
 
 type Props = ComponentProps<typeof BaseLayout> & {
+  headerNavFailureMode?: ComponentProps<typeof Navigation>["failureMode"];
   headerNavLinks?: ComponentProps<typeof Navigation>["navLinks"];
+  withFixedSearch?: boolean;
   withInsetMain?: boolean;
   withMainId?: boolean;
 };
 
 const {
+  headerNavFailureMode,
   headerNavLinks = defaultNavLinks,
   title,
+  withFixedSearch = true,
   withInsetMain = true,
   withMainId = true,
 } = Astro.props;
 ---
 
 <BaseLayout title={title}>
-  <Header />
-  <Navigation navLinks={headerNavLinks} />
+  <Header searchMode={withFixedSearch ? "fixed" : undefined} />
+  <Navigation failureMode={headerNavFailureMode} navLinks={headerNavLinks} />
   <main
     id={withMainId ? "main" : undefined}
     class={withInsetMain ? "inset" : undefined}
   >
     <slot />
   </main>
-  <Footer />
+  <Toast />
+  <Footer mode="fixed" />
 </BaseLayout>

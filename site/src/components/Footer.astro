@@ -2,18 +2,30 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/images/mbt-logo.webp";
 
-import { slugifyPath } from "@/lib/meta";
-import { defaultNavLinks } from "@/lib/nav-links";
+import { getMode } from "@/lib/mode";
+import { defaultNavLinks, type NavLink } from "@/lib/nav-links";
 
-const metaAnchor = slugifyPath(
-  Astro.url.pathname.replace(import.meta.env.BASE_URL, "")
-);
+interface Props {
+  mode?: "fixed";
+}
+
+const { mode = getMode() } = Astro.props;
+
+const flattenedNavLinks = defaultNavLinks.reduce((links, parentOrLink) => {
+  if ("children" in parentOrLink)
+    parentOrLink.children.forEach((link) => {
+      // Flatten children, but skip individual collection pages
+      if (!/collections\/.+/.test(link.href)) links.push(link);
+    })
+  else links.push(parentOrLink);
+  return links;
+}, [] as NavLink[]);
 ---
 
-<footer>
+<footer class={mode}>
   <div class="links">
     {
-      defaultNavLinks.map(({ name, href, footerClass }) => (
+      flattenedNavLinks.map(({ name, href, footerClass }) => (
         <a class={footerClass} {href}>
           {name}
         </a>
@@ -27,17 +39,12 @@ const metaAnchor = slugifyPath(
       W3C, with help from <a href="https://unsplash.com/">Unsplash</a> and various
       AI chatbots.
     </p>
-    <p>
-      <a href={`${import.meta.env.BASE_URL}#${metaAnchor}`}
-        >What's wrong with this page?</a
-      >
-    </p>
   </div>
 </footer>
 
 <style>
   footer {
-    background-color: var(--black);
+    background-color: var(--gray-900);
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
@@ -57,9 +64,12 @@ const metaAnchor = slugifyPath(
   }
 
   .attribution {
-    font-size: 70%;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 256px;
+    max-width: 256px;
+
+    .broken & {
+      font-size: 70%;
+    }
   }
 
   .links a {

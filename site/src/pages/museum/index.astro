@@ -25,7 +25,7 @@ const carouselEntries = [
 ]
 ---
 
-<Layout title="Home">
+<Layout title="Home" withFixedSearch={false}>
   <div class="outset">
     <Carousel entries={carouselEntries} />
   </div>
@@ -110,5 +110,11 @@ const carouselEntries = [
 
   .outset {
     margin-top: -1rem;
+  }
+</style>
+
+<style is:global is:inline>
+  :root {
+    --black: #000;
   }
 </style>
