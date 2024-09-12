@@ -508,7 +508,18 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag3">
         <dt>Contrast Minimum</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          <ul>
+            <li>
+              On the category listing page,
+              text is superimposed over images with no overlay to guarantee minimum contrast.
+            </li>
+            <li>
+              The navigation bar content overflows its background on mobile viewports,
+              making the cart link nearly invisible.
+            </li>
+          </ul>
+        </dd>
         <dt>Allow automated entry</dt>
         <dd>
           The input fields on the payment step disallow paste.
@@ -564,7 +575,16 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>Name, Role, Value, State</dt>
         <dd>
-          In the top navigation bar, there is no programmatic indication of expandable items.
+          <ul>
+            <li>In the top navigation bar, there is no programmatic indication of expandable items.</li>
+            <li>The cart link contains only an icon, with no text label explaining its purpose.</li>
+          </ul>
+        </dd>
+        <dt>Consistent Navigation</dt>
+        <dd>
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
         </dd>
         <dt>Ambiguous numerical formatting</dt>
         <dd>
