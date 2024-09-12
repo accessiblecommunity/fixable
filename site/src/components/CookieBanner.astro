@@ -48,6 +48,9 @@ const isBroken = getMode() === "broken";
     }
     persist("hasDismissedCookieBanner", true);
   });
+
+  // Ensure scroll begins at top (e.g. when zoomed to 400%) in fixed version
+  el.scrollTop = 0;
 </script>
 
 <style>
@@ -61,12 +64,24 @@ const isBroken = getMode() === "broken";
     bottom: 0;
     left: 0;
     z-index: 9999;
+
+    dialog& {
+      max-height: 100vh;
+      overflow: auto;
+    }
   }
 
   .container {
     display: flex;
     align-items: center;
+    flex-direction: column;
     gap: calc(1rem * var(--ms5));
+  }
+
+  @media (min-width: 30em) {
+    .container {
+      flex-direction: row;
+    }
   }
 
   h2 {
