@@ -186,7 +186,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       <a class="read-more-link-button" href="#" role="button">Read More</a>
     </div>
 
-    <div class="device">
+    <div class="device full-cover">
       <img src={c64.src} alt="Commodore 64." />
       <div class="initial">
         <h4>Commodore 64</h4>
@@ -266,7 +266,8 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
 
 <style is:global>
   :root {
-    scrollbar-color: hsl(0, 0%, 20%) black;
+    --actual-black-not-like-that-other-black:black;
+    scrollbar-color: hsl(0, 0%, 20%) var(--actual-black-not-like-that-other-black);
   }
 
   body {
@@ -274,7 +275,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
   }
 
   ::-webkit-scrollbar-track {
-    background: black;
+    background: var(--actual-black-not-like-that-other-black);
   }
 
   ::-webkit-scrollbar-thumb {
@@ -282,7 +283,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
   }
 
   main.inset {
-    background-color: black;
+    background-color: var(--actual-black-not-like-that-other-black);
     display: grid;
     gap: calc(var(--ms0) * 1rem);
     grid-template-columns: repeat(8, 1fr);
@@ -294,7 +295,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
   }
 
   header.page {
-    background: var(--none-more-black);
+    background: var(--actual-black-not-like-that-other-black);
     container: hd1 / inline-size;
     grid-column: 1 / -1;
   }
@@ -435,6 +436,25 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     }
     & .more:focus {
       box-shadow: none;
+    }
+    &.full-cover{
+      position: relative;
+      & a::after{
+        content:"";
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        top:0;
+      }
+      & a:focus-visible{
+        box-shadow: none;
+      }
+      &:focus-within{
+        box-shadow:
+        0 0 0 2px white,
+        0 0 0 4px blue;
+      }      
     }
   }
 
