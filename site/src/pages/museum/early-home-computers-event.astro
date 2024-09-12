@@ -103,7 +103,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
           Eastern Bloc countries.
         </p>
       </div>
-      <div class="more" hidden>
+      <div class="more" role="group" tabindex="-1" hidden>
         <p>
           The Spectrum played a pivotal role in the early history of personal
           computing and video gaming, leaving an enduring legacy that influenced
@@ -135,7 +135,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
           1980s for the Computer Literacy Project of the BBC.
         </p>
       </div>
-      <div class="more" hidden>
+      <div class="more" tabindex="-1" title="additional content" hidden>
         <p>
           The machine was released as the BBC Microcomputer on 1 December 1981,
           although production problems pushed delivery of the majority of the
@@ -169,7 +169,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
           reaching 2.5 million
         </p>
       </div>
-      <div class="more" hidden>
+      <div class="more" aria-label="additional content" tabindex="-1" hidden>
         It was described as "one of the first anti-spectatorial, non-esoteric
         computers by design...no longer relegated to hobbyist/enthusiasts or
         those with money, the computer Commodore developed was the computer of
@@ -199,7 +199,12 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
           the number sold between 12.5 and 17 million units.
         </p>
       </div>
-      <div class="more" hidden>
+      <div
+        class="more"
+        aria-label="Volume production started in early 1982, marketing in August for US$595 (equivalent to $1,880 in 2023). Preceded by the VIC-20 and Commodore PET, the C64 took its name from its 64 kilobytes (65,536 bytes) of RAM. With support for multicolor sprites and a custom chip for waveform generation, the C64 could create superior visuals and audio compared to systems without such custom hardware."
+        tabindex="-1"
+        hidden
+      >
         <p>
           Volume production started in early 1982, marketing in August for
           US$595 (equivalent to $1,880 in 2023). Preceded by the VIC-20 and
@@ -236,6 +241,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       if (el.textContent == "Read More") {
         moreTarget.removeAttribute("hidden");
         el.textContent = "Read Less";
+        if (moreTarget.hasAttribute("tabindex")) moreTarget.focus();
       } else {
         moreTarget.setAttribute("hidden", "");
         el.textContent = "Read More";
@@ -353,6 +359,10 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     .device {
       grid-column: span 2;
     }
+    .h2 {
+      font-size: calc(var(--ms12) * 1rem);
+      text-align: center;
+    }
   }
 
   @media (width <= 599px) {
@@ -384,7 +394,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       margin: 0 auto;
       max-width: 100%;
     }
-    & *:is(:focus, :focus-visible) {
+    & *:is(:focus-visible) {
       box-shadow:
         0 0 0 2px white,
         0 0 0 4px blue;
@@ -413,6 +423,9 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     & .initial p::first-line {
       color: var(--red-warm-400);
       font-size: calc(var(--ms3) * 1rem);
+    }
+    & .more:focus {
+      box-shadow: none;
     }
   }
 
