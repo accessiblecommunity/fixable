@@ -294,8 +294,16 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
   }
 
   header.page {
+    background: var(--none-more-black);
     container: hd1 / inline-size;
     grid-column: 1 / -1;
+  }
+
+  @media(width <= 750px){
+    header.page{
+      position:sticky;
+      top:0;
+    }
   }
 
   h1 {
@@ -315,9 +323,10 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     -webkit-text-fill-color: transparent;
   }
 
-  @container hd1 (300px <= width <= 570px) {
+  @container hd1 (300px <= width <= 720px) {    
     h1 {
-      font-size: calc(var(--ms9) * 1rem);
+      font-size: calc(var(--ms13) * 1rem);
+      text-align: center;
     }
   }
 
