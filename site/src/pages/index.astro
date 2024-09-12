@@ -22,7 +22,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     </p>
   </section>
 
-  <section id="summary-of-failures">
+  { /* Hide summary for built version at the moment; show in dev for confirming content */ }
+  <section id="summary-of-failures" hidden={import.meta.env.PROD || undefined}>
     <h2>Summary of failures</h2>
     <p>
       This section provides a breakdown of failures, organized by sections of the site.
