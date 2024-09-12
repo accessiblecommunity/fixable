@@ -2,6 +2,7 @@
 /** @fileoverview Layout for Gift Shop pages. */
 
 import { Icon } from "astro-icon/components";
+import FixableRegion from "@/components/FixableRegion.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Navigation from "@/components/Navigation.astro";
@@ -40,6 +41,9 @@ const headerNavLinks =
     <a href={`${museumBaseUrl}gift-shop/checkout/`}>
       <span id="cart-empty"><Icon name="ri:shopping-cart-line" /></span>
       <span id="cart-filled" hidden><Icon name="ri:shopping-cart-fill" /></span>
+      <FixableRegion
+        ><span slot="fixed" class="visually-hidden">Cart</span></FixableRegion
+      >
       <span id="cart-stats"></span>
     </a>
   </Navigation>
