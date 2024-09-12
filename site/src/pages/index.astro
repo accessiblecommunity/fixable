@@ -456,7 +456,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>Name, role, value, state</dt>
         <dd>
-          Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.
+          <ul>
+            <li>In the top navigation bar, there is no programmatic indication of expandable items.</li>
+            <li>Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.</li>
+          </ul>
         </dd>
         <dt>Target size</dt>
         <dd>
@@ -757,7 +760,12 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
 
       <dl slot="wcag3">
-       <dt>Adequate time</dt>
+        <dt>Persistent error notification</dt>
+        <dd>
+          The timeout notification toast dismisses itself automatically
+          without waiting for the user.
+        </dd>
+        <dt>Adequate time</dt>
         <dd>
           There is a timeout that may be too short to enter required information,
           which the user is not notified about.
