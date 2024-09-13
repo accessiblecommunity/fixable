@@ -463,10 +463,6 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
 
       <dl slot="wcag3">
-        <dt>Minimum text contrast</dt>
-        <dd>
-          The "Blog" heading is superimposed over an image with no overlay to guarantee minimum contrast.
-        </dd>
         <dt>Motion</dt>
         <dd>
           Images zoom in on hover and do not respect prefers-reduced-motion.
@@ -474,6 +470,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>???</dt>
         <dd>
           The "Skip to content" link does not work properly on the blog listing page.
+        </dd>
+        <dt>Error identification</dt>
+        <dd>
+          The first post under "In the News" leads to a 404 page with no clear description of what went wrong.
         </dd>
         <dt>Hover information</dt>
         <dd>
@@ -486,9 +486,16 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
         </dd>
-        <dt>Error identification</dt>
+        <dt>Keyboard focus location</dt>
         <dd>
-          The first post under "In the News" leads to a 404 page with no clear description of what went wrong.
+          In the top nav, links within submenus indicate focus by only a single border
+          located equidistant from the text above and below it, making it ambiguous
+          which item is focused. When the last item in a submenu is focused,
+          the indicator has low contrast against the page background.
+        </dd>
+        <dt>Minimum text contrast</dt>
+        <dd>
+          The "Blog" heading is superimposed over an image with no overlay to guarantee minimum contrast.
         </dd>
       </dl>
 
