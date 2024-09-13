@@ -146,14 +146,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The text label on each collection's link only becomes visible on hover (not focus).
         </dd>
+        <dt>2.2.2 Pause Stop Hide</dt>
+        <dd>The scrolling banner for the PC event lasts for eight seconds. Note: the scrolling content is only visible for four seconds, so does this fail or not?</dd>
         <dt>2.4.3: Focus Order</dt>
-        <dd>
-          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
-          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</li>
-          <li>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
-        </dd>
+        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
+        <dd>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.</dd>
+        <dd>The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.</dd>
         <dt>3.2.3: Consistent Navigation</dt>
         <dd>
           The links that appear within the "See More" section within the main content are removed from the header navigation where they otherwise typically appear.
@@ -174,13 +174,11 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The text label on each collection's link only becomes visible on hover (not focus).
         </dd>
         <dt>Order of content</dt>
-        <dd>
-          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
-          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</li>
-          <li>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
-        </dd>
+        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
+        <dd>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.</dd>
+        <dd>The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.</dd>
         <dt>Consistent navigation</dt>
         <dd>
           The links that appear within the "See More" section within the main content
@@ -311,6 +309,48 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The page doesn't have an H1. 
         </dd>         
+      </dl>
+    </MetaFailureSection>
+
+    <MetaFailureSection href="museum/early-home-computers-event/" title="Early Home Computers Event">
+      <p>This section includes the Early Home Computers event page</p>
+
+      <p>This section demonstrates content that has very few accessibility failures in the programmatic portion of the page but has a number of failures in the content.</p>
+
+      <dl slot="wcag2">
+        <dt>1.1.1 Non-Text Content</dt>
+        <dd>The alternative text for the BBC Microcomputer image, "Wikipedia photo of a computer", doesn't specify what kind of computer it is.</dd>
+        <dt>1.3.1 Info And Relationships</dt>
+        <dd>The <code>h2</code> element is a <code>p</code> tag styled to look like a heading.</dd>
+        <dt>1.3.2 Meaningful Sequence</dt>
+        <dd>The "About The Event" section and "ZX81" card display more content before the toggle controls but don't manage the user's focus.</dd>
+        <dt>1.4.4 Resize Text</dt>
+        <dd>The page's <code>h1</code> element, at 200% browser zoom, doesn't double in size.</dd>
+        <dt>1.4.8 Visual Presentation</dt>
+        <dd>The text in the cards is justified.</dd>
+        <dt>1.4.11 Non-Text Contrast</dt>
+        <dd>The links in the small text in the cards are the same color as non-link text and have underlines that have a contrast of less than 3:1 with the page background.</dd>
+        <dd>Scrollbar color contrast, in supporting browsers, is less than 3:1</dd>
+        <dt>2.4.10 Section Headings</dt>
+        <dd>Headings jump from <code>h1</code> to <code>h4</code>.</dd>
+        <dt>4.1.2 Name, Role, Value</dt>
+        <dd>The ZX Spectrum additional content is in a focusable element with a <code>role="group"</code> attribute, but no accessible name.</dd>
+      </dl>
+      
+      <dl slot="wcag3">
+        <dt>Possibly Adjust color and / or AT control</dt>
+        <dd>Focus indicators are made with <code>box-shadow</code>, which isn't supported in Windows High-Contrast / Contrast Themes mode, so there are no focus indicators for users who use that feature.</dd>
+        <dt>Section Headers</dt>
+        <dd>Headings jump from <code>h1</code> to <code>h4</code>.</dd>     
+        <dt>Behavior Of Controls</dt>
+        <dd>The Read More / Less controls are links marked up with <code>role="button"</code>, but no JavaScript has been added to make the spacebar active them.</dd>     
+        <dt>Keyboard Focus Location</dt>
+        <dd>ZX Spectrum, BBC, and VIC-20 cards don't show a focus indicator when the focus moves to the revealed content.</dd>
+        <dd>Commodore 64 card shows a focus indicator for the whole card and not the focused-area.</dd>
+        <dt>Name, Role, Value, State</dt>
+        <dd>The ZX Spectrum additional content is in a focusable element with a <code>role="group"</code> attribute, but no accessible name.</dd>
+        <dt>Non-Text Contrast (and Interaction Indicators Contrast?)</dt>
+        <dd>The links in the small text in the cards are the same color as non-link text and have underlines that have a contrast of less than 3:1 with the page background.</dd>
       </dl>
     </MetaFailureSection>
 
@@ -727,7 +767,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       <li>Ken Franqueiro</li>
       <li>Francis Storr</li>
       <li>Rachael Bradley Montgomery</li>
-      <li>Alastair Campbell<li>
+      <li>Alastair Campbell</li>
       <li>Asher Kolieboi</li>
       <li>Ellen Liebert</li>
       <li>Brian Montgomery</li> 
