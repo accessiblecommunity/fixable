@@ -232,9 +232,9 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
   const devices = document.querySelector(".devices")!;
 
   function toggleReadMore(event: Event) {
-    event.preventDefault();
     const el = event.target as HTMLElement;
     if (el.tagName === "A" && el.className === "read-more-link-button") {
+      event.preventDefault();
       const moreTarget = el.parentElement!.querySelector(
         ".more"
       ) as HTMLElement;
