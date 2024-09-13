@@ -661,6 +661,17 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>A CAPTCHA is required and no alternative is provided.</dd>
         <dt>1.4.3: Contrast (Minimum)</dt>
         <dd>Placeholder text does not meet the minimum contrast ratio.</dd>
+        <dt>1.4.11: Non-text Contrast</dt>
+        <dd>
+          The CAPTCHA field is initially empty and indicated only by a
+          low-contrast underline, making its hit area ambiguous.
+          Additionally, when focused, it has an invisible text cursor/caret.
+        </dd>
+        <dt>2.4.13: Focus Appearance</dt>
+        <dd>
+          The focused state of the CAPTCHA field only affects a 1px-thick border,
+          and does not have sufficient contrast against the unfocused state.
+        </dd>
         <dt>3.3.2: Labels or Instructions</dt>
         <dd>Form inputs have no labels.</dd>
         <dt>3.3.8 and 3.3.9: Accessible Authentication</dt>
@@ -674,6 +685,20 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>The input fields disallow paste.</dd>
         <dt>Input labels</dt>
         <dd>Form inputs have no labels.</dd>
+        <dt>Interaction indicators contrast</dt>
+        <dd>
+          The CAPTCHA field has an invisible text cursor/caret.
+        </dd>
+        <dt>Non-text contrast</dt>
+        <dd>
+          The CAPTCHA field is initially empty and indicated only by a
+          low-contrast underline, making its hit area ambiguous.
+        </dd>
+        <dt>Keyboard focus location</dt>
+        <dd>
+          The focused state of the CAPTCHA field only affects a 1px-thick border,
+          and does not have sufficient contrast against the unfocused state.
+        </dd>
       </dl>
     </MetaFailureSection>
 
