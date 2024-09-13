@@ -510,7 +510,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag2">
         <dt>1.4.3 and 1.4.6: Contrast</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          On the category listing page,
+          text is superimposed over images with no overlay to guarantee minimum contrast.
+        </dd>
+        <dd>
+          The navigation bar content overflows its background on mobile viewports,
+          making the cart link nearly invisible.
+        </dd>
         <dt>1.4.13: Content on Hover or Focus</dt>
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
@@ -523,8 +530,21 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           Forms in the checkout process time out after an undisclosed period of time.
         </dd>
+        <dt>2.4.6 and 2.4.9: Link Purpose</dt>
+        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
         <dt>2.4.7: Focus Visible</dt>
         <dd>The focus is not visible on the increment/decrement buttons that adjust the number of items.</dd>
+        <dt>3.2.3: Consistent Navigation</dt>
+        <dd>
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
+        </dd>
+        <dt>3.2.6: Consistent Help</dt>
+        <dd>
+          The help contact number is located above the site footer,
+          as opposed to all other pages where it is inside the footer at the end.
+        </dd>
         <dt>3.3.1: Error Identification</dt>
         <dd>
           Errors do not specifically describe what expectation was failed for each field.
@@ -564,7 +584,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag3">
         <dt>Contrast minimum</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          On the category listing page,
+          text is superimposed over images with no overlay to guarantee minimum contrast.
+        </dd>
+        <dd>
+          The navigation bar content overflows its background on mobile viewports,
+          making the cart link nearly invisible.
+        </dd>
         <dt>Allow automated entry</dt>
         <dd>
           The input fields on the payment step disallow paste.
@@ -627,6 +654,9 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
         </dd>
+        <dt>Name, Role, Value, State</dt>
+        <dd>In the top navigation bar, there is no programmatic indication of expandable items.</dd>
+        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
         <dt>Restore focus</dt>
         <dd>
           Upon entering an invalid quantity (e.g. 0), pressing add to cart, then dismissing the modal,
@@ -650,9 +680,24 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           When the payment form becomes disabled, the toast that appears
           does not grab focus and is not announced.
         </dd>
+        <dt>Consistent Navigation</dt>
+        <dd>
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
+        </dd>
+        <dt>Ambiguous numerical formatting</dt>
+        <dd>
+          In the footer, the year of the site's creation is expressed in Roman numerals.
+        </dd>
         <dt>Numbered steps</dt>
         <dd>
           Checkout steps are not numbered; progress through the process is not indicated at all.
+        </dd>
+        <dt>Consistent help</dt>
+        <dd>
+          The help contact number is located above the site footer,
+          as opposed to all other pages where it is inside the footer at the end.
         </dd>
         <dt>Contextual help</dt>
         <dd>
