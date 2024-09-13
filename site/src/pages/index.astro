@@ -56,12 +56,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The scrim on the carousel is not always enough to guarantee sufficient contrast.
         </dd>
         <dt>1.4.10: Reflow</dt>
-        <dd>
-          <ul>
-            <li>When zoomed, the header text moves off the background.</li>
-            <li>At 400% zoom, the cookie notice occupies more than the full screen and cannot be scrolled.</li>
-          </ul>
-        </dd>
+        <dd>When zoomed, the header text moves off the background.</dd>
+        <dd>At 400% zoom, the cookie notice occupies more than the full screen and cannot be scrolled.</dd>
         <dt>2.2.2: Pause, Stop, Hide</dt>
         <dd>
           The carousel does not include controls to stop moving and updating.
@@ -133,12 +129,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           which occur before it in the document's focus order.
         </dd>
         <dt>Reflow</dt>
-        <dd>
-          <ul>
-            <li>When zoomed, the header text moves off the background.</li>
-            <li>At 400% zoom, the cookie notice occupies more than the full screen and cannot be scrolled.</li>
-          </ul>
-        <dd>
+        <dd>When zoomed, the header text moves off the background.</dd>
+        <dd>At 400% zoom, the cookie notice occupies more than the full screen and cannot be scrolled.</dd>
       </dl>
     </MetaFailureSection>
 
@@ -157,12 +149,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The text label on each collection's link only becomes visible on hover (not focus).
         </dd>
         <dt>2.4.3: Focus Order</dt>
+        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
         <dd>
-          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
-          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</li>
-          <li>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
+          The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.
+        </dd>
+        <dd>
+          The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.
         </dd>
         <dt>3.2.3: Consistent Navigation</dt>
         <dd>
@@ -184,12 +178,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The text label on each collection's link only becomes visible on hover (not focus).
         </dd>
         <dt>Order of content</dt>
+        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
         <dd>
-          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
-          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</li>
-          <li>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
+          The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.
+        </dd>
+        <dd>
+          The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.
         </dd>
         <dt>Consistent navigation</dt>
         <dd>
@@ -477,12 +473,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           In the top navigation bar, nested items open on keyboard focus and can only be dismissed by moving focus.
         </dd>
         <dt>Name, role, value, state</dt>
-        <dd>
-          <ul>
-            <li>In the top navigation bar, there is no programmatic indication of expandable items.</li>
-            <li>Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.</li>
-          </ul>
-        </dd>
+        <dd>In the top navigation bar, there is no programmatic indication of expandable items.</dd>
+        <dd>Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.</dd>
         <dt>Target size</dt>
         <dd>
           The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
