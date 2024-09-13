@@ -304,12 +304,21 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The alt text on each entry's image repeats the entry's title, rather than
           describing the image.
         </dd>
+        <dt>2.4.7: Focus Visible</dt>
+        <dd>
+          There is no visible focus outline when a collection's image is focused.
+        </dd>
       </dl>
 
       <dl slot="wcag3">
-        <dt>Interface verbosity</dt>
+        <dt>Relevant focus</dt>
         <dd>
-          Each entry effectively has two separate links with identical labels.
+          Each collection's image and title are independently linked,
+          requiring focus to be advanced twice to reach the next unique link.
+        </dd>
+        <dt>Keyboard focus location</dt>
+        <dd>
+          There is no visible focus outline when a collection's image is focused.
         </dd>
       </dl>
     </MetaFailureSection>
