@@ -319,7 +319,12 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     <MetaFailureSection href="museum/early-home-computers-event/" title="Early Home Computers Event">
       <p>This section includes the Early Home Computers event page.</p>
 
-      <p>This section demonstrates content that has very few accessibility failures in the programmatic portion of the page but has a number of failures in the content.</p>
+      <p>This section demonstrates issues with focus management, accessible names, incompletely implement controls for user interface components with ARIA roles, reading order, and Windows high-contrast mode. Discussion items include:</p>
+
+      <ul>
+        <li>Is misusing <a href="https://drafts.csswg.org/mediaqueries-5/#forced-colors">CSS forced colors</a> something that WCAG 3 needs to address?</li>
+        <li>Do WCAG 3's Adjust Color and/or AT Control have the same coverage as Section 508's and EN 301 549's <a href="https://www.access-board.gov/ict/#503.2">User Preference</a> requirement?</li>
+      </ul>
 
       <dl slot="wcag2">
         <dt>1.1.1: Non-Text Content</dt>
