@@ -400,11 +400,6 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     text-align: justify;
     & a {
       color: var(--white);
-      text-decoration-color: var(--red-warm-600);
-      @supports (text-decoration-color: hsl(from red h s calc(l - 5%))) {
-        text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5%));
-      }
-      text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5));
     }
     & img {
       display: block;
@@ -437,6 +432,13 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       font-style: italic;
       margin-block-end: calc(var(--ms0) * 1em);
       padding: calc(var(--ms-6) * 1em) 0;
+      & a{
+        @supports (text-decoration-color: hsl(from red h s calc(l - 5%))) {
+        text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5%));
+        }
+        text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5));
+        text-decoration-thickness:0.25em;
+      }
     }
     & .initial p::first-line {
       color: var(--red-warm-400);
@@ -480,7 +482,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       & h4 {
         color: linktext;
       }
-      & .read-more-link-button {
+      & .attribs a {
         color: buttontext;
         text-decoration-color: buttonface;
       }
