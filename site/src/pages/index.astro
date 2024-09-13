@@ -149,11 +149,13 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>2.2.2 Pause Stop Hide</dt>
         <dd>The scrolling banner for the PC event lasts for eight seconds. Note: the scrolling content is only visible for four seconds, so does this fail or not?</dd>
         <dt>2.4.3: Focus Order</dt>
-        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
-        <dd>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</dd>
-        <dd>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</dd>
+        <dd>
+          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
+          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.</li>
+          <li>The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
+        </dd>
         <dt>3.2.3: Consistent Navigation</dt>
         <dd>
           The links that appear within the "See More" section within the main content are removed from the header navigation where they otherwise typically appear.
@@ -174,11 +176,13 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The text label on each collection's link only becomes visible on hover (not focus).
         </dd>
         <dt>Order of content</dt>
-        <dd>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</dd>
-        <dd>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
-          then header items, then the "See More" links, then the footer.</dd>
-        <dd>The explicit tab order is optimized specifically for the widest
-          layout, making it incorrect even within the collections list on narrower viewports.</dd>
+        <dd>
+          <ul><li>The collection links have explicit tabindex attributes, causing them to come before anything else in the page.</li> 
+          <li>The links in the "See More" section are not included in the explicit order, meaning focus tabs to each collection link,
+          then header items, then the "See More" links, then the footer.</li>
+          <li>The explicit tab order is optimized specifically for the widest
+          layout, making it incorrect even within the collections list on narrower viewports.</li></ul>
+        </dd>
         <dt>Consistent navigation</dt>
         <dd>
           The links that appear within the "See More" section within the main content
@@ -767,7 +771,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       <li>Ken Franqueiro</li>
       <li>Francis Storr</li>
       <li>Rachael Bradley Montgomery</li>
-      <li>Alastair Campbell</li>
+      <li>Alastair Campbell<li>
       <li>Asher Kolieboi</li>
       <li>Ellen Liebert</li>
       <li>Brian Montgomery</li> 
