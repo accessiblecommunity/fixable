@@ -133,6 +133,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <p>This section demonstrates content that has a moderate-to-high number of accessibilty failures, some of which would be very diffcult to work around. The failures present a mix of those that can be found through automated testing and those that require manual testing.</p>
 
+      <p>Discussion item: Should emojis that are used as part of a span o text be hidden from assistive technology or have a suitable accessible name to aid in comprehension?</p>
+
       <dl slot="wcag2">
         <dt>1.1.1: Non-text Content</dt>
         <dd>
@@ -324,6 +326,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       <ul>
         <li>Is misusing <a href="https://drafts.csswg.org/mediaqueries-5/#forced-colors">CSS forced colors</a> something that WCAG 3 needs to address?</li>
         <li>Do WCAG 3's Adjust Color and/or AT Control have the same coverage as Section 508's and EN 301 549's <a href="https://www.access-board.gov/ict/#503.2">User Preference</a> requirement?</li>
+        <li>Should sticky content (e.g., headers and footers) take up a maximum amount of space when a user agent is zoomed in?</li>
+        <li>Should text in cards, where the entire card is clickable, be selectable? Is this an accessibility issue or general UX?</li>
       </ul>
 
       <dl slot="wcag2">
@@ -347,7 +351,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
       
       <dl slot="wcag3">
-        <dt>(Possibly) Adjust color and/or AT control</dt>
+        <dt>Maximum Text Contrast</dt>
+        <dt>Body text is white against a pure-black background.</dt>
         <dd>Focus indicators are made with <code>box-shadow</code>, which isn't supported in Windows High-Contrast / Contrast Themes mode, so there are no focus indicators for users who use that feature.</dd>
         <dt>Section headers</dt>
         <dd>Headings jump from <code>h1</code> to <code>h4</code>.</dd>     
