@@ -6,55 +6,46 @@
 interface Props {
   backdrop?: boolean;
   src: string;
-  class?: string;
 }
 
-const { src: filename, class: classes = "", backdrop = false} = Astro.props;
+const { src: filename, backdrop = false } = Astro.props;
 const src = `/fixable/assets/videos/${filename}`;
-const extension = filename.slice(filename.lastIndexOf(".") + 1)
+const extension = filename.slice(filename.lastIndexOf(".") + 1);
 const type = `video/${extension}`;
 
-const videoAttributes = backdrop ? {
-  playsinline: true,
-  autoplay: true,
-  muted: true,
-  loop: true,
-} : {
-  autoplay: true,
-  controls: true,
-}
+const videoAttributes = backdrop
+  ? {
+      playsinline: true,
+      autoplay: true,
+      muted: true,
+      loop: true,
+    }
+  : {
+      autoplay: true,
+      controls: true,
+    };
 ---
 
-<div class:list={[backdrop && "video-wrapper", classes]}>
+<div class={backdrop ? "video-wrapper" : undefined}>
   <video {...videoAttributes}>
-    <source {src} {type}>
+    <source {src} {type} />
     Your browser does not support the video tag.
   </video>
   <slot />
 </div>
 
-
 <style>
-  video {
-    height: 100%;
-    width: 100%;
-  }
-
-  .video-wrapper > video {
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
   .video-wrapper {
     height: 50vh;
     position: relative;
     overflow: hidden;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
+    & > video {
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  }
 </style>
