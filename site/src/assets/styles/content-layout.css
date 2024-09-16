@@ -19,8 +19,8 @@
 .inset {
   max-width: var(--content-width);
   margin: 0 auto;
+}
 
-  main& {
-    padding: 1rem;
-  }
+main.inset {
+  padding: 1rem;
 }
