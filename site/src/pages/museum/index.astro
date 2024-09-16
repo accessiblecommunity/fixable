@@ -64,6 +64,14 @@ const carouselEntries = [
   <div class="cards-footer">
     <a href="collections/">Our collections &rArr;</a>
   </div>
+
+  <h2>Coming soon: Our home exhibit.</h2>
+  <div class="video-wrapper">
+    <video playsinline autoplay muted loop>
+      <source src="/fixable/assets/videos/exhibit-landscape.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
   <CookieBanner slot="end" />
 </Layout>
 
@@ -112,6 +120,25 @@ const carouselEntries = [
 
   .outset {
     margin-top: -1rem;
+  }
+
+  video {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .video-wrapper {
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 
