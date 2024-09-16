@@ -2,60 +2,25 @@
 import "@fontsource/corinthia";
 
 import Layout from "@/layouts/Layout.astro";
-import { getMode } from "@/lib/mode";
-
 ---
 
 <Layout title="Help">
-  <h1 class="masked about"><span>Get Help</span></h1>
-  <div class={getMode() === "broken" ? "broken" : undefined}>
-    <p>
-      Thank you for wanting to find out more about the MBT. 
-      On this page, you'll find additional information on obtaining assistance for the museum.
-    </p>
-    <p>
-      If you are wondering if this museum idea is as cracked up as it first appears, you are likely correct.
-      The amalgamation of access issues which you will encounter within these pages will likely confuse and confound you.
-    </p>
-    <p>
-      If you are feeling discombobulated, we recommend you first take a deep breath and close your eyes.
-      Next, please know that this site is designed to be harder than finding a needle in a haystack.
-      If you stumbled across this site by accident, please move onto another entertaining endeavor, particularly if you have a disability.
-      If you are here intentionally, we are sorry. Hang in there and keep on, keeping on.
-    </p>
+  <h1>Get Help</h1>
+  <p>
+    Thank you for wanting to find out more about the MBT. On this page, you'll
+    find additional information on obtaining assistance for the museum.
+  </p>
+  <p>
+    If you are wondering if this museum idea is as cracked up as it first
+    appears, you are likely correct. The amalgamation of access issues which you
+    will encounter within these pages will likely confuse and confound you.
+  </p>
+  <p>
+    If you are feeling discombobulated, we recommend you first take a deep
+    breath and close your eyes. Next, please know that this site is designed to
+    be harder than finding a needle in a haystack. If you stumbled across this
+    site by accident, please move onto another entertaining endeavor,
+    particularly if you have a disability. If you are here intentionally, we are
+    sorry. Hang in there and keep on, keeping on.
+  </p>
 </Layout>
-
-<style>
-  :is(h1, h2) {
-    background: linear-gradient(to right, #112f4e 0%, #58b4ff 100%);
-    display: inline-block;
-    padding: 0 calc(1em * var(--ms-2));
-    & span {
-      visibility: hidden;
-    }
-  }
-
-  .masked {
-    mask-repeat: no-repeat;
-  }
-
-  .about {
-    mask-image: url(../../assets/images/about/about-the-museum.svg);
-  }
-
-  .header-gradient-backer {
-    background: linear-gradient(to right, #112f4e 0%, #58b4ff 100%);
-    display: inline-block;
-    line-height: 0;
-    margin: calc(1rem * var(--ms4)) 0 0;
-  }
-
-  rect {
-    mask: url(#text-mask);
-  }
-
-  .broken p {
-    margin: 0;
-    text-indent: 64px;
-  }
-</style>
