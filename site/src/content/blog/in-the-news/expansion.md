@@ -21,7 +21,7 @@ Recently, the Museum of Broken Things received a significant boost in the form o
 With the donation, the museum has outlined ambitious plans for growth. In addition to the new restoration wing, the museum will be doubling the size of its exhibit halls, allowing for even more items to be put on display. Plans are also underway to introduce rotating exhibits from other museums, showcasing broken artifacts from around the world.</p>
 
 <aside class="blockquote">
-	<p>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath</p>
+	<p>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath.</p>
 </aside>
 
 <p>The museum’s director, Clara Stevens, explained that the expansion will not only give new life to its current collection but will also broaden its focus, exploring global stories of disrepair and decay. <q>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath</q>, Stevens said.</p>
