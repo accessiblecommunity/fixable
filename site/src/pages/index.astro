@@ -103,6 +103,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           There is no search landmark indicating the presence or purpose of the search box and no label on the search field.
         </dd>
+        <dt>Control labels</dt>
         <dt>Name, role, value, state (needs discussion)</dt>
         <dd>
           The Read More and Explore link text does not provide enough information to know which links go where.
@@ -310,6 +311,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
 
       <dl slot="wcag3">
+        <dt>Control labels</dt>
         <dt>Interface verbosity</dt>
         <dd>
           The link for each entry is overly verbose, due to the inclusion of
@@ -511,6 +513,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
         <dt>Name, role, value, state</dt>
         <dd>In the top navigation bar, there is no programmatic indication of expandable items.</dd>
+        <dt>Control labels</dt>
+        <dt>Name, role, value, state (needs discussion)</dt>
         <dd>Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.</dd>
         <dt>Target size</dt>
         <dd>
@@ -680,13 +684,13 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           In the top navigation bar, there is no programmatic indication of expandable items.
         </dd>
+        <dt>Control labels</dt>
+        <dt>Name, role, value, state (needs discussion)</dt>
+        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
         <dt>Hover information</dt>
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
         </dd>
-        <dt>Name, Role, Value, State</dt>
-        <dd>In the top navigation bar, there is no programmatic indication of expandable items.</dd>
-        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
         <dt>Restore focus</dt>
         <dd>
           Upon entering an invalid quantity (e.g. 0), pressing add to cart, then dismissing the modal,
@@ -988,6 +992,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 </script>
 
 <style>
+  dt {
+    font-weight: bold;
+  }
+
+  dd + dt {
+    margin-top: calc(1rem * var(--ms-3));
+  }
+
   .photosensitivity {
     background-color: #EB0000;
     color:white;
