@@ -125,6 +125,8 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd> 
         <dt>Text size</dt>
         <dd>The text size in the footer is a lower contrast and smaller size.</dd>                   
+        <dt>Pointer location</dt>
+        <dd>The carousel uses a custom cursor graphic which can be very hard to see.</dd>
       </dl>
     </MetaFailureSection>
 
@@ -207,6 +209,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           The favorites marker is not accessible via keyboard.
         </dd>
+        <dt>3.1.5: Reading Level</dt>
+        <dd>
+          The Dishes collection has a reading level of upper secondary education with no alternative version.
+        </dd>
       </dl>
 
       <dl slot="wcag3">
@@ -221,8 +227,20 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       </dl>
     </MetaFailureSection>
 
+    <MetaFailureSection href="museum/collections/glass/" title="Glass Collection">
+      <p>This section includes the glass collection page and related item subpages.</p>
+
+      <dl slot="wcag2">
+        <dt>3.1.5: Reading Level</dt>
+        <dd>
+          The Glass collection has a reading level of advanced education with no alternative version.
+        </dd>
+      </dl>
+
+    </MetaFailureSection>
+
     <MetaFailureSection href="museum/collections/home/" title="Home Collection">
-      <p><strong>Photosensitivity Warning!</strong> Do not visit this section if you experience reactions to flashing lights or motion.</p>
+      <p><strong class="photosensitivity">Photosensitivity Warning!</strong> Do not visit this section if you experience reactions to flashing lights or motion.</p>
 
       <p>This section includes the home collection page and related item subpages.</p>
 
@@ -237,9 +255,17 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           Each individual exhibit page under the Home collection includes a parallax effect on the background image.
         </dd>
+        <dt>3.1.2: Language Of Parts</dt>
+        <dd>
+          The Narrow Room exhibit has non-English words that are not part of the vernacular marked up with an incorrect language code. It also includes non-English words that are part of the vernacular marked up as being in a foreign language.
+        </dd>
       </dl>
 
       <dl slot="wcag3">
+        <dt>Appropriate Tone</dt>
+        <dd>The language and tone of the Wide Bedroom page is disrespectful to the past owners of the property and the reader.</dd>
+        <dt>Figurative Language</dt>
+        <dd>The Porch Chair page makes use of idioms, synonyms, and metaphors.</dd>
         <dt>Flashing and strobing</dt>
         <dd>
           The image thumbnails in the exhibit list on this page flash 4 times within a one-second period.
@@ -407,6 +433,13 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           Each post image, as well as the arrow on the topmost post, links to its post, but has no content to describe the link.
         </dd>
+        <dt>2.4.13: Focus Appearance</dt>
+        <dd>
+          In the top nav, links within submenus indicate focus by only a single border
+          located equidistant from the text above and below it, making it ambiguous
+          which item is focused. When the last item in a submenu is focused,
+          the indicator has low contrast against the page background.
+        </dd>
         <dt>2.5.5: Target Size (Enhanced)</dt>
         <dd>
           The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
@@ -431,7 +464,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag2">
         <dt>1.4.3 and 1.4.6: Contrast</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          On the category listing page,
+          text is superimposed over images with no overlay to guarantee minimum contrast.
+        </dd>
+        <dd>
+          The navigation bar content overflows its background on mobile viewports,
+          making the cart link nearly invisible.
+        </dd>
         <dt>1.4.13: Content on Hover or Focus</dt>
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
@@ -443,6 +483,19 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dt>2.2.3: No Timing</dt>
         <dd>
           Forms in the checkout process time out after an undisclosed period of time.
+        </dd>
+        <dt>2.4.6 and 2.4.9: Link Purpose</dt>
+        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
+        <dt>3.2.3: Consistent Navigation</dt>
+        <dd>
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
+        </dd>
+        <dt>3.2.6: Consistent Help</dt>
+        <dd>
+          The help contact number is located above the site footer,
+          as opposed to all other pages where it is inside the footer at the end.
         </dd>
         <dt>3.3.1: Error Identification</dt>
         <dd>
@@ -478,7 +531,14 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
 
       <dl slot="wcag3">
         <dt>Contrast Minimum</dt>
-        <dd>Text is superimposed over images with no overlay to guarantee minimum contrast.</dd>
+        <dd>
+          On the category listing page,
+          text is superimposed over images with no overlay to guarantee minimum contrast.
+        </dd>
+        <dd>
+          The navigation bar content overflows its background on mobile viewports,
+          making the cart link nearly invisible.
+        </dd>
         <dt>Allow automated entry</dt>
         <dd>
           The input fields on the payment step disallow paste.
@@ -533,14 +593,28 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           In the top navigation bar, parent items are not focusable (and therefore not openable) via keyboard.
         </dd>
         <dt>Name, Role, Value, State</dt>
+        <dd>In the top navigation bar, there is no programmatic indication of expandable items.</dd>
+        <dd>The cart link contains only an icon, with no text label explaining its purpose.</dd>
+        <dt>Consistent Navigation</dt>
         <dd>
-          In the top navigation bar, there is no programmatic indication of expandable items.
+          The Gift Shop link appears in the header on mobile viewports within gift shop pages,
+          but does not appear there outside of the gift shop.
+          It also does not appear in the footer on mobile.
+        </dd>
+        <dt>Ambiguous numerical formatting</dt>
+        <dd>
+          In the footer, the year of the site's creation is expressed in Roman numerals.
         </dd>
         <dt>Numbered steps</dt>
         <dd>
           Checkout steps are not numbered; progress through the process is not indicated at all.
         </dd>
-        <dt>Contextual Help</dt>
+        <dt>Consistent help</dt>
+        <dd>
+          The help contact number is located above the site footer,
+          as opposed to all other pages where it is inside the footer at the end.
+        </dd>
+        <dt>Contextual help</dt>
         <dd>
           No contextual help is available.
         </dd>
@@ -662,6 +736,28 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         </dd>
       </dl>
     </MetaFailureSection>
+
+    <MetaFailureSection href="museum/help/" title="Help">
+      <dl slot="wcag3">
+        <dt>Acronyms and abbreviations</dt>
+        <dd>The page references an acronym without ever including its expanded form.</dd>
+        <dt>Figurative language</dt>
+        <dd>No explanations are included for idioms and metaphors used on the page.</dd>
+        <dt>Lists</dt>
+        <dd>Three steps are enumerated in a paragraph rather than a list.</dd>
+        <dt>Numbered steps</dt>
+        <dd>
+          Three steps are enumerated in a paragraph with wording that suggests numerical order,
+          but they are not explicitly numbered.
+        </dd>
+        <dt>Uncommon words</dt>
+        <dd>No definitions are provided for uncommon words found in the page.</dd>
+        <dt>Verb tense</dt>
+        <dd>There are instances where the chosen verb tense is not the easiest to understand.</dd>
+        <dt>Unnecessary words or phrases</dt>
+        <dd>Some sentences could be made clearer by removing filler words or embellishments.</dd>
+      </dl>
+    </MetaFailureSection>
   </section>
 
   <section id="acknowledgment">
@@ -679,7 +775,7 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       <li>Ken Franqueiro</li>
       <li>Francis Storr</li>
       <li>Rachael Bradley Montgomery</li>
-      <li>Alastair Campbell<li>
+      <li>Alastair Campbell</li>
       <li>Asher Kolieboi</li>
       <li>Ellen Liebert</li>
       <li>Brian Montgomery</li> 
@@ -698,3 +794,11 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
     document.getElementById("dev-error")!.hidden = false;
   }
 </script>
+
+<style>
+  .photosensitivity {
+    background-color: #EB0000;
+    color:white;
+    padding:0.25em;
+  }
+</style>
