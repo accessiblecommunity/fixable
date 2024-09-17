@@ -1,0 +1,188 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { sortBy, uniqBy } from "lodash-es";
+import Fixable from "@/components/Fixable.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getDownsizedSrc } from "@/lib/image";
+import {
+  checkIsNavLink,
+  defaultNavLinks,
+  filterNavTreeLinks,
+} from "@/lib/nav-links";
+
+const categories = sortBy(
+  (await getCollection("exhibit-categories")).filter(
+    ({ data }) => !data.dangerous
+  ),
+  ({ data }) => data.title
+);
+
+const exhibits = uniqBy(
+  await getCollection("exhibits"),
+  ({ slug }) => slug.split("/")[0]
+);
+
+const exhibitsMap = {} as Record<
+  CollectionEntry<"exhibit-categories">["slug"],
+  CollectionEntry<"exhibits">["data"] & { downsizedSrc: string }
+>;
+
+for (const { data, slug } of exhibits) {
+  exhibitsMap[slug.split("/")[0]] = {
+    ...data,
+    downsizedSrc: await getDownsizedSrc(data.image, 480),
+  };
+}
+
+// Hard-code tabindices based on widest layout
+// (this is far easier than writing dynamic JS logic
+// which we would intentionally want to break anyway)
+const tabIndices = [1, 2, 4, 6, 3, 5, 7];
+
+const seeMoreLabels = ["Blog", "Gift Shop"];
+const seeMoreLinks = defaultNavLinks
+  .filter((link) => seeMoreLabels.includes(link.name))
+  .filter(checkIsNavLink);
+const headerNavLinks = filterNavTreeLinks(
+  defaultNavLinks,
+  ({ name }) => !seeMoreLabels.includes(name)
+);
+---
+
+<Layout title="Collections" {headerNavLinks}>
+  <h2>Our Collections</h2>
+  <ul>
+    <li class="event">
+      <a href="../early-home-computers-event/"
+        >👉 Early Home Computers Event! 👉</a>
+    </li>
+    {
+      categories.map(({ data, slug }, i) => (
+        <>
+          <li>
+            <Fixable
+              as="a"
+              href={`${slug}/`}
+              broken={{ tabindex: tabIndices[i] }}
+            >
+              {/* Reference the downsized optimized image */}
+              <img src={exhibitsMap[slug].downsizedSrc} alt="" />
+              <span class="label">{data.title}</span>
+            </Fixable>
+          </li>
+          {i === 5 && (
+            <li class="see-more">
+              <h2>See More</h2>
+              {seeMoreLinks.map(({ href, name }) => (
+                <a class="button" {href}>
+                  {name}
+                </a>
+              ))}
+            </li>
+          )}
+        </>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  ul {
+    columns: 2;
+    column-gap: 1rem;
+    list-style: none;
+  }
+
+  @media (min-width: 30em) {
+    ul {
+      columns: 3;
+    }
+  }
+
+  @media (min-width: 60em) {
+    ul {
+      columns: 4;
+    }
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .event {
+    background: var(--blue-600);
+    column-span: all;
+    container: eventcontainer / inline-size;
+    font-weight: bold;
+    overflow: hidden;
+    padding: calc(var(--ms-6) * 1rem);
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .event a {
+    color: var(--gold-vivid-200);
+    display: inline-block;
+    font-size: 3cqi;
+    text-decoration: none;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: marquee 8s linear 1;
+    }
+  }
+
+  a:has(img) {
+    color: var(--white);
+    display: block;
+    font-family: var(--title-font-family);
+    font-size: calc(1rem * var(--ms5));
+    outline-offset: 1px;
+    position: relative;
+    text-decoration: none;
+
+    & img {
+      display: block;
+      width: 100%;
+    }
+
+    &:hover .label {
+      opacity: 1;
+    }
+  }
+
+  .label {
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    transition: opacity 200ms;
+  }
+
+  .see-more {
+    background-color: var(--gold-vivid-050);
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem;
+
+    & > * {
+      margin: 0;
+      text-align: center;
+    }
+  }
+</style>

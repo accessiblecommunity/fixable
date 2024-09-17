@@ -1,0 +1,46 @@
+---
+import { getImage, type LocalImageProps } from "astro:assets";
+import { omit } from "lodash-es";
+
+/** @fileoverview
+ * Custom Image component designed for object-fit: cover use cases,
+ * with the following alterations from Astro's Image component:
+ * - Allows omitting alt text for intentional WCAG failures
+ *   (must be explicitly specified as null)
+ * - Does not force setting width/height attributes on img,
+ *   to avoid unwanted interference with object-fit
+ * - Still runs through Astro's image optimization function
+ */
+
+type Props = LocalImageProps & {
+  objectPosition?: string;
+};
+
+const { height, objectPosition, width } = Astro.props;
+
+const image = await getImage({
+  ...Astro.props,
+  ...(typeof height === "string" && { height: parseInt(height) }),
+  ...(typeof width === "string" && { width: parseInt(width) }),
+});
+
+const attributes = {
+  // Only include width/height if they were originally specified
+  ...omit(image.attributes, "height", "width"),
+  height,
+  width,
+  ...(objectPosition && { style: { objectPosition } }),
+};
+---
+
+<img class="cover"
+  src={image.src}
+  {...attributes}
+  {...image.srcSet.values.length && { srcset: image.srcSet.attribute }}
+/>
+
+<style>
+  .cover {
+    object-fit: cover;
+  }
+</style>

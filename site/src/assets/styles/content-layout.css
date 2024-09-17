@@ -1,0 +1,26 @@
+@media (min-width: 30em) {
+  .grid-wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: [content-start] repeat(6, minmax(0, 133px)) [content-end];
+  }
+}
+
+@media (min-width: 60em) {
+  .grid-wrapper {
+    grid-template-columns: [content-start] repeat(12, minmax(0, 133px)) [content-end];
+  }
+}
+
+:root {
+  --content-width: 75rem;
+}
+
+.inset {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+main.inset {
+  padding: 1rem;
+}

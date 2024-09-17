@@ -1,0 +1,121 @@
+---
+import { Icon } from "astro-icon/components";
+import { museumBaseUrl } from "@/lib/constants";
+import { getMode } from "@/lib/mode";
+
+interface Props {
+  mode?: "fixed";
+}
+
+const { mode = getMode() } = Astro.props;
+---
+
+{
+  mode === "broken" ? (
+    <input id="search" placeholder="Search" />
+  ) : (
+    <form slot="fixed" role="search" action={`${museumBaseUrl}search/`}>
+      <label for="search">Search</label>
+      <input id="search" type="search" name="query" />
+      <button class="outline">
+        <Icon name="ri:search-line" />
+        <span class="visually-hidden">Search</span>
+      </button>
+    </form>
+  )
+}
+
+<script>
+  import debounce from "lodash-es/debounce";
+  import type { SearchResult } from "@/pages/museum/api/search";
+  import { museumBaseUrl } from "@/lib/constants";
+  import { fetchApi } from "@/lib/client/fetch";
+
+  const response = await fetchApi(`${museumBaseUrl}api/search/`);
+  const allResults = (await response.json()) as SearchResult[];
+
+  const searchInput = document.getElementById("search") as HTMLInputElement;
+
+  function search(query: string) {
+    searchInput.value = query;
+    const filteredResults = allResults.filter(({ title }) =>
+      title.toLowerCase().includes(query.toLowerCase())
+    );
+    const resultsHtml = query
+      ? `<ul>${filteredResults
+          .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
+          .join(" ")}</ul>`
+      : "<p>No query specified.</p>";
+
+    const mainEl = document.querySelector("main") as HTMLElement;
+    mainEl.innerHTML = `
+      <h1>Search Results</h1>
+      ${resultsHtml}
+    `;
+  }
+
+  // Perform search immediately when loading this component on search page
+  const url = new URL(location.href);
+  if (url.pathname === `${museumBaseUrl}search/`) {
+    const query = url.searchParams.get("query") || "";
+    search(query);
+  }
+
+  // Feature-detect broken state, since it's parameterized at build time
+  const isBroken = !document.querySelector("form[role='search']");
+  if (isBroken) {
+    let currentUrl = new URL(location.href);
+    window.addEventListener("popstate", () => {
+      const url = new URL(location.href);
+      const query = url.searchParams.get("query") || "";
+
+      if (url.pathname === `${museumBaseUrl}search/`) search(query);
+      // Perform full navigation when leaving search page, but ignore hash changes
+      else if (url.pathname !== currentUrl.pathname) location.reload();
+      currentUrl = url;
+    });
+
+    searchInput.addEventListener(
+      "input",
+      debounce(() => {
+        const query = searchInput.value;
+
+        if (location.pathname !== "/search")
+          history.replaceState({}, "", location.href);
+        // No-op if the value didn't change after debounced input events
+        else if (query === new URL(location.href).searchParams.get("query"))
+          return;
+
+        history.pushState(
+          {},
+          "",
+          `${museumBaseUrl}search/?query=${encodeURIComponent(query)}`
+        );
+
+        search(query);
+      }, 500)
+    );
+  }
+</script>
+
+<style>
+  form {
+    display: flex;
+    align-items: stretch;
+    & button {
+      padding: 0 calc(1rem * var(--ms-6));
+      position: relative;
+      inset-inline-start: -1px;
+    }
+  }
+
+  input {
+    padding: 0.45rem;
+    width: 10rem;
+  }
+
+  label {
+    align-self: center;
+    margin-right: 1rem;
+  }
+</style>

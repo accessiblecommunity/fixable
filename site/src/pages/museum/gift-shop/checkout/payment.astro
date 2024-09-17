@@ -1,0 +1,87 @@
+---
+import Fixable from "@/components/Fixable.astro";
+import FixableRegion from "@/components/FixableRegion.astro";
+import FormLayout from "@/components/FormLayout.astro";
+import ShopLayout from "@/layouts/ShopLayout.astro";
+---
+
+<ShopLayout title="Checkout">
+  <h1>Checkout</h1>
+  <FixableRegion><h2 slot="fixed">Payment Information</h2></FixableRegion>
+  <p>
+    The payment method you enter below will be charged <strong id="total"
+    ></strong>.
+  </p>
+  <Fixable
+    as={FormLayout}
+    broken={{ action: "../confirmation/" }}
+    fixed={{ action: "../review/" }}
+  >
+    <p id="error" class="error" hidden></p>
+    <input name="name" placeholder="Name on Card" />
+    <input name="card" placeholder="Card Number" />
+    <input name="expiration" placeholder="Expiration" />
+    <input name="code" placeholder="CVC" />
+    <input name="zip" placeholder="ZIP Code" />
+    <button>Continue</button>
+  </Fixable>
+</ShopLayout>
+
+<script>
+  import { z } from "astro/zod";
+  import { computeTotals } from "@/lib/client/cart";
+  import { disableInputs, validateInputs } from "@/lib/client/form";
+  import { recall } from "@/lib/client/store";
+  import { showToast } from "@/lib/client/toast";
+  import { getMode } from "@/lib/mode";
+
+  const cart = recall("cart");
+  document.getElementById("total")!.textContent =
+    `$${computeTotals(cart).totalCost.toFixed(2)}`;
+
+  const form = document.querySelector("main form") as HTMLFormElement;
+
+  if (getMode() === "broken") {
+    form
+      .querySelectorAll("input")
+      .forEach((input) =>
+        input.addEventListener("paste", (event) => event.preventDefault())
+      );
+  }
+
+  form.addEventListener("submit", (event) => {
+    const result = validateInputs(
+      event.target as HTMLFormElement,
+      z.object({
+        name: z.string().min(1),
+        card: z.string().regex(/^\d{16}$/),
+        expiration: z.string().regex(/^(0[1-9]|1[0-2])\/(2[4-9]|3\d)$/),
+        code: z.string().regex(/^\d{3}$/),
+        zip: z.string().regex(/^\d{5}$/),
+      })
+    );
+
+    if (!result.success) {
+      event.preventDefault();
+      const errorEl = document.getElementById("error") as HTMLParagraphElement;
+      errorEl.textContent = "Invalid payment information; please try again.";
+      errorEl.hidden = false;
+    }
+  });
+
+  setTimeout(() => {
+    showToast(`The form has expired; you will need to start over.`, {
+      type: "error",
+      actionHref: "../",
+      actionLabel: "Return to checkout",
+      withDismiss: false,
+    });
+    disableInputs(document.querySelector("main form") as HTMLFormElement);
+  }, 30000);
+</script>
+
+<style>
+  input::placeholder {
+    color: var(--gray-300);
+  }
+</style>

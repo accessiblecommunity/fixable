@@ -1,0 +1,121 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Carousel from "@/components/Carousel.astro";
+import CookieBanner from "@/components/CookieBanner.astro";
+import CoverImage from "@/components/CoverImage.astro";
+import Layout from "@/layouts/Layout.astro";
+import Video from "@/components/Video.astro";
+
+const featuredCategories = (await getCollection("exhibit-categories")).filter(
+  ({ data }) => !!data.topDescription && !!data.topImageItem
+);
+const expandedCategories = await Promise.all(
+  featuredCategories.map(async (category) => ({
+    ...category,
+    data: {
+      ...category.data,
+      topDescription: category.data.topDescription!,
+      topImageItem: (await getEntry(category.data.topImageItem!)).data,
+    },
+  }))
+);
+
+const carouselEntries = [
+  await getEntry("blog", "events/live-event"),
+  await getEntry("exhibits", "technology/crt-monitor"),
+  await getEntry("products", "vessels/water-bottle"),
+];
+---
+
+<Layout title="Home" withFixedSearch={false} withInsetMain={false}>
+  <Carousel entries={carouselEntries} />
+  <div class="inset">
+    <h2>Explore our Collections</h2>
+    <div class="cards">
+      {
+        expandedCategories.map(({ data, slug }) => (
+          <div class="card">
+            <div class="card-image-container">
+              <CoverImage
+                src={data.topImageItem.image}
+                alt={
+                  data.topImageItem.skipAlt
+                    ? null
+                    : data.topImageItem.imageDescription
+                }
+                objectPosition={data.topImageItem.imagePosition}
+                height="200"
+              />
+            </div>
+            <div class="card-content">
+              <h3 set:text={data.title} />
+              <div>{data.topDescription}</div>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary w-100" href={`collections/${slug}/`}>
+                Explore
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="cards-footer">
+      <a href="collections/">Our collections &rArr;</a>
+    </div>
+  </div>
+
+  <h2 class="inset">Coming soon: Our homes exhibit.</h2>
+  <Video backdrop src="exhibit-landscape.mp4" />
+  <CookieBanner slot="end" />
+</Layout>
+
+<style>
+  .cards {
+    display: grid;
+    column-gap: 3rem;
+    grid-template-columns: repeat(3, minmax(15rem, 1fr));
+    overflow: auto;
+  }
+
+  .cards-footer {
+    padding: 1rem 0 2rem;
+    text-align: right;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    position: relative;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    text-align: center;
+  }
+
+  .card-image-container {
+    max-height: 35rem;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .card-footer {
+    background: rgb(27, 27, 27, 0.03);
+    border-top: 1px solid var(--hairline);
+    padding: 0.5rem;
+  }
+</style>
+
+<style is:global is:inline>
+  :root {
+    --black: #000;
+  }
+</style>

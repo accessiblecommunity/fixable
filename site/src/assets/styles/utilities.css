@@ -1,0 +1,28 @@
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* Responsive breakpoint classes */
+@media (width < 30em) {
+  .hidden-below-md {
+    display: none !important;
+  }
+}
+@media (width < 60em) {
+  .hidden-below-lg {
+    display: none !important;
+  }
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

@@ -1,0 +1,95 @@
+---
+/** @fileoverview Layout for Gift Shop pages. */
+
+import { Icon } from "astro-icon/components";
+import FixableRegion from "@/components/FixableRegion.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Navigation from "@/components/Navigation.astro";
+import Toast from "@/components/Toast.astro";
+import { museumBaseUrl } from "@/lib/constants";
+import { getMode } from "@/lib/mode";
+import { checkIsNavLink, defaultNavLinks } from "@/lib/nav-links";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const mode = getMode();
+const headerNavLinks =
+  mode === "broken"
+    ? [
+        ...defaultNavLinks
+          .filter((entry) => entry.name === "Gift Shop")
+          .filter(checkIsNavLink)
+          // Remove mobile breakpoint classes
+          .map(({ href, name }) => ({
+            href,
+            name,
+          })),
+        ...defaultNavLinks.filter(({ name }) => name !== "Gift Shop"),
+      ]
+    : defaultNavLinks;
+---
+
+<BaseLayout title={title}>
+  <Header />
+  <Navigation failureMode="hover" navLinks={headerNavLinks}>
+    <a href={`${museumBaseUrl}gift-shop/checkout/`}>
+      <span id="cart-empty"><Icon name="ri:shopping-cart-line" /></span>
+      <span id="cart-filled" hidden><Icon name="ri:shopping-cart-fill" /></span>
+      <FixableRegion
+        ><span slot="fixed" class="visually-hidden">Cart</span></FixableRegion
+      >
+      <span id="cart-stats"></span>
+    </a>
+  </Navigation>
+  <main id="main" class="inset">
+    <slot />
+    {
+      mode === "broken" && (
+        <p class="assistance">
+          <em>For assistance, call (939) 555-0113.</em>
+        </p>
+      )
+    }
+  </main>
+  <Footer withPhoneNumber={mode === "fixed"} />
+  <Toast />
+</BaseLayout>
+
+<script>
+  import { computeTotals } from "@/lib/client/cart";
+  import { onStoreChange } from "@/lib/client/store";
+
+  onStoreChange("cart", (cart) => {
+    const { totalCost, totalItems } = computeTotals(cart);
+    document.getElementById("cart-empty")!.hidden = !!totalItems;
+    document.getElementById("cart-filled")!.hidden = !totalItems;
+    document.getElementById("cart-stats")!.textContent = totalItems
+      ? `${totalItems} ($${totalCost.toFixed(2)})`
+      : "";
+  });
+</script>
+
+<style is:global>
+  button:not([class]),
+  a.button {
+    background-color: var(--gray-700);
+
+    &:not([disabled]):hover {
+      background-color: var(--gray-800);
+    }
+
+    &:not([disabled]):active {
+      background-color: var(--gray-900);
+    }
+  }
+
+  .assistance {
+    margin-top: calc(1rem * var(--ms5));
+  }
+</style>

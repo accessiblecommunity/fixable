@@ -1,0 +1,77 @@
+---
+import FixableRegion from "@/components/FixableRegion.astro";
+import FormLayout from "@/components/FormLayout.astro";
+import ShopLayout from "@/layouts/ShopLayout.astro";
+---
+
+<ShopLayout title="Checkout">
+  <h1>Checkout</h1>
+  <FixableRegion><h2 slot="fixed">Shipping Information</h2></FixableRegion>
+  <FormLayout action="../payment/">
+    <div id="error" class="error" role="alert" hidden></div>
+    <input name="name" placeholder="Recipient Name" />
+    <input name="street1" placeholder="Street Address" />
+    <input name="street2" placeholder="Apt. #" />
+    <input name="city" placeholder="City" />
+    <input name="state" placeholder="State" />
+    <input name="zip" placeholder="ZIP Code" />
+    <button>Continue</button>
+  </FormLayout>
+</ShopLayout>
+
+<script>
+  import { z } from "astro/zod";
+  import { disableInputs, validateInputs } from "@/lib/client/form";
+  import { showToast } from "@/lib/client/toast";
+  import { getMode } from "@/lib/mode";
+
+  const form = document.querySelector("main form") as HTMLFormElement;
+  const schema = z.object({
+    name: z.string().min(1, "Name is required."),
+    street1: z.string().min(1, "Street address line 1 is required."),
+    city: z.string().min(1, "City is required."),
+    state: z.string().regex(/^[A-Z]{2}$/, "State is invalid."),
+    zip: z.string().regex(/^\d{5}$/, "ZIP Code is invalid."),
+  });
+
+  function refreshErrors() {
+    const result = validateInputs(form, schema);
+    const errorEl = document.getElementById("error") as HTMLParagraphElement;
+    if (!result.success) {
+      errorEl.innerHTML = `
+        <p>Invalid shipping information; please try again.</p>
+        <ul>
+          ${result.error.issues.map(({ message }) => `<li>${message}</li>`).join("\n")}
+        </ul>
+      `;
+    }
+    errorEl.hidden = result.success;
+
+    return result;
+  }
+  if (getMode() === "broken") refreshErrors();
+
+  form.addEventListener("submit", (event) => {
+    const result = refreshErrors();
+    if (!result.success) event.preventDefault();
+  });
+
+  form.addEventListener("focusout", refreshErrors);
+
+  setTimeout(() => {
+    showToast(`The form has expired; you will need to start over.`, {
+      role: "alert",
+      type: "error",
+      actionHref: "../",
+      actionLabel: "Return to checkout",
+      withDismiss: false,
+    });
+    disableInputs(document.querySelector("main form") as HTMLFormElement);
+  }, 30000);
+</script>
+
+<style>
+  input::placeholder {
+    color: var(--gray-300);
+  }
+</style>

@@ -1,31 +1,44 @@
 ---
-interface Props {
-	title: string;
-}
+/** @fileoverview Default layout for most pages. */
 
-const { title } = Astro.props;
+import "@/assets/styles/styles.css";
 
-import "../assets/styles/bootstrap.scss";
+import type { ComponentProps } from "astro/types";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Navigation from "@/components/Navigation.astro";
+import Toast from "@/components/Toast.astro";
+import { defaultNavLinks } from "@/lib/nav-links";
+import BaseLayout from "./BaseLayout.astro";
 
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+type Props = ComponentProps<typeof BaseLayout> & {
+  headerNavFailureMode?: ComponentProps<typeof Navigation>["failureMode"];
+  headerNavLinks?: ComponentProps<typeof Navigation>["navLinks"];
+  withFixedSearch?: boolean;
+  withInsetMain?: boolean;
+  withMainId?: boolean;
+};
+
+const {
+  headerNavFailureMode,
+  headerNavLinks = defaultNavLinks,
+  title,
+  withFixedSearch = true,
+  withInsetMain = true,
+  withMainId = true,
+} = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} - Fixable</title>
-	</head>
-	<body>
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
-	</body>
-</html>
+<BaseLayout title={title}>
+  <Header searchMode={withFixedSearch ? "fixed" : undefined} />
+  <Navigation failureMode={headerNavFailureMode} navLinks={headerNavLinks} />
+  <main
+    id={withMainId ? "main" : undefined}
+    class={withInsetMain ? "inset" : undefined}
+  >
+    <slot />
+  </main>
+  <Toast />
+  <Footer mode="fixed" />
+  <slot name="end" />
+</BaseLayout>

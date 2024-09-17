@@ -1,0 +1,105 @@
+---
+import Fixable from "@/components/Fixable.astro";
+import FixableRegion from "@/components/FixableRegion.astro";
+import FormLayout from "@/components/FormLayout.astro";
+import Layout from "@/layouts/Layout.astro";
+import { museumBaseUrl } from "@/lib/constants";
+---
+
+<Layout title="Sign In">
+  <h1>Sign In</h1>
+  <p id="registered" hidden>Registration successful. Please sign in below.</p>
+  <FormLayout class="form" action={`${museumBaseUrl}`}>
+    <Fixable
+      as="p"
+      id="error"
+      class="error"
+      hidden
+      role="alert"
+      fixed={{ tabindex: -1 }}
+    />
+    <FixableRegion>
+      <input class="broken" name="email" placeholder="email@domain.com" />
+      <input
+        class="broken"
+        type="password"
+        name="password"
+        placeholder="password"
+      />
+      <Fragment slot="fixed">
+        <label
+          >Email
+          <input class="fixed" type="email" name="email" placeholder="name" />
+        </label>
+        <label>
+          Password
+          <input class="fixed" type="password" name="password" />
+        </label>
+      </Fragment>
+    </FixableRegion>
+    <button>Submit</button>
+  </FormLayout>
+  <p id="register">
+    Don't have an account?
+    <a href="../register/">Register</a>
+  </p>
+</Layout>
+
+<script>
+  import { persist, recall } from "@/lib/client/store";
+  import { getMode } from "@/lib/mode";
+
+  if (new URL(location.href).searchParams.get("email")) {
+    document.getElementById("registered")!.hidden = false;
+    document.getElementById("register")!.hidden = true;
+  }
+
+  const form = document.querySelector("main form") as HTMLFormElement;
+  const errorEl = document.getElementById("error") as HTMLParagraphElement;
+  const registration = recall("registration");
+
+  if (getMode() === "broken") {
+    form
+      .querySelectorAll("input")
+      .forEach((input) =>
+        input.addEventListener("paste", (event) => event.preventDefault())
+      );
+  }
+
+  form.addEventListener("submit", (event) => {
+    // Mock login validation
+    const emailInput = form.elements["email"] as HTMLInputElement;
+    const passwordInput = form.elements["password"] as HTMLInputElement;
+    if (
+      !registration ||
+      emailInput.value !== registration.email ||
+      passwordInput.value !== registration.password
+    ) {
+      event.preventDefault();
+      errorEl.removeAttribute("hidden");
+      errorEl.textContent = "Incorrect email or password; please try again.";
+
+      if (getMode() === "fixed") errorEl.focus();
+    } else {
+      persist("loggedInAt", new Date().toISOString());
+    }
+  });
+</script>
+
+<style>
+  .form {
+    margin: 10vh 0;
+  }
+
+  button {
+    margin-top: calc(1rem * var(--ms9));
+  }
+
+  input.broken::placeholder {
+    color: var(--gray-300);
+  }
+
+  input.fixed::placeholder {
+    color: var(--gray-600);
+  }
+</style>

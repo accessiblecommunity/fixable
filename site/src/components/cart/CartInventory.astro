@@ -1,0 +1,62 @@
+---
+interface Props {
+  includeRemove?: boolean;
+}
+
+const { includeRemove } = Astro.props;
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      {includeRemove && <th data-actions="">Actions</th>}
+    </tr>
+  </thead>
+  <tbody id="cart-tbody"></tbody>
+</table>
+
+<script>
+  import {
+    handleCartRemovals,
+    renderCartInventory,
+  } from "@/lib/client/cart";
+  import { onStoreChange, recall } from "@/lib/client/store";
+
+  const includeRemove = !!document.querySelector("th[data-actions]");
+
+  handleCartRemovals();
+
+  if (includeRemove) {
+    onStoreChange("cart", (cart) =>
+      renderCartInventory(cart, "cart-tbody", true)
+    );
+  } else {
+    // Intentionally render "statically" without reacting to further events,
+    // so that we can safely clear cart during confirmation step
+    const cart = recall("cart");
+    renderCartInventory(cart, "cart-tbody", false);
+  }
+</script>
+
+<style>
+  /* Nest unscoped selectors to reach programmatically-added elements */
+  table {
+    & th,
+    & :global(td) {
+      padding: calc(1rem * var(--ms-5));
+    }
+
+    & :global(td) {
+      border-top: 1px solid var(--hairline);
+    }
+
+    & :global(th:not(:first-child)),
+    & :global(td:not(:first-child)) {
+      border-left: 1px solid var(--hairline);
+      text-align: center;
+    }
+  }
+</style>

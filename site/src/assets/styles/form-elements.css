@@ -1,0 +1,20 @@
+select, textarea,
+input:not([type="checkbox"], [type="file"], [type="image"], [type="radio"], [type="range"]) {
+  border: 1px solid var(--gray-800);
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+
+  &.error {
+    border-color: var(--red-warm-500);
+  }
+
+  &:disabled {
+    border-color: var(--gray-200);
+    color: var(--gray-500);
+  }
+}
+
+div.error, p.error {
+  color: var(--red-warm-500);
+}

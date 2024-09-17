@@ -1,0 +1,7 @@
+@import url(@fontsource/patua-one/400.css);
+@import url(@fontsource-variable/cabin/index.css);
+
+:root {
+  --body-font-family: 'Cabin Variable', system-ui, sans-serif;
+  --title-font-family: 'Patua One', serif;
+}

@@ -1,0 +1,82 @@
+---
+import CartStatus from "@/components/cart/CartStatus.astro";
+import Fixable from "@/components/Fixable.astro";
+import ShopLayout from "@/layouts/ShopLayout.astro";
+import { getCollection } from "astro:content";
+import { sortBy, startCase, uniqBy } from "lodash-es";
+
+const allProducts = await getCollection("products");
+const categories = sortBy(
+  uniqBy(allProducts, ({ slug }) => slug.split("/")[0]).map(
+    ({ data, slug }) => ({
+      image: data.image,
+      imagePosition: data.imagePosition,
+      name: startCase(slug.split("/")[0]),
+      slug: slug.split("/")[0],
+    })
+  ),
+  ({ name }) => name
+);
+---
+
+<ShopLayout title="Gift Shop">
+  <h1>Gift Shop</h1>
+  <CartStatus />
+  <div>
+    <ul class="grid-wrapper">
+      {
+        categories.map(({ image, imagePosition, name, slug }) => (
+          <li
+            style={{
+              backgroundImage: `url(${image.src})`,
+              backgroundPosition: imagePosition,
+            }}
+          >
+            <Fixable as="a" fixed={{ class: "fixed" }} href={`${slug}/`}>
+              {name}
+            </Fixable>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</ShopLayout>
+
+<style>
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    background-size: cover;
+    grid-column-end: span 6;
+    height: calc(5rem * var(--ms10));
+    position: relative;
+
+    & a {
+      border: 1px solid var(--white);
+      color: var(--white);
+      font-family: var(--title-font-family);
+      font-size: 32px;
+      text-decoration: none;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset: 1px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .08);
+      }
+      &:active {
+        background-color: rgba(0, 0, 0, .16);
+      }
+
+      &.fixed {
+        font-size: 2rem;
+      }
+    }
+  }
+</style>
