@@ -6,7 +6,7 @@ image: "@/assets/images/blog/sebastian-pandelache-zTgmdIMLUtg-unsplash.jpg"
 imageDescription: A woman adjusts a studio microphone on a boom arm in front of a laptop.
 imagePosition: right
 video: "live/live.mp4"
-videoCover: "live/live-cover.jpg"
+videoCover: "live/live-cover.webp"
 ---
 
 Introducing Our New Podcast Series: <cite>Stories from the Broken</cite>—Join Us for a Live Event!
