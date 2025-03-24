@@ -60,7 +60,7 @@ import Layout from "@/layouts/Layout.astro";
   }, 60000);
 
   document.getElementById('email')!.addEventListener('input', function() {
-    const email = this.value;
+    const email = (this as HTMLInputElement).value || '';
     const suggestion = document.getElementById('email-suggestion')!;
     if (email && !email.endsWith('@gmail.com') && !email.endsWith('@hotmail.com')) {
       suggestion.style.display = 'block';
