@@ -673,9 +673,6 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           The navigation bar content overflows its background on mobile viewports,
           making the cart link nearly invisible.
         </dd>
-        <dd>
-          The "did you mean" email prompt in the volunteer sign-up form has insufficient contrast.
-        </dd>
         <dt>1.4.13: Content on Hover or Focus</dt>
         <dd>
           In the top navigation bar, nested items open on hover and can only be dismissed by moving the pointer.
@@ -737,9 +734,6 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
         <dd>
           When the payment form becomes disabled, the toast that appears
           does not grab focus and is not announced.
-        </dd>
-        <dd>
-          The "did you mean" email prompt in the volunteer sign-up doesn't grab focus and isn't announced.
         </dd>
       </dl>
 
@@ -1010,6 +1004,10 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
       <p>This section includes task completion and form based failures. This includes a small number of errors.</p>
 
       <dl slot="wcag2">
+        <dt>1.4.3 and 1.4.6: Contrast</dt>
+        <dd>
+          The "did you mean" email prompt has insufficient contrast.
+        </dd>
         <dt>2.2.3: No Timing</dt>
         <dd>
           The volunteer form becomes unsubmittable after a short time,
@@ -1024,9 +1022,20 @@ import MetaLayout from "@/layouts/MetaLayout.astro";
           When the form becomes disabled, the toast that appears
           does not grab focus and is not announced.
         </dd>
+        <dd>
+          The "did you mean" email prompt doesn't grab focus and isn't announced.
+        </dd>
       </dl>
 
       <dl slot="wcag3">
+        <dt>Minimum text contrast</dt>
+        <dd>
+          The "did you mean" email prompt has insufficient contrast.
+        </dd>
+        <dt>Error identification</dt>
+        <dd>
+          The "did you mean" email prompt isn't programmatically associated with the error source.
+        </dd>
         <dt>Persistent error notification</dt>
         <dd>
           The timeout notification toast dismisses itself automatically
