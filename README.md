@@ -101,6 +101,7 @@ In Astro files (for pages or components):
 /**
  * @break
  * location: Home & Search
+ * process: learning
  * wcag2: 2.2.2
  * wcag3: Motion
  * description: ...
@@ -114,6 +115,7 @@ In Markdown frontmatter (for collection entries):
 ```yaml
 breaks:
   - location: Home & Search
+    process: learning
     wcag2: 2.2.2
     wcag3: Motion
     description: ...
@@ -126,7 +128,10 @@ In both cases, the same YAML format is used.
 ### Properties
 
 - **location** - Indicates what part of the site contains the break;
-  must exist in `src/content/sections.json`
+  must reference an existing `id` in `src/content/sections.json`
+- **process** - Indicates which process (i.e. user flow) contains the break;
+  must reference one or more existing `id`s in `src/content/processes.json`
+  - May be `ALL`, to indicate a break that impacts all processes
 - **wcag2** - WCAG 2 Success Criterion number(s)
 - **wcag3** - WCAG 3 Requirement(s)
 - **description** - Description(s) of break(s)
@@ -156,3 +161,5 @@ In Markdown frontmatter:
 ```yaml
 breaklocation: Home & Search
 ```
+
+The same applies for `process`, via `breakprocess`.
