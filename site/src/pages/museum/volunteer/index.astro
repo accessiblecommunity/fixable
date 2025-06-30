@@ -145,7 +145,7 @@ const isBroken = getMode() === "broken";
 </script>
 
 <style>
-  label:has(input:not(:checked)) + textarea[name="positions-other"] {
+  input:not(:checked) ~ textarea[name="positions-other"] {
     display: none;
   }
 
