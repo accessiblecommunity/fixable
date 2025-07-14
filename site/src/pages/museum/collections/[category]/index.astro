@@ -32,16 +32,89 @@ export async function getStaticPaths() {
 const { category, exhibits } = Astro.props;
 const { Content } = await render(category);
 
+/** @breakprocess collections */
+
+/**
+ * @break
+ * location: Music Collection
+ * href: /collections/music/#main
+ * wcag2:
+ *   - 2.4.4
+ *   - 2.4.9
+ * description: |
+ *   The purpose of each entry's link is unclear because its image (with alt text)
+ *   is also included within the link, preceding its title.
+ */
+/**
+ * @break
+ * location: Music Collection
+ * href: /collections/music/#main
+ * wcag3:
+ *   - Control labels
+ *   - Verbosity
+ * description: |
+ *   The link for each entry is overly verbose, due to the inclusion of
+ *   each entry's image (with alt text).
+ */
 const shouldWrapImageInLink =
   getMode() === "broken" && category.id === "music";
+/**
+ * @break
+ * location: Sports Collection
+ * href: /collections/sports/#main
+ * wcag2: 1.1.1
+ * wcag3: Equivalent text alternative
+ * description: |
+ *   The alt text on each entry's image repeats the entry's title,
+ *   rather than describing the image.
+ */
+/**
+ * @break
+ * location: Sports Collection
+ * href: /collections/sports/#main
+ * wcag3: Relevant focus
+ * description: |
+ *   Each collection's image and title are independently linked,
+ *   requiring focus to be advanced twice to reach the next unique link.
+ */
 const shouldDuplicateLink =
   getMode() === "broken" && category.id === "sports";
 ---
 
 <Layout title={category.data.title}>
+  {
+    // TODO: this is currently broken in all collections
+    /**
+     * @break
+     * location: Technology Collection
+     * href: /collections/technology/#main
+     * wcag2: 2.4.10
+     * wcag3: Section labels
+     * description: The page doesn't have an H1.
+     */
+  }
   <h2>{category.data.title}</h2>
   <Content />
   {
+    /**
+     * @break
+     * location: Home Collection
+     * href: /collections/home/#main
+     * wcag2:
+     *   - 2.3.1
+     *   - 2.3.2
+     * wcag3: Flashing
+     * description: The image thumbnails in the exhibit list on this page flash 4 times within a one-second period.
+     * photosensitivity: true
+     */
+    /**
+     * @break
+     * location: Home Collection
+     * href: /collections/home/#main
+     * wcag2: 2.3.3
+     * wcag3: Motion
+     * description: Each individual exhibit page under the Home collection includes a parallax effect on the background image.
+     */
     category.data.dangerous && (
       <Modal id="warning-modal" mode="fixed">
         <div class="warning-content">
@@ -82,6 +155,16 @@ const shouldDuplicateLink =
             href={`../${id}/`}
           >
             <div class="image-container">
+              {
+                /**
+                 * @break
+                 * location: Sports Collection
+                 * href: /collections/sports/#main
+                 * wcag2: 2.4.7
+                 * wcag3: Keyboard focus appearance
+                 * description: There is no visible focus outline when a collection's image is focused.
+                 */
+              }
               <ConditionalParent
                 as="a"
                 if={shouldDuplicateLink}
