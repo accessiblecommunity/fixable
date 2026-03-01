@@ -1,36 +1,47 @@
 {
-  "name": "fixable",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "dev:fixed": "cross-env PUBLIC_FIXED=1 astro dev",
-    "start": "astro dev",
-    "check": "astro check",
-    "build": "astro check && astro build",
-    "build:fixed": "astro check && cross-env PUBLIC_FIXED=1 astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/markdown-remark": "^6.3.1",
-    "@fontsource-variable/cabin": "^5.0.19",
-    "@fontsource/corinthia": "^5.0.21",
-    "@fontsource/patua-one": "^5.0.19",
-    "astro": "^5.7.13",
-    "astro-icon": "^1.1.5",
-    "cheerio": "^1.0.0",
-    "fast-glob": "^3.3.2",
-    "github-slugger": "^2.0.0",
-    "lodash-es": "^4.17.21",
-    "typescript": "^5.8.2"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@iconify-json/ri": "^1.1.21",
-    "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.14.14",
-    "cross-env": "^7.0.3",
-    "prettier": "3.3.2"
-  }
+	"name": "fixable",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"dev:fixed": "cross-env PUBLIC_FIXED=1 astro dev",
+		"start": "astro dev",
+		"check": "astro check",
+		"build": "astro check && astro build",
+		"build:fixed": "astro check && cross-env PUBLIC_FIXED=1 astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"extract-breaks": "tsx scripts/extract-breaks/extract-breaks.ts",
+		"extract-breaks:json": "tsx scripts/extract-breaks/extract-breaks.ts --format json",
+		"generate-coverage": "tsx scripts/generate-coverage/generate-coverage.ts",
+		"generate-coverage:json": "tsx scripts/generate-coverage/generate-coverage.ts --format json",
+		"update-wcag": "tsx update-wcag-data.ts && astro check",
+		"clean:reports": "rm -rf reports",
+		"test": "vitest run --coverage",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"@astrojs/markdown-remark": "^6.3.1",
+		"@fontsource-variable/cabin": "^5.0.19",
+		"@fontsource/corinthia": "^5.0.21",
+		"@fontsource/patua-one": "^5.0.19",
+		"astro": "^5.7.13",
+		"astro-icon": "^1.1.5",
+		"cheerio": "^1.0.0",
+		"fast-glob": "^3.3.2",
+		"github-slugger": "^2.0.0",
+		"lodash-es": "^4.17.21",
+		"typescript": "^5.8.2"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.4",
+		"@iconify-json/ri": "^1.1.21",
+		"@types/lodash-es": "^4.17.12",
+		"@types/node": "^20.14.14",
+		"@vitest/coverage-v8": "^4.0.18",
+		"cross-env": "^7.0.3",
+		"prettier": "3.3.2",
+		"tsx": "^4.19.3",
+		"vitest": "^4.0.18"
+	}
 }
