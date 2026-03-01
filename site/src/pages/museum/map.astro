@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import mapImage from "@/assets/images/map/map.png";
+import Fixable from "@/components/Fixable.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
@@ -36,13 +37,23 @@ import Layout from "@/layouts/Layout.astro";
           id="draggable-image"
         />
       </div>
+            {
+        /**
+         * @break
+         * wcag2: 1.1.1
+         * wcag3: Image alternatives available
+         * description: The arrow buttons over the map do not contain text labels.
+         * fix:
+         *   description: Added aria-label attribute to each button.
+         */
+      }
       <div class="controls hidden-below-md">
-        <button id="in"><Icon name="ri:arrow-up-s-fill" /></button>
-        <button id="up"><Icon name="ri:arrow-up-s-fill" /></button>
-        <button id="left"><Icon name="ri:arrow-left-s-fill" /></button>
-        <button id="right"><Icon name="ri:arrow-right-s-fill" /></button>
-        <button id="down"><Icon name="ri:arrow-down-s-fill" /></button>
-        <button id="out"><Icon name="ri:arrow-down-s-fill" /></button>
+        <Fixable as="button" id="in" fixed={{ "aria-label": "Zoom in" }}><Icon name="ri:arrow-up-s-fill" /></Fixable>
+        <Fixable as="button" id="up" fixed={{ "aria-label": "Pan up" }}><Icon name="ri:arrow-up-s-fill" /></Fixable>
+        <Fixable as="button" id="left" fixed={{ "aria-label": "Pan left" }}><Icon name="ri:arrow-left-s-fill" /></Fixable>
+        <Fixable as="button" id="right" fixed={{ "aria-label": "Pan right" }}><Icon name="ri:arrow-right-s-fill" /></Fixable>
+        <Fixable as="button" id="down" fixed={{ "aria-label": "Pan down" }}><Icon name="ri:arrow-down-s-fill" /></Fixable>
+        <Fixable as="button" id="out" fixed={{ "aria-label": "Zoom out" }}><Icon name="ri:arrow-down-s-fill" /></Fixable>
       </div>
     </div>
   </div>
