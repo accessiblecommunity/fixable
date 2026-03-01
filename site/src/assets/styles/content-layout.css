@@ -1,4 +1,4 @@
-@media (min-width: 30em) {
+@media (width >= 30em) {
   .grid-wrapper {
     display: grid;
     gap: 1rem;
@@ -6,7 +6,7 @@
   }
 }
 
-@media (min-width: 60em) {
+@media (width >= 60em) {
   .grid-wrapper {
     grid-template-columns: [content-start] repeat(12, minmax(0, 133px)) [content-end];
   }

@@ -1,0 +1,6 @@
+# Prettier only handles .astro files in this project.
+# Biome handles JS/TS formatting.
+# Stylelint handles CSS conventions.
+# Markdownlint handles Markdown.
+*
+!**/*.astro

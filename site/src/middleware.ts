@@ -1,5 +1,5 @@
-import type { MiddlewareHandler } from "astro";
 import { sequence } from "astro:middleware";
+import type { MiddlewareHandler } from "astro";
 import { load } from "cheerio";
 import GithubSlugger from "github-slugger";
 

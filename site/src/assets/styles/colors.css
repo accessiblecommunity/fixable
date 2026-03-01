@@ -79,5 +79,5 @@
 
   --white: #fff;
   --black: var(--gray-800);
-  --hairline: rgb(0, 0, 0, 0.175);
+  --hairline: rgb(0 0 0 / 17.5%);
 }

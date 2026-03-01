@@ -21,7 +21,7 @@ Recently, the Museum of Broken Things received a significant boost in the form o
 With the donation, the museum has outlined ambitious plans for growth. In addition to the new restoration wing, the museum will be doubling the size of its exhibit halls, allowing for even more items to be put on display. Plans are also underway to introduce rotating exhibits from other museums, showcasing broken artifacts from around the world.</p>
 
 <aside class="blockquote">
-	<p>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath.</p>
+ <p>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath.</p>
 </aside>
 
 <p>The museum’s director, Clara Stevens, explained that the expansion will not only give new life to its current collection but will also broaden its focus, exploring global stories of disrepair and decay. <q>We want to give our visitors a more complete picture of how objects break, why they matter, and how cultures deal with the aftermath</q>, Stevens said.</p>
@@ -31,22 +31,22 @@ With the donation, the museum has outlined ambitious plans for growth. In additi
 The Museum of Broken Things offers a unique perspective in an age that often prizes the new and flawless. Its exhibits show that even in destruction, there is value, meaning, and beauty. Thanks to the new donation, the museum will be able to continue its mission for years to come, reaching more people with its message of resilience in the face of time’s inevitable toll. As it expands, the museum invites everyone to reconsider their relationship with the objects around them, urging us all to appreciate that the broken and the discarded have stories worth telling.
 
 <style>
-	aside.blockquote{
-		border-block-end:5px solid var(--red-warm-400);
-		border-block-start:5px solid var(--red-warm-400);
-		font-size:calc(var(--ms8) * 1rem);
-		line-height:var(--ms2);
-		& p{
-			margin-block-end:calc(var(--ms-6) * 1em);
-			margin-block-start:calc(var(--ms-6) * 1em);
-			padding:0 calc(var(--ms-5) * 1em);
-			text-wrap:pretty;
-		}
-		& p::before{
-			content:open-quote;
-		}
-		& p::after{
-			content:close-quote;
-		}
-	}
+ aside.blockquote{
+  border-block-end:5px solid var(--red-warm-400);
+  border-block-start:5px solid var(--red-warm-400);
+  font-size:calc(var(--ms8) * 1rem);
+  line-height:var(--ms2);
+  & p{
+   margin-block-end:calc(var(--ms-6) * 1em);
+   margin-block-start:calc(var(--ms-6) * 1em);
+   padding:0 calc(var(--ms-5) * 1em);
+   text-wrap:pretty;
+  }
+  & p::before{
+   content:open-quote;
+  }
+  & p::after{
+   content:close-quote;
+  }
+ }
 </style>

@@ -41,7 +41,7 @@ export const defaultNavLinks: NavTree = [
   },
   { href: "volunteer/", name: "Volunteer" },
   { href: "about/", name: "About" },
-  { href: "help/", name: "Help" }, 
+  { href: "help/", name: "Help" },
 ];
 
 function prependHref(navLink: NavLink) {
@@ -60,7 +60,7 @@ export const checkIsNavLink = (entry: NavLink | NavParent): entry is NavLink =>
 /** Utility function to recursively filter links (not parents) in a NavTree structure. */
 export const filterNavTreeLinks = (
   navTree: NavTree,
-  fn: (entry: NavLink) => boolean
+  fn: (entry: NavLink) => boolean,
 ) =>
   navTree
     .filter((entry) => ("children" in entry ? true : fn(entry)))
@@ -70,5 +70,5 @@ export const filterNavTreeLinks = (
             ...entry,
             children: entry.children.filter(fn),
           }
-        : entry
+        : entry,
     );

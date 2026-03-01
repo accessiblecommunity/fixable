@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 import icon from "astro-icon";
 
@@ -9,11 +9,11 @@ export default defineConfig({
   trailingSlash: "always",
   server: {
     host: true,
-    port: 4323
+    port: 4323,
   },
   integrations: [
     icon({
       iconDir: "src/assets/icons",
     }),
-  ]
+  ],
 });

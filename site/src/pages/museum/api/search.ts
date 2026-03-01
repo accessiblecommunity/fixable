@@ -1,7 +1,7 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import type { APIRoute } from "astro";
 import glob from "fast-glob";
-import { readFile } from "fs/promises";
-import { join } from "path";
 import { museumBaseUrl } from "@/lib/constants";
 
 export interface SearchResult {

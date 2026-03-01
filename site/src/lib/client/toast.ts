@@ -1,8 +1,8 @@
 /** @fileoverview Functions complementing the Toast component in both broken and fixed states */
 
+import type { HTMLAttributes } from "astro/types";
 import type { ToastType } from "@/components/Toast.astro";
 import { getMode } from "../mode";
-import type { HTMLAttributes } from "astro/types";
 
 interface ToastOptions {
   /**
@@ -76,7 +76,7 @@ export async function showToast(
     type,
     withDismiss = true,
     ...actionOptions
-  }: ToastOptions | ToastOptionsWithAction
+  }: ToastOptions | ToastOptionsWithAction,
 ) {
   const isBroken = getMode() === "broken";
   const toastEl = document.getElementById("toast")!;
@@ -96,13 +96,13 @@ export async function showToast(
   }
 
   const templateEl = document.getElementById(
-    `toast-icon-${type}`
+    `toast-icon-${type}`,
   ) as HTMLTemplateElement;
   if (!templateEl)
     throw new Error(`Template element not found for type ${type}`);
   contentEl.insertBefore(
     templateEl.content.cloneNode(true),
-    contentEl.firstChild
+    contentEl.firstChild,
   );
 
   if ("actionLabel" in actionOptions) {

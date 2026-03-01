@@ -5,6 +5,30 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+          node-version: 20
+      - name: Install dependencies
+        working-directory: site
+        run: npm ci
+      - name: Check formatting
+        working-directory: site
+        run: npm run format:check
+      - name: Lint
+        working-directory: site
+        run: npm run lint
+      - name: Lint markdown
+        working-directory: site
+        run: npm run markdownlint
+
   build:
     runs-on: ubuntu-latest
     steps:

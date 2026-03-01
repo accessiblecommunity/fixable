@@ -15,7 +15,7 @@
   }
 }
 
-.visually-hidden:not(:focus):not(:active) {
+.visually-hidden:not(:focus, :active) {
   border: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;

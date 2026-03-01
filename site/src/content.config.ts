@@ -1,9 +1,5 @@
+import { defineCollection, reference, z } from "astro:content";
 import { glob } from "astro/loaders";
-import {
-  defineCollection,
-  reference,
-  z,
-} from "astro:content";
 
 /** Fields in common between our schemas that use Astro's image() */
 const baseImageSchema = z.object({
@@ -16,25 +12,30 @@ const baseImageSchema = z.object({
 export const collections = {
   blog: defineCollection({
     loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/blog" }),
-    schema: ({ image }) => baseImageSchema.extend({
-      brokenUrl: z.boolean().default(false),
-      category: z.union([z.literal("Events"), z.literal("In the News")]),
-      date: z.date().or(z.literal("now")),
-      image: image(),
-      video: z.string().optional(),
-      videoCover: z.string().optional(),
-    }),
+    schema: ({ image }) =>
+      baseImageSchema.extend({
+        brokenUrl: z.boolean().default(false),
+        category: z.union([z.literal("Events"), z.literal("In the News")]),
+        date: z.date().or(z.literal("now")),
+        image: image(),
+        video: z.string().optional(),
+        videoCover: z.string().optional(),
+      }),
   }),
 
   exhibits: defineCollection({
     loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/exhibits" }),
-    schema: ({ image }) => baseImageSchema.extend({
-      image: image(),
-    })
+    schema: ({ image }) =>
+      baseImageSchema.extend({
+        image: image(),
+      }),
   }),
 
   "exhibit-categories": defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/exhibit-categories" }),
+    loader: glob({
+      pattern: "**/[^_]*.md",
+      base: "./src/content/exhibit-categories",
+    }),
     schema: z.object({
       dangerous: z.boolean().default(false),
       topDescription: z.string().optional(),
@@ -45,9 +46,10 @@ export const collections = {
 
   products: defineCollection({
     loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/products" }),
-    schema: ({ image }) => baseImageSchema.extend({
-      image: image(),
-      price: z.number().positive(),
-    }),
+    schema: ({ image }) =>
+      baseImageSchema.extend({
+        image: image(),
+        price: z.number().positive(),
+      }),
   }),
 };

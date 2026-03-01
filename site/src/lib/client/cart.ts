@@ -1,5 +1,5 @@
-import { persist, recall, type Store } from "./store";
 import { museumBaseUrl } from "../constants";
+import { persist, recall, type Store } from "./store";
 
 /** Returns aggregated statistics about cart contents. */
 export function computeTotals(cart: Store["cart"]) {
@@ -46,7 +46,7 @@ export function handleCartRemovals() {
 export function renderCartInventory(
   cart: Store["cart"],
   tableId: string,
-  includeRemove: boolean
+  includeRemove: boolean,
 ) {
   const tbodyEl = document.getElementById(tableId) as HTMLTableSectionElement;
   if (!tbodyEl) throw new Error("table not found");

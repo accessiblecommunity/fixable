@@ -7,7 +7,7 @@ skipAlt: true
 level of education: "upper secondary education"
 ---
 
-Welcome to the Broken Smartphone exhibit. 
+Welcome to the Broken Smartphone exhibit.
 
 Here, a once sleek and powerful device now lies damaged and unusable. The smartphone’s screen is badly cracked, with jagged lines spider-webbing across the glass, distorting the once-clear display. The touch functions no longer respond, and behind the fractured screen, the glow of the pixels flickers faintly, hinting at the advanced technology beneath the shattered surface. This broken phone, once a hub of communication, entertainment, and connection, is now a silent reminder of how easily our most relied-upon devices can be rendered useless.
 

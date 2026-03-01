@@ -7,5 +7,4 @@ export type Mode = "broken" | "fixed";
 /** Gets broken or fixed mode, both at build time and client-side */
 export function getMode(): Mode {
   return import.meta.env.PUBLIC_FIXED ? "fixed" : "broken";
-};
-
+}
