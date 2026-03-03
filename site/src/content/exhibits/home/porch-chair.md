@@ -1,8 +1,8 @@
 ---
 title: Porch Chair
 imageDescription: A wooden chair missing the left half of its back and most of that arm. A couple of planks possibly meant for the back are leaning over the seat.
-image: '@/assets/images/exhibits/home/dan-meyers-m4FB7fzTr80-unsplash.jpg'
-level of education: 'lower secondary education'
+image: "@/assets/images/exhibits/home/dan-meyers-m4FB7fzTr80-unsplash.jpg"
+level of education: "lower secondary education"
 content note: This content was generated with a prompt to make heavy use of idioms, synonyms, and metaphors
 breaklocation: Home Collection
 breakprocess: collections

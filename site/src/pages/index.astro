@@ -1,15 +1,15 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import { BreaksList } from '@/components/BreaksList';
-import MetaLayout from '@/layouts/MetaLayout.astro';
+import { type CollectionEntry, getCollection } from "astro:content";
+import { BreaksList } from "@/components/BreaksList";
+import MetaLayout from "@/layouts/MetaLayout.astro";
 
-const breaks = await getCollection('breaks');
-const breakProcessesMap = (await getCollection('breakProcesses')).reduce(
+const breaks = await getCollection("breaks");
+const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
   (map, process) => {
     map[process.id] = process;
     return map;
   },
-  {} as Record<string, CollectionEntry<'breakProcesses'>>,
+  {} as Record<string, CollectionEntry<"breakProcesses">>,
 );
 ---
 
@@ -18,27 +18,34 @@ const breakProcessesMap = (await getCollection('breakProcesses')).reduce(
   <section id="about-this-site">
     <h2>About The Museum of Broken Things</h2>
     <p>
-      This site is designed to demonstrate a wide range of accessibility failures, for teaching and
-      assessment purposes.
+      This site is designed to demonstrate a wide range of accessibility
+      failures, for teaching and assessment purposes.
     </p>
     <h3>Site Behavior</h3>
-    <p><strong>This site is an example only. Do not enter real information!</strong></p>
+    <p>
+      <strong
+        >This site is an example only. Do not enter real information!</strong
+      >
+    </p>
     <ul>
       <li>The contents are made up</li>
       <li>The site is static; no data is retained by a server</li>
       <li>No real shipping address or payment processing occurs</li>
       <li>
-        Registration and sign-in is not processed by a server, but it <em>does</em> function locally
+        Registration and sign-in is not processed by a server, but it <em
+          >does</em
+        > function locally
         <ul>
           <li>
-            i.e., whatever email and password you most recently specified during registration will
-            then work on the Sign In page
+            i.e., whatever email and password you most recently specified during
+            registration will then work on the Sign In page
           </li>
         </ul>
       </li>
       <li>No cookies are stored, despite what the home page might suggest</li>
       <li>
-        Local storage is used for simulated persistence (e.g., for sign-in and the gift shop cart)
+        Local storage is used for simulated persistence (e.g., for sign-in and
+        the gift shop cart)
       </li>
     </ul>
     <p>
@@ -50,7 +57,9 @@ const breakProcessesMap = (await getCollection('breakProcesses')).reduce(
     </p>
   </section>
 
-  {/* Hide summary for built version at the moment; show in dev for confirming content */}
+  {
+    /* Hide summary for built version at the moment; show in dev for confirming content */
+  }
   <section id="summary-of-failures" hidden={import.meta.env.PROD || undefined}>
     <h2>Summary of failures</h2>
     <p>This section provides a breakdown of WCAG failures across the site.</p>
@@ -58,13 +67,17 @@ const breakProcessesMap = (await getCollection('breakProcesses')).reduce(
     {
       import.meta.env.DEV && (
         <p id="dev-error" class="error" hidden>
-          The section specified in the hash does not exist. Check for typos in href, or make sure to
-          add it to this page.
+          The section specified in the hash does not exist. Check for typos in
+          href, or make sure to add it to this page.
         </p>
       )
     }
 
-    <BreaksList client:load breaks={breaks} breakProcessesMap={breakProcessesMap} />
+    <BreaksList
+      client:load
+      breaks={breaks}
+      breakProcessesMap={breakProcessesMap}
+    />
   </section>
 
   <section id="acknowledgment">
@@ -94,20 +107,28 @@ const breakProcessesMap = (await getCollection('breakProcesses')).reduce(
     <h2>License</h2>
     <p>
       This repository is licensed under the
-      <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
+      <a href="https://www.apache.org/licenses/LICENSE-2.0"
+        >Apache License, version 2.0</a
+      >.
     </p>
   </section>
 </MetaLayout>
 
 <script>
-  import { clear } from '@/lib/client/store';
+  import { clear } from "@/lib/client/store";
 
-  document.getElementById('clear-localStorage')!.addEventListener('click', () => {
-    clear();
-  });
+  document
+    .getElementById("clear-localStorage")!
+    .addEventListener("click", () => {
+      clear();
+    });
 
-  if (import.meta.env.DEV && location.hash && !document.getElementById(location.hash.slice(1))) {
-    document.getElementById('dev-error')!.hidden = false;
+  if (
+    import.meta.env.DEV &&
+    location.hash &&
+    !document.getElementById(location.hash.slice(1))
+  ) {
+    document.getElementById("dev-error")!.hidden = false;
   }
 </script>
 

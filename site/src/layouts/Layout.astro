@@ -1,19 +1,19 @@
 ---
 /** @fileoverview Default layout for most pages. */
 
-import '@/assets/styles/styles.css';
+import "@/assets/styles/styles.css";
 
-import type { ComponentProps } from 'astro/types';
-import Footer from '@/components/Footer.astro';
-import Header from '@/components/Header.astro';
-import Navigation from '@/components/Navigation.astro';
-import Toast from '@/components/Toast.astro';
-import { defaultNavLinks } from '@/lib/nav-links';
-import BaseLayout from './BaseLayout.astro';
+import type { ComponentProps } from "astro/types";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Navigation from "@/components/Navigation.astro";
+import Toast from "@/components/Toast.astro";
+import { defaultNavLinks } from "@/lib/nav-links";
+import BaseLayout from "./BaseLayout.astro";
 
 type Props = ComponentProps<typeof BaseLayout> & {
-  headerNavFailureMode?: ComponentProps<typeof Navigation>['failureMode'];
-  headerNavLinks?: ComponentProps<typeof Navigation>['navLinks'];
+  headerNavFailureMode?: ComponentProps<typeof Navigation>["failureMode"];
+  headerNavLinks?: ComponentProps<typeof Navigation>["navLinks"];
   withFixedSearch?: boolean;
   withInsetMain?: boolean;
   withMainId?: boolean;
@@ -30,9 +30,12 @@ const {
 ---
 
 <BaseLayout title={title}>
-  <Header searchMode={withFixedSearch ? 'fixed' : undefined} />
+  <Header searchMode={withFixedSearch ? "fixed" : undefined} />
   <Navigation failureMode={headerNavFailureMode} navLinks={headerNavLinks} />
-  <main id={withMainId ? 'main' : undefined} class={withInsetMain ? 'inset' : undefined}>
+  <main
+    id={withMainId ? "main" : undefined}
+    class={withInsetMain ? "inset" : undefined}
+  >
     <slot />
   </main>
   <Toast />

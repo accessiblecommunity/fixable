@@ -1,10 +1,10 @@
 ---
 title: Compact Disc
 imageDescription: A broken half of a compact disc, its surface reflecting light in all directions.
-image: '@/assets/images/exhibits/technology/pexels-lukas-hartmann-304281-1127121.jpg'
+image: "@/assets/images/exhibits/technology/pexels-lukas-hartmann-304281-1127121.jpg"
 skipAlt: true
 
-level of education: 'upper secondary education'
+level of education: "upper secondary education"
 ---
 
 Welcome to the Broken CDs exhibit.

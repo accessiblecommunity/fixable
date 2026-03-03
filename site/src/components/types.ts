@@ -1,6 +1,6 @@
 /** @fileoverview Common types useful across components */
 
-import type { ComponentProps, HTMLTag, Polymorphic } from 'astro/types';
+import type { ComponentProps, HTMLTag, Polymorphic } from "astro/types";
 
 type AstroComponent = (args: any) => any;
 

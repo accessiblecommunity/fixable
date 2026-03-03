@@ -1,29 +1,29 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { getMode } from '@/lib/mode';
-import { defaultNavLinks, type NavTree } from '@/lib/nav-links';
-import ConditionalParent from './ConditionalParent.astro';
+import { Icon } from "astro-icon/components";
+import { getMode } from "@/lib/mode";
+import { defaultNavLinks, type NavTree } from "@/lib/nav-links";
+import ConditionalParent from "./ConditionalParent.astro";
 
 interface Props {
   /**
    * Indicates behavior in broken mode: open-on-focus or open-on-hover.
    * If unspecified, uses expand/collapse behavior.
    */
-  failureMode?: 'focus' | 'hover';
+  failureMode?: "focus" | "hover";
   /** Links to display in nav. Supports one level of nesting. */
   navLinks?: NavTree;
 }
 
 const { failureMode, navLinks = defaultNavLinks } = Astro.props;
-const actualFailureMode = getMode() === 'broken' ? failureMode : undefined;
+const actualFailureMode = getMode() === "broken" ? failureMode : undefined;
 ---
 
 <nav aria-label="Site" data-failure-mode={actualFailureMode}>
   <ul>
     {
       navLinks.map(({ name, ...rest }) =>
-        'children' in rest ? (
-          <li tabindex={actualFailureMode === 'focus' ? 0 : undefined}>
+        "children" in rest ? (
+          <li tabindex={actualFailureMode === "focus" ? 0 : undefined}>
             <ConditionalParent
               as="button"
               if={!actualFailureMode}
@@ -33,7 +33,9 @@ const actualFailureMode = getMode() === 'broken' ? failureMode : undefined;
               {name}
               {!actualFailureMode && <Icon name="ri:arrow-down-s-line" />}
             </ConditionalParent>
-            <ul id={actualFailureMode ? undefined : `nav-${name.toLowerCase()}`}>
+            <ul
+              id={actualFailureMode ? undefined : `nav-${name.toLowerCase()}`}
+            >
               {rest.children.map(({ headerClass, href, name }) => (
                 <li class={headerClass}>
                   <a {href}>{name}</a>
@@ -56,47 +58,49 @@ const actualFailureMode = getMode() === 'broken' ? failureMode : undefined;
   const navEl = document.querySelector("nav[aria-label='Site']") as HTMLElement;
   const failureMode = navEl.dataset.failureMode;
   if (!failureMode) {
-    navEl.addEventListener('click', (event) => {
+    navEl.addEventListener("click", (event) => {
       const el = event.target as HTMLElement;
-      if (!el.hasAttribute('aria-expanded')) return;
-      const isExpanded = el.getAttribute('aria-expanded') === 'true';
+      if (!el.hasAttribute("aria-expanded")) return;
+      const isExpanded = el.getAttribute("aria-expanded") === "true";
 
       if (!isExpanded) {
         // Close any other expanded submenus before opening a new one
         navEl.querySelectorAll("[aria-expanded='true']").forEach((el) => {
-          el.setAttribute('aria-expanded', 'false');
+          el.setAttribute("aria-expanded", "false");
         });
       }
-      el.setAttribute('aria-expanded', '' + !isExpanded);
+      el.setAttribute("aria-expanded", "" + !isExpanded);
       event.preventDefault();
     });
 
-    navEl.addEventListener('keydown', (event) => {
+    navEl.addEventListener("keydown", (event) => {
       const el = event.target as HTMLElement;
-      if (event.key === 'Escape') {
-        const buttonEl = el.closest('nav > ul > li')?.querySelector('button');
-        if (!buttonEl?.hasAttribute('aria-expanded')) return;
-        buttonEl.setAttribute('aria-expanded', 'false');
+      if (event.key === "Escape") {
+        const buttonEl = el.closest("nav > ul > li")?.querySelector("button");
+        if (!buttonEl?.hasAttribute("aria-expanded")) return;
+        buttonEl.setAttribute("aria-expanded", "false");
         (buttonEl as HTMLElement).focus();
         event.preventDefault();
       }
       // Enter/space are already handled by click handler (for buttons)
     });
 
-    navEl.addEventListener('focusout', (event) => {
+    navEl.addEventListener("focusout", (event) => {
       const el = event.target as HTMLElement;
       const relatedEl = event.relatedTarget as HTMLElement | null;
-      const parentItemEl = el.closest('nav > ul > li');
+      const parentItemEl = el.closest("nav > ul > li");
       // Collapse submenu if user tabs out of it
-      if (parentItemEl && parentItemEl !== relatedEl?.closest('nav > ul > li'))
-        parentItemEl.querySelector('button')?.setAttribute('aria-expanded', 'false');
+      if (parentItemEl && parentItemEl !== relatedEl?.closest("nav > ul > li"))
+        parentItemEl
+          .querySelector("button")
+          ?.setAttribute("aria-expanded", "false");
     });
   }
 </script>
 
 <style is:global>
   /* Apply styles globally to also encompass any links in the end slot */
-  nav[aria-label='Site'] {
+  nav[aria-label="Site"] {
     background: var(--black);
     display: flex;
     justify-content: space-between;
@@ -160,7 +164,7 @@ const actualFailureMode = getMode() === 'broken' ? failureMode : undefined;
       }
     }
 
-    &[data-failure-mode='focus'] ul ul a {
+    &[data-failure-mode="focus"] ul ul a {
       border-bottom: 1px solid transparent;
       &:focus {
         border-color: var(--gray-100);
@@ -170,15 +174,15 @@ const actualFailureMode = getMode() === 'broken' ? failureMode : undefined;
 
     /* Collapsed/expanded styles */
 
-    &[data-failure-mode='hover'] > ul > li:not(:hover) > ul,
-    &[data-failure-mode='focus'] > ul > li:not(:focus-within) > ul,
-    &:not([data-failure-mode]) > ul > li:has([aria-expanded='false']) > ul {
+    &[data-failure-mode="hover"] > ul > li:not(:hover) > ul,
+    &[data-failure-mode="focus"] > ul > li:not(:focus-within) > ul,
+    &:not([data-failure-mode]) > ul > li:has([aria-expanded="false"]) > ul {
       display: none;
     }
 
-    &[data-failure-mode='hover'] li:hover svg,
-    &[data-failure-mode='focus'] li:focus-within svg,
-    &:not([data-failure-mode]) li:has([aria-expanded='true']) svg {
+    &[data-failure-mode="hover"] li:hover svg,
+    &[data-failure-mode="focus"] li:focus-within svg,
+    &:not([data-failure-mode]) li:has([aria-expanded="true"]) svg {
       transform: rotate(180deg);
     }
   }

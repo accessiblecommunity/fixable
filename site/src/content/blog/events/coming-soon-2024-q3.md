@@ -1,8 +1,8 @@
 ---
-title: 'Coming In Q3 2024: A Museum of Broken Promises—Exploring Our Fragile Commitments'
+title: "Coming In Q3 2024: A Museum of Broken Promises—Exploring Our Fragile Commitments"
 date: 2024-06-21
 category: Events
-image: '@/assets/images/blog/vek-labs-e8ofKlNHdsg-unsplash.jpg'
+image: "@/assets/images/blog/vek-labs-e8ofKlNHdsg-unsplash.jpg"
 imageDescription: A city road at night with a thick white arrow pointing straight ahead.
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: Bicycle
 imageDescription: A bicycle with rusted parts and a damaged and bent rear wheel.
-image: '@/assets/images/exhibits/sports/dario-bronnimann-8cmkrUrSWxE-unsplash.jpg'
+image: "@/assets/images/exhibits/sports/dario-bronnimann-8cmkrUrSWxE-unsplash.jpg"
 
-level of education: 'lower secondary education'
+level of education: "lower secondary education"
 ---
 
 Welcome to the Broken Bicycle exhibit

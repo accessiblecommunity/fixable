@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
-import mapImage from '@/assets/images/map/map.png';
-import Layout from '@/layouts/Layout.astro';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import mapImage from "@/assets/images/map/map.png";
+import Layout from "@/layouts/Layout.astro";
 
 /** @breaklocation Museum Map */
 /** @breakprocess visiting */
@@ -32,11 +32,17 @@ import Layout from '@/layouts/Layout.astro';
       }
       <h2>Map Usage Instructions</h2>
       <ul>
-        <li>Use the green arrow buttons to pan and the red arrow buttons to zoom</li>
-        <li>On mouse or touchscreen: Press and drag to move the map; pinch to zoom</li>
         <li>
-          On keyboard: use <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd> to pan up, left, down,
-          and right respectively; use <kbd>Q</kbd> and <kbd>E</kbd> to zoom out and in respectively
+          Use the green arrow buttons to pan and the red arrow buttons to zoom
+        </li>
+        <li>
+          On mouse or touchscreen: Press and drag to move the map; pinch to zoom
+        </li>
+        <li>
+          On keyboard: use <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd
+          > to pan up, left, down, and right respectively; use <kbd>Q</kbd> and <kbd
+            >E</kbd
+          > to zoom out and in respectively
         </li>
       </ul>
     </div>
@@ -51,7 +57,12 @@ import Layout from '@/layouts/Layout.astro';
            *   - Would this fail any WCAG 3 guideline? It is neither text nor a control.
            */
         }
-        <Image src={mapImage} alt="Draggable Image" class="draggable-image" id="draggable-image" />
+        <Image
+          src={mapImage}
+          alt="Draggable Image"
+          class="draggable-image"
+          id="draggable-image"
+        />
       </div>
       {
         /**
@@ -94,8 +105,8 @@ import Layout from '@/layouts/Layout.astro';
     y: number;
   }
 
-  const container = document.querySelector('.image-wrapper') as HTMLElement;
-  const img = document.getElementById('draggable-image') as HTMLImageElement;
+  const container = document.querySelector(".image-wrapper") as HTMLElement;
+  const img = document.getElementById("draggable-image") as HTMLImageElement;
   const increment = 16;
   const originalHeight = img.height;
   const originalWidth = img.width;
@@ -106,7 +117,8 @@ import Layout from '@/layouts/Layout.astro';
   let scale = 1;
 
   // Initially center the pin on the map
-  if (!container.scrollLeft) container.scrollLeft = 3490 - container.offsetWidth / 2;
+  if (!container.scrollLeft)
+    container.scrollLeft = 3490 - container.offsetWidth / 2;
 
   /** Updates map size, within acceptable boundaries */
   function maybeUpdateScale(newScale: number) {
@@ -114,26 +126,32 @@ import Layout from '@/layouts/Layout.astro';
     scale = newScale;
 
     // Compute current percentage at visible center point
-    const percentX = (container.scrollLeft + container.offsetWidth / 2) / container.scrollWidth;
-    const percentY = (container.scrollTop + container.offsetHeight / 2) / container.scrollHeight;
+    const percentX =
+      (container.scrollLeft + container.offsetWidth / 2) /
+      container.scrollWidth;
+    const percentY =
+      (container.scrollTop + container.offsetHeight / 2) /
+      container.scrollHeight;
 
     // Use height/width rather than trasnform for automatic bounding box updating
-    img.style.height = scale === 1 ? '' : originalHeight * scale + 'px';
-    img.style.width = scale === 1 ? '' : originalWidth * scale + 'px';
+    img.style.height = scale === 1 ? "" : originalHeight * scale + "px";
+    img.style.width = scale === 1 ? "" : originalWidth * scale + "px";
 
     // Re-center by reversing percentX/Y formula
-    container.scrollLeft = percentX * container.scrollWidth - container.offsetWidth / 2;
-    container.scrollTop = percentY * container.scrollHeight - container.offsetHeight / 2;
+    container.scrollLeft =
+      percentX * container.scrollWidth - container.offsetWidth / 2;
+    container.scrollTop =
+      percentY * container.scrollHeight - container.offsetHeight / 2;
   }
 
   /** Convenience wrapper around maybeUpdateScale for discrete zoom in/out steps */
-  function maybeZoom(direction: 'in' | 'out') {
-    maybeUpdateScale(direction === 'in' ? scale * 1.5 : scale / 1.5);
+  function maybeZoom(direction: "in" | "out") {
+    maybeUpdateScale(direction === "in" ? scale * 1.5 : scale / 1.5);
   }
 
   function computePointerDistance() {
     if (!primaryPointer || !secondaryPointer)
-      throw new Error('computePointerDistance called in invalid state');
+      throw new Error("computePointerDistance called in invalid state");
     const diffX = primaryPointer.x - secondaryPointer.x;
     const diffY = primaryPointer.y - secondaryPointer.y;
     return Math.sqrt(diffX * diffX + diffY * diffY);
@@ -145,11 +163,11 @@ import Layout from '@/layouts/Layout.astro';
    * wcag3: Simple pointer input available
    * description: On mobile devices, the only way to zoom the map is via a pinch gesture.
    */
-  container.addEventListener('pointerdown', (event) => {
+  container.addEventListener("pointerdown", (event) => {
     if (event.button !== 0 || (primaryPointer && secondaryPointer)) return;
     event.preventDefault();
     container.setPointerCapture(event.pointerId);
-    img.style.cursor = 'grabbing';
+    img.style.cursor = "grabbing";
 
     if (event.isPrimary) {
       primaryPointer = {
@@ -166,10 +184,11 @@ import Layout from '@/layouts/Layout.astro';
       initialScale = scale;
     }
 
-    if (primaryPointer && secondaryPointer) initialPointerDistance = computePointerDistance();
+    if (primaryPointer && secondaryPointer)
+      initialPointerDistance = computePointerDistance();
   });
 
-  container.addEventListener('pointermove', (event) => {
+  container.addEventListener("pointermove", (event) => {
     if (!primaryPointer) return;
     if (secondaryPointer) {
       // Pinch-zoom
@@ -199,11 +218,11 @@ import Layout from '@/layouts/Layout.astro';
   function cancelDragging(event: PointerEvent) {
     if (event.isPrimary) {
       primaryPointer = null;
-      img.style.cursor = '';
+      img.style.cursor = "";
     } else secondaryPointer = null;
   }
-  container.addEventListener('pointerup', cancelDragging);
-  container.addEventListener('pointercancel', cancelDragging);
+  container.addEventListener("pointerup", cancelDragging);
+  container.addEventListener("pointercancel", cancelDragging);
 
   // Keyboard handler
 
@@ -221,41 +240,41 @@ import Layout from '@/layouts/Layout.astro';
    * wcag3: Keyboard effort comparable
    * description: Panning the map can require many more keypresses compared to dragging a pointer device.
    */
-  document.body.addEventListener('keydown', (event) => {
-    if (event.key === 'w') container.scrollTop -= increment;
-    if (event.key === 's') container.scrollTop += increment;
-    if (event.key === 'a') container.scrollLeft -= increment;
-    if (event.key === 'd') container.scrollLeft += increment;
+  document.body.addEventListener("keydown", (event) => {
+    if (event.key === "w") container.scrollTop -= increment;
+    if (event.key === "s") container.scrollTop += increment;
+    if (event.key === "a") container.scrollLeft -= increment;
+    if (event.key === "d") container.scrollLeft += increment;
 
-    if (event.key === 'q' || event.key === 'e') {
-      maybeZoom(event.key === 'q' ? 'out' : 'in');
+    if (event.key === "q" || event.key === "e") {
+      maybeZoom(event.key === "q" ? "out" : "in");
     }
   });
 
   // Button handlers
 
-  document.getElementById('up')!.addEventListener('click', () => {
+  document.getElementById("up")!.addEventListener("click", () => {
     container.scrollTop -= increment;
   });
 
-  document.getElementById('down')!.addEventListener('click', () => {
+  document.getElementById("down")!.addEventListener("click", () => {
     container.scrollTop += increment;
   });
 
-  document.getElementById('left')!.addEventListener('click', () => {
+  document.getElementById("left")!.addEventListener("click", () => {
     container.scrollLeft -= increment;
   });
 
-  document.getElementById('right')!.addEventListener('click', () => {
+  document.getElementById("right")!.addEventListener("click", () => {
     container.scrollLeft += increment;
   });
 
-  document.getElementById('in')!.addEventListener('click', () => {
-    maybeZoom('in');
+  document.getElementById("in")!.addEventListener("click", () => {
+    maybeZoom("in");
   });
 
-  document.getElementById('out')!.addEventListener('click', () => {
-    maybeZoom('out');
+  document.getElementById("out")!.addEventListener("click", () => {
+    maybeZoom("out");
   });
 </script>
 

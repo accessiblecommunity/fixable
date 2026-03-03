@@ -1,9 +1,9 @@
 ---
 title: Wine Glass
 imageDescription: A wine glass whose base and stem is intact, but most of the bowl has broken off.
-image: '@/assets/images/exhibits/glass/pexels-pixabay-39589.jpg'
+image: "@/assets/images/exhibits/glass/pexels-pixabay-39589.jpg"
 
-level of education: 'advanced education'
+level of education: "advanced education"
 ---
 
 Welcome to the Broken Wine Glass exhibit.

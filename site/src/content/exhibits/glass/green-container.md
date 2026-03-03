@@ -1,9 +1,9 @@
 ---
 title: Green Container
 imageDescription: A green glass container broken into so many pieces that its original shape is difficult to guess.
-image: '@/assets/images/exhibits/glass/dan-dennis-71VASJoElvk-unsplash.jpg'
+image: "@/assets/images/exhibits/glass/dan-dennis-71VASJoElvk-unsplash.jpg"
 
-level of education: 'advanced education'
+level of education: "advanced education"
 ---
 
 Welcome to the Broken Container exhibit.

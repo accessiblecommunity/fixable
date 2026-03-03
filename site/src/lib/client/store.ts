@@ -1,6 +1,6 @@
-import { z } from 'astro/zod';
+import { z } from "astro/zod";
 
-const storageKey = 'fixable-museum';
+const storageKey = "fixable-museum";
 const storage = localStorage;
 
 /**
@@ -63,7 +63,9 @@ export function persist<K extends StoreKey>(key: K, value: Store[K]) {
   store[key] = value;
   storage.setItem(storageKey, JSON.stringify(store));
 
-  storeTarget.dispatchEvent(new CustomEvent(key, { detail: [value, previousValue] }));
+  storeTarget.dispatchEvent(
+    new CustomEvent(key, { detail: [value, previousValue] }),
+  );
 }
 
 /**
@@ -78,8 +80,11 @@ export function onStoreChange<K extends StoreKey>(
   handler: StoreHandler<K>,
   shouldRunImmediately = true,
 ) {
-  storeTarget.addEventListener(key, (event: CustomEvent<[Store[K], Store[K]]>) => {
-    handler(event.detail[0], event.detail[1]);
-  });
+  storeTarget.addEventListener(
+    key,
+    (event: CustomEvent<[Store[K], Store[K]]>) => {
+      handler(event.detail[0], event.detail[1]);
+    },
+  );
   if (shouldRunImmediately) handler(store[key], undefined);
 }

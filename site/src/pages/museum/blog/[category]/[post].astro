@@ -1,13 +1,13 @@
 ---
-import Video from '@/components/Video.astro';
-import Layout from '@/layouts/Layout.astro';
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Video from "@/components/Video.astro";
+import Layout from "@/layouts/Layout.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
 
   return posts.map((post) => {
-    const [category, postSlug] = post.id.split('/');
+    const [category, postSlug] = post.id.split("/");
     return {
       params: { category, post: postSlug },
       props: { post },
@@ -16,17 +16,21 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
   title: string;
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const dateFormat = new Intl.DateTimeFormat(['en-GB'], { dateStyle: 'medium' });
+const dateFormat = new Intl.DateTimeFormat(["en-GB"], { dateStyle: "medium" });
 ---
 
-<Layout headerNavFailureMode="focus" title={post.data.title} withInsetMain={false}>
+<Layout
+  headerNavFailureMode="focus"
+  title={post.data.title}
+  withInsetMain={false}
+>
   <article>
     <div
       class="background"
@@ -39,8 +43,8 @@ const dateFormat = new Intl.DateTimeFormat(['en-GB'], { dateStyle: 'medium' });
         <h1>{post.data.title}</h1>
         <div class="date">
           {
-            post.data.date === 'now'
-              ? 'Happening now'
+            post.data.date === "now"
+              ? "Happening now"
               : `Written on ${dateFormat.format(post.data.date)}`
           }
         </div>
@@ -49,7 +53,10 @@ const dateFormat = new Intl.DateTimeFormat(['en-GB'], { dateStyle: 'medium' });
     <div class="content inset">
       {
         post.data.video && (
-          <Video src={post.data.video} poster={post.data.videoCover || undefined} />
+          <Video
+            src={post.data.video}
+            poster={post.data.videoCover || undefined}
+          />
         )
       }
       <Content />

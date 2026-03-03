@@ -1,6 +1,6 @@
 ---
-import { getImage, type LocalImageProps } from 'astro:assets';
-import { omit } from 'lodash-es';
+import { getImage, type LocalImageProps } from "astro:assets";
+import { omit } from "lodash-es";
 
 /** @fileoverview
  * Custom Image component designed for object-fit: cover use cases,
@@ -20,16 +20,16 @@ const { height, objectPosition, width } = Astro.props;
 
 const image = await getImage({
   // Explicitly convert height/width for type safety
-  ...omit(Astro.props, 'height', 'width'),
-  ...(typeof height === 'number' && { height }),
-  ...(typeof height === 'string' && { height: parseInt(height) }),
-  ...(typeof width === 'number' && { width }),
-  ...(typeof width === 'string' && { width: parseInt(width) }),
+  ...omit(Astro.props, "height", "width"),
+  ...(typeof height === "number" && { height }),
+  ...(typeof height === "string" && { height: parseInt(height) }),
+  ...(typeof width === "number" && { width }),
+  ...(typeof width === "string" && { width: parseInt(width) }),
 });
 
 const attributes = {
   // Only include width/height if they were originally specified
-  ...omit(image.attributes, 'height', 'width'),
+  ...omit(image.attributes, "height", "width"),
   height,
   width,
   ...(objectPosition && { style: { objectPosition } }),

@@ -1,10 +1,10 @@
 ---
 title: Porcelain Doll
 imageDescription: A porcelain ballerina
-image: '@/assets/images/exhibits/toys-games/viktor-forgacs-gRujUd2CtTk-unsplash.jpg'
+image: "@/assets/images/exhibits/toys-games/viktor-forgacs-gRujUd2CtTk-unsplash.jpg"
 imagePosition: 20%
 
-level of education: 'primary education'
+level of education: "primary education"
 ---
 
 Welcome to the Broken Porcelain Doll exhibit!

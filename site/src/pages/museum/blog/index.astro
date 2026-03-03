@@ -1,21 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '@/layouts/Layout.astro';
-import { generateExcerpt } from '@/lib/markdown';
-import { Icon } from 'astro-icon/components';
-import { startCase } from 'lodash-es';
-import FixableRegion from '@/components/FixableRegion.astro';
-import Fixable from '@/components/Fixable.astro';
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { generateExcerpt } from "@/lib/markdown";
+import { Icon } from "astro-icon/components";
+import { startCase } from "lodash-es";
+import FixableRegion from "@/components/FixableRegion.astro";
+import Fixable from "@/components/Fixable.astro";
 
 const posts = await Promise.all(
-  (await getCollection('blog')).map(async (post) => ({
+  (await getCollection("blog")).map(async (post) => ({
     ...post,
     excerpt: (await generateExcerpt(post.body)).code,
   })),
 );
 posts.sort((a, b) => {
-  if (a.data.date === 'now') return -1;
-  if (b.data.date === 'now') return 1;
+  if (a.data.date === "now") return -1;
+  if (b.data.date === "now") return 1;
   if (a.data.date > b.data.date) return -1;
   if (a.data.date < b.data.date) return 1;
   return 0;
@@ -24,7 +24,7 @@ posts.sort((a, b) => {
 const livePost = posts.shift();
 const postsByCategory = posts.reduce(
   (map, post) => {
-    const category = post.id.split('/')[0];
+    const category = post.id.split("/")[0];
     if (category in map) map[category].push(post);
     else map[category] = [post];
     return map;
@@ -130,7 +130,7 @@ const postsByCategory = posts.reduce(
     {
       Object.keys(postsByCategory).map((category) => (
         <div class="category">
-          <h2>{startCase(category.replace(/-/g, ' '))}</h2>
+          <h2>{startCase(category.replace(/-/g, " "))}</h2>
           {postsByCategory[category].map((post) => (
             <div class="post">
               {/**
@@ -154,7 +154,10 @@ const postsByCategory = posts.reduce(
                * discussionItems:
                *   - Does this fail Name, role, value, state under WCAG 3?
                */}
-              <a class="image-link" href={`${post.data.brokenUrl ? 'broken' : post.id}/`}>
+              <a
+                class="image-link"
+                href={`${post.data.brokenUrl ? "broken" : post.id}/`}
+              >
                 <div
                   class="background"
                   style={{
@@ -164,7 +167,7 @@ const postsByCategory = posts.reduce(
                 />
               </a>
               <div>
-                <a href={`${post.data.brokenUrl ? 'broken' : post.id}/`}>
+                <a href={`${post.data.brokenUrl ? "broken" : post.id}/`}>
                   <h3>{post.data.title}</h3>
                 </a>
                 <Fragment set:html={post.excerpt} />

@@ -1,25 +1,34 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import { sortBy, uniqBy } from 'lodash-es';
-import Fixable from '@/components/Fixable.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getDownsizedSrc } from '@/lib/image';
-import { checkIsNavLink, defaultNavLinks, filterNavTreeLinks } from '@/lib/nav-links';
+import { type CollectionEntry, getCollection } from "astro:content";
+import { sortBy, uniqBy } from "lodash-es";
+import Fixable from "@/components/Fixable.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getDownsizedSrc } from "@/lib/image";
+import {
+  checkIsNavLink,
+  defaultNavLinks,
+  filterNavTreeLinks,
+} from "@/lib/nav-links";
 
 const categories = sortBy(
-  (await getCollection('exhibit-categories')).filter(({ data }) => !data.dangerous),
+  (await getCollection("exhibit-categories")).filter(
+    ({ data }) => !data.dangerous,
+  ),
   ({ data }) => data.title,
 );
 
-const exhibits = uniqBy(await getCollection('exhibits'), ({ id }) => id.split('/')[0]);
+const exhibits = uniqBy(
+  await getCollection("exhibits"),
+  ({ id }) => id.split("/")[0],
+);
 
 const exhibitsMap = {} as Record<
-  CollectionEntry<'exhibit-categories'>['id'],
-  CollectionEntry<'exhibits'>['data'] & { downsizedSrc: string }
+  CollectionEntry<"exhibit-categories">["id"],
+  CollectionEntry<"exhibits">["data"] & { downsizedSrc: string }
 >;
 
 for (const { data, id } of exhibits) {
-  exhibitsMap[id.split('/')[0]] = {
+  exhibitsMap[id.split("/")[0]] = {
     ...data,
     downsizedSrc: await getDownsizedSrc(data.image, 480),
   };
@@ -41,7 +50,7 @@ const tabIndices = [1, 2, 4, 6, 3, 5, 7];
  *   The links that appear within the "See More" section within the main content
  *   are removed from the header navigation where they otherwise typically appear.
  */
-const seeMoreLabels = ['Blog', 'Gift Shop'];
+const seeMoreLabels = ["Blog", "Gift Shop"];
 const seeMoreLinks = defaultNavLinks
   .filter((link) => seeMoreLabels.includes(link.name))
   .filter(checkIsNavLink);
@@ -96,13 +105,19 @@ const headerNavLinks = filterNavTreeLinks(
   <h2>Our Collections</h2>
   <ul>
     <li class="event">
-      <a href="../early-home-computers-event/">👉 Early Home Computers Event! 👉</a>
+      <a href="../early-home-computers-event/"
+        >👉 Early Home Computers Event! 👉</a
+      >
     </li>
     {
       categories.map(({ data, id }, i) => (
         <>
           <li>
-            <Fixable as="a" href={`${id}/`} broken={{ tabindex: tabIndices[i] }}>
+            <Fixable
+              as="a"
+              href={`${id}/`}
+              broken={{ tabindex: tabIndices[i] }}
+            >
               {/* Reference the downsized optimized image */}
               <img src={exhibitsMap[id].downsizedSrc} alt="" />
               <span class="label">{data.title}</span>

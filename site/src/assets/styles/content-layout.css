@@ -2,13 +2,17 @@
   .grid-wrapper {
     display: grid;
     gap: 1rem;
-    grid-template-columns: [content-start] repeat(6, minmax(0, 133px)) [content-end];
+    grid-template-columns:
+      [content-start] repeat(6, minmax(0, 133px))
+      [content-end];
   }
 }
 
 @media (min-width: 60em) {
   .grid-wrapper {
-    grid-template-columns: [content-start] repeat(12, minmax(0, 133px)) [content-end];
+    grid-template-columns:
+      [content-start] repeat(12, minmax(0, 133px))
+      [content-end];
   }
 }
 

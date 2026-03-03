@@ -2,7 +2,8 @@ type FetchInput = Parameters<typeof fetch>[0];
 
 async function fetchAndExpect2xx(input: FetchInput, init?: RequestInit) {
   const response = await fetch(input, init);
-  if (!response.ok) throw new Error(`fetch(${input}): unexpected ${response.status}`);
+  if (!response.ok)
+    throw new Error(`fetch(${input}): unexpected ${response.status}`);
   return response;
 }
 
@@ -10,7 +11,7 @@ async function fetchAndExpect2xx(input: FetchInput, init?: RequestInit) {
  * fetch helper to smooth over discrepancies between Astro and static web hosts
  */
 export async function fetchApi(url: string) {
-  const urlWithSlash = url + (url.endsWith('/') ? '' : '/');
+  const urlWithSlash = url + (url.endsWith("/") ? "" : "/");
   const urlWithoutSlash = urlWithSlash.slice(0, -1);
 
   if (import.meta.env.DEV) return fetchAndExpect2xx(urlWithSlash);

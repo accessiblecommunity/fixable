@@ -1,5 +1,5 @@
-import { getImage } from 'astro:assets';
-import type { ImageFunction, z } from 'astro:content';
+import { getImage } from "astro:assets";
+import type { ImageFunction, z } from "astro:content";
 
 /**
  * Downsizes an image by using getImage, returning its src attribute.
@@ -7,12 +7,15 @@ import type { ImageFunction, z } from 'astro:content';
  * its own width/height or scale preserving its aspect ratio,
  * which <Image /> does not allow.
  */
-export async function getDownsizedSrc(image: z.infer<ReturnType<ImageFunction>>, width: number) {
+export async function getDownsizedSrc(
+  image: z.infer<ReturnType<ImageFunction>>,
+  width: number,
+) {
   const result = await getImage({
     src: image,
     // Use getImage's srcSet functionality to downsize
     widths: [width],
   });
   // Pull downsized image URL out of returned srcSet
-  return result.srcSet.attribute.split(' ')[0];
+  return result.srcSet.attribute.split(" ")[0];
 }

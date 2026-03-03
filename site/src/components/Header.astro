@@ -1,14 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import type { ComponentProps } from 'astro/types';
-import { museumBaseUrl } from '@/lib/constants';
-import Search from './Search.astro';
-import UserControls from './UserControls.astro';
+import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+import { museumBaseUrl } from "@/lib/constants";
+import Search from "./Search.astro";
+import UserControls from "./UserControls.astro";
 
-import logo from '@/assets/images/mbt-logo.webp';
+import logo from "@/assets/images/mbt-logo.webp";
 
 interface Props {
-  searchMode?: ComponentProps<typeof Search>['mode'];
+  searchMode?: ComponentProps<typeof Search>["mode"];
 }
 
 const { searchMode } = Astro.props;

@@ -1,8 +1,8 @@
 ---
-title: 'Coming In Q4 2024: Paving the Past—A Journey Through Broken Roadways'
+title: "Coming In Q4 2024: Paving the Past—A Journey Through Broken Roadways"
 date: 2024-09-20
 category: Events
-image: '@/assets/images/blog/kyle-glenn-1n6jYq40syA-unsplash.jpg'
+image: "@/assets/images/blog/kyle-glenn-1n6jYq40syA-unsplash.jpg"
 imageDescription: A road surrounded by white curbs and patterned guard rails, surrounded by trees, with a tunnel visible in the distance.
 ---
 

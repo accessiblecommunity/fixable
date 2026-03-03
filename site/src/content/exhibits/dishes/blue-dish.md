@@ -1,10 +1,10 @@
 ---
 title: Ceramic Blue Dishes
 imageDescription: Pieces of broken blue pottery
-image: '@/assets/images/exhibits/dishes/chuttersnap-u3ZDnIMCfIs-unsplash.jpg'
+image: "@/assets/images/exhibits/dishes/chuttersnap-u3ZDnIMCfIs-unsplash.jpg"
 skipAlt: true
 
-level of education: 'upper secondary education'
+level of education: "upper secondary education"
 ---
 
 Welcome to the Broken Ceramic Dishes exhibit.

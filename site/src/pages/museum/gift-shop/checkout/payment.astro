@@ -1,8 +1,8 @@
 ---
-import Fixable from '@/components/Fixable.astro';
-import FixableRegion from '@/components/FixableRegion.astro';
-import FormLayout from '@/components/FormLayout.astro';
-import ShopLayout from '@/layouts/ShopLayout.astro';
+import Fixable from "@/components/Fixable.astro";
+import FixableRegion from "@/components/FixableRegion.astro";
+import FormLayout from "@/components/FormLayout.astro";
+import ShopLayout from "@/layouts/ShopLayout.astro";
 
 /** @breaklocation Gift Shop */
 /** @breakprocess gift-shop */
@@ -12,7 +12,8 @@ import ShopLayout from '@/layouts/ShopLayout.astro';
   <h1>Checkout</h1>
   <FixableRegion><h2 slot="fixed">Payment Information</h2></FixableRegion>
   <p>
-    The payment method you enter below will be charged <strong id="total"></strong>.
+    The payment method you enter below will be charged <strong id="total"
+    ></strong>.
   </p>
   {
     /**
@@ -24,7 +25,11 @@ import ShopLayout from '@/layouts/ShopLayout.astro';
      *   There is no confirmation step after entering payment information.
      */
   }
-  <Fixable as={FormLayout} broken={{ action: '../confirmation/' }} fixed={{ action: '../review/' }}>
+  <Fixable
+    as={FormLayout}
+    broken={{ action: "../confirmation/" }}
+    fixed={{ action: "../review/" }}
+  >
     {
       /**
        * @break
@@ -101,30 +106,33 @@ import ShopLayout from '@/layouts/ShopLayout.astro';
 </ShopLayout>
 
 <script>
-  import { z } from 'astro/zod';
-  import { computeTotals } from '@/lib/client/cart';
-  import { disableInputs, validateInputs } from '@/lib/client/form';
-  import { recall } from '@/lib/client/store';
-  import { showToast } from '@/lib/client/toast';
-  import { getMode } from '@/lib/mode';
+  import { z } from "astro/zod";
+  import { computeTotals } from "@/lib/client/cart";
+  import { disableInputs, validateInputs } from "@/lib/client/form";
+  import { recall } from "@/lib/client/store";
+  import { showToast } from "@/lib/client/toast";
+  import { getMode } from "@/lib/mode";
 
-  const cart = recall('cart');
-  document.getElementById('total')!.textContent = `$${computeTotals(cart).totalCost.toFixed(2)}`;
+  const cart = recall("cart");
+  document.getElementById("total")!.textContent =
+    `$${computeTotals(cart).totalCost.toFixed(2)}`;
 
-  const form = document.querySelector('main form') as HTMLFormElement;
+  const form = document.querySelector("main form") as HTMLFormElement;
 
   /**
    * @break
    * wcag3: Automated entry allowed
    * description: The input fields on the payment step disallow paste.
    */
-  if (getMode() === 'broken') {
+  if (getMode() === "broken") {
     form
-      .querySelectorAll('input')
-      .forEach((input) => input.addEventListener('paste', (event) => event.preventDefault()));
+      .querySelectorAll("input")
+      .forEach((input) =>
+        input.addEventListener("paste", (event) => event.preventDefault()),
+      );
   }
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener("submit", (event) => {
     const result = validateInputs(
       event.target as HTMLFormElement,
       z.object({
@@ -138,8 +146,8 @@ import ShopLayout from '@/layouts/ShopLayout.astro';
 
     if (!result.success) {
       event.preventDefault();
-      const errorEl = document.getElementById('error') as HTMLParagraphElement;
-      errorEl.textContent = 'Invalid payment information; please try again.';
+      const errorEl = document.getElementById("error") as HTMLParagraphElement;
+      errorEl.textContent = "Invalid payment information; please try again.";
       errorEl.hidden = false;
     }
   });
@@ -173,12 +181,12 @@ import ShopLayout from '@/layouts/ShopLayout.astro';
    */
   setTimeout(() => {
     showToast(`The form has expired; you will need to start over.`, {
-      type: 'error',
-      actionHref: '../',
-      actionLabel: 'Return to checkout',
+      type: "error",
+      actionHref: "../",
+      actionLabel: "Return to checkout",
       withDismiss: false,
     });
-    disableInputs(document.querySelector('main form') as HTMLFormElement);
+    disableInputs(document.querySelector("main form") as HTMLFormElement);
   }, 60000);
 </script>
 

@@ -1,9 +1,9 @@
 ---
 title: Narrow Room
 imageDescription: A narrow room featuring broken furniture and a floor littered with indecipherable pieces. The room is all the more striking due to the stark light pouring in through a broken window that occupies most of the back wall.
-image: '@/assets/images/exhibits/home/tobias-reich-o6YLuDsMA4c-unsplash.jpg'
+image: "@/assets/images/exhibits/home/tobias-reich-o6YLuDsMA4c-unsplash.jpg"
 
-level of education: 'lower secondary education'
+level of education: "lower secondary education"
 content note: This content was generated to include several French and German terms or phrases, some of which are well-known in English
 breaklocation: Home Collection
 breakprocess: collections

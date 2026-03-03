@@ -1,12 +1,12 @@
 ---
-title: 'Now Live: A Sneak Peek at Our Next Adventure'
+title: "Now Live: A Sneak Peek at Our Next Adventure"
 date: now
 category: Events
-image: '@/assets/images/blog/sebastian-pandelache-zTgmdIMLUtg-unsplash.jpg'
+image: "@/assets/images/blog/sebastian-pandelache-zTgmdIMLUtg-unsplash.jpg"
 imageDescription: A woman adjusts a studio microphone on a boom arm in front of a laptop.
 imagePosition: right
-video: 'live/live.mp4'
-videoCover: 'live/live-cover.webp'
+video: "live/live.mp4"
+videoCover: "live/live-cover.webp"
 breaklocation: Blog
 breakprocess: blog
 breaks:

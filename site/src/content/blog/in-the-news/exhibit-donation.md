@@ -3,7 +3,7 @@ title: A New Sound of Broken - Museum Receives Donated Exhibit of "Broken" Album
 date: 2024-07-31
 category: In the News
 brokenUrl: true
-image: '@/assets/images/blog/dall-e-broken-music-exhibit.webp'
+image: "@/assets/images/blog/dall-e-broken-music-exhibit.webp"
 imageDescription: Coins with a golden hue lie on a broken surface.
 breaklocation: Blog
 breakprocess: blog

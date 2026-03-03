@@ -1,6 +1,7 @@
 /** @fileoverview Functions complementing the Modal component in both broken and fixed states */
 
-const isDialog = (el: HTMLElement): el is HTMLDialogElement => el.tagName === 'DIALOG';
+const isDialog = (el: HTMLElement): el is HTMLDialogElement =>
+  el.tagName === "DIALOG";
 
 export function showModal(id: string) {
   const el = document.getElementById(id);

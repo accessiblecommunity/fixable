@@ -1,9 +1,9 @@
 ---
 title: Television
 imageDescription: The front of a vintage television set, with part of its circuitry visible through the opening where its CRT would be.
-image: '@/assets/images/exhibits/technology/tina-rataj-berard-0Q33pyk-AXI-unsplash.jpg'
+image: "@/assets/images/exhibits/technology/tina-rataj-berard-0Q33pyk-AXI-unsplash.jpg"
 
-level of education: 'upper secondary education'
+level of education: "upper secondary education"
 ---
 
 Welcome to the Broken Television exhibit.

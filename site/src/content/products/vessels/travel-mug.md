@@ -1,7 +1,7 @@
 ---
 title: Travel Mug
 imageDescription: Stainless steel travel mug with the Museum logo on the side
-image: '@/assets/images/products/vessels/cafeconcetto-YeR8IviJnGA-unsplash-logo.jpg'
+image: "@/assets/images/products/vessels/cafeconcetto-YeR8IviJnGA-unsplash-logo.jpg"
 imagePosition: 66%
 price: 19.99
 ---

@@ -1,21 +1,21 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import { sortBy } from 'lodash-es';
-import ConditionalParent from '@/components/ConditionalParent.astro';
-import CoverImage from '@/components/CoverImage.astro';
-import Modal from '@/components/Modal.astro';
-import Layout from '@/layouts/Layout.astro';
-import { museumBaseUrl } from '@/lib/constants';
-import { getMode } from '@/lib/mode';
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import { sortBy } from "lodash-es";
+import ConditionalParent from "@/components/ConditionalParent.astro";
+import CoverImage from "@/components/CoverImage.astro";
+import Modal from "@/components/Modal.astro";
+import Layout from "@/layouts/Layout.astro";
+import { museumBaseUrl } from "@/lib/constants";
+import { getMode } from "@/lib/mode";
 
 interface Props {
-  category: CollectionEntry<'exhibit-categories'>;
-  exhibits: CollectionEntry<'exhibits'>[];
+  category: CollectionEntry<"exhibit-categories">;
+  exhibits: CollectionEntry<"exhibits">[];
 }
 
 export async function getStaticPaths() {
-  const allExhibits = await getCollection('exhibits');
-  const categories = await getCollection('exhibit-categories');
+  const allExhibits = await getCollection("exhibits");
+  const categories = await getCollection("exhibit-categories");
 
   return categories.map((category) => ({
     params: { category: category.id },
@@ -57,7 +57,7 @@ const { Content } = await render(category);
  * discussionItems:
  *   - Is it a stretch to fail this for Interactive element names available? (The verbosity requirement was removed)
  */
-const shouldWrapImageInLink = getMode() === 'broken' && category.id === 'music';
+const shouldWrapImageInLink = getMode() === "broken" && category.id === "music";
 /**
  * @break
  * location: Sports Collection
@@ -77,7 +77,7 @@ const shouldWrapImageInLink = getMode() === 'broken' && category.id === 'music';
  *   Each collection's image and title are independently linked,
  *   requiring focus to be advanced twice to reach the next unique link.
  */
-const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
+const shouldDuplicateLink = getMode() === "broken" && category.id === "sports";
 ---
 
 <Layout title={category.data.title}>
@@ -123,10 +123,12 @@ const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
         <div class="warning-content">
           <h2>Warning!</h2>
           <p>
-            This category page demonstrates content that fails 2.3.1 and 2.3.2 (related to flashes),
-            and pages for its individual items demonstrate failures of 2.3.3 (related to animation).
-            visitors who are sensitive to flashes or motion are advised to
-            <a href={museumBaseUrl}>return to the homepage</a> and navigate elsewhere.
+            This category page demonstrates content that fails 2.3.1 and 2.3.2
+            (related to flashes), and pages for its individual items demonstrate
+            failures of 2.3.3 (related to animation). visitors who are sensitive
+            to flashes or motion are advised to
+            <a href={museumBaseUrl}>return to the homepage</a> and navigate
+            elsewhere.
           </p>
           <p>If you wish to proceed, select a failure option below.</p>
           <div class="warning-buttons">
@@ -148,7 +150,11 @@ const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
     {
       exhibits.map(({ data, id }) => (
         <li>
-          <ConditionalParent as="a" if={shouldWrapImageInLink} href={`../${id}/`}>
+          <ConditionalParent
+            as="a"
+            if={shouldWrapImageInLink}
+            href={`../${id}/`}
+          >
             <div class="image-container">
               {/**
                * @break
@@ -158,11 +164,17 @@ const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
                * wcag3: Focus indicator contrast sufficient
                * description: There is no visible focus outline when a collection's image is focused.
                */}
-              <ConditionalParent as="a" if={shouldDuplicateLink} href={`../${id}/`}>
+              <ConditionalParent
+                as="a"
+                if={shouldDuplicateLink}
+                href={`../${id}/`}
+              >
                 <CoverImage
                   src={data.image}
                   alt={
-                    data.skipAlt ? null : data[shouldDuplicateLink ? 'title' : 'imageDescription']
+                    data.skipAlt
+                      ? null
+                      : data[shouldDuplicateLink ? "title" : "imageDescription"]
                   }
                   objectPosition={data.imagePosition}
                   height="200"
@@ -171,7 +183,11 @@ const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
               </ConditionalParent>
             </div>
             <div class="content">
-              <ConditionalParent as="a" if={!shouldWrapImageInLink} href={`../${id}/`}>
+              <ConditionalParent
+                as="a"
+                if={!shouldWrapImageInLink}
+                href={`../${id}/`}
+              >
                 {data.title}
               </ConditionalParent>
             </div>
@@ -183,19 +199,19 @@ const shouldDuplicateLink = getMode() === 'broken' && category.id === 'sports';
 </Layout>
 
 <script>
-  import { showModal } from '@/lib/client/modal';
+  import { showModal } from "@/lib/client/modal";
 
-  const modalId = 'warning-modal';
+  const modalId = "warning-modal";
   const modalEl = document.getElementById(modalId);
   if (modalEl) {
     showModal(modalId);
-    const form = modalEl.querySelector('form') as HTMLFormElement;
-    form.addEventListener('submit', (event) => {
+    const form = modalEl.querySelector("form") as HTMLFormElement;
+    form.addEventListener("submit", (event) => {
       const value = (event.submitter as HTMLButtonElement).value;
-      const listEl = document.getElementById('list') as HTMLUListElement;
-      if (value.startsWith('A')) listEl.classList.add('dangerous-list');
-      if (value === 'A') listEl.classList.add('dangerous-list-A');
-      if (value === 'none') listEl.classList.add('fading-list');
+      const listEl = document.getElementById("list") as HTMLUListElement;
+      if (value.startsWith("A")) listEl.classList.add("dangerous-list");
+      if (value === "A") listEl.classList.add("dangerous-list-A");
+      if (value === "none") listEl.classList.add("fading-list");
     });
   }
 </script>

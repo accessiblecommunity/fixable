@@ -1,9 +1,9 @@
 ---
 title: Ornament
 imageDescription: A shiny red ball ornament, part of which has shattered into many pieces across a wood surface.
-image: '@/assets/images/exhibits/toys-games/pexels-freestocks-717989.jpg'
+image: "@/assets/images/exhibits/toys-games/pexels-freestocks-717989.jpg"
 
-level of education: 'primary education'
+level of education: "primary education"
 ---
 
 Welcome to the Broken Ornament exhibit!

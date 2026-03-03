@@ -1,10 +1,10 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { museumBaseUrl } from '@/lib/constants';
-import { getMode } from '@/lib/mode';
+import { Icon } from "astro-icon/components";
+import { museumBaseUrl } from "@/lib/constants";
+import { getMode } from "@/lib/mode";
 
 interface Props {
-  mode?: 'fixed';
+  mode?: "fixed";
 }
 
 const { mode = getMode() } = Astro.props;
@@ -56,7 +56,7 @@ const { mode = getMode() } = Astro.props;
    * wcag3: Roles, values, states, properties available
    * description: There is no search landmark or label indicating the presence or purpose of the search box.
    */
-  mode === 'broken' ? (
+  mode === "broken" ? (
     <input id="search" placeholder="Search" />
   ) : (
     <form slot="fixed" role="search" action={`${museumBaseUrl}search/`}>
@@ -71,15 +71,15 @@ const { mode = getMode() } = Astro.props;
 }
 
 <script>
-  import debounce from 'lodash-es/debounce';
-  import type { SearchResult } from '@/pages/museum/api/search';
-  import { museumBaseUrl } from '@/lib/constants';
-  import { fetchApi } from '@/lib/client/fetch';
+  import debounce from "lodash-es/debounce";
+  import type { SearchResult } from "@/pages/museum/api/search";
+  import { museumBaseUrl } from "@/lib/constants";
+  import { fetchApi } from "@/lib/client/fetch";
 
   const response = await fetchApi(`${museumBaseUrl}api/search/`);
   const allResults = (await response.json()) as SearchResult[];
 
-  const searchInput = document.getElementById('search') as HTMLInputElement;
+  const searchInput = document.getElementById("search") as HTMLInputElement;
 
   function search(query: string) {
     searchInput.value = query;
@@ -89,10 +89,10 @@ const { mode = getMode() } = Astro.props;
     const resultsHtml = query
       ? `<ul>${filteredResults
           .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
-          .join(' ')}</ul>`
-      : '<p>No query specified.</p>';
+          .join(" ")}</ul>`
+      : "<p>No query specified.</p>";
 
-    const mainEl = document.querySelector('main') as HTMLElement;
+    const mainEl = document.querySelector("main") as HTMLElement;
     mainEl.innerHTML = `
       <h1>Search Results</h1>
       ${resultsHtml}
@@ -102,7 +102,7 @@ const { mode = getMode() } = Astro.props;
   // Perform search immediately when loading this component on search page
   const url = new URL(location.href);
   if (url.pathname === `${museumBaseUrl}search/`) {
-    const query = url.searchParams.get('query') || '';
+    const query = url.searchParams.get("query") || "";
     search(query);
   }
 
@@ -110,9 +110,9 @@ const { mode = getMode() } = Astro.props;
   const isBroken = !document.querySelector("form[role='search']");
   if (isBroken) {
     let currentUrl = new URL(location.href);
-    window.addEventListener('popstate', () => {
+    window.addEventListener("popstate", () => {
       const url = new URL(location.href);
-      const query = url.searchParams.get('query') || '';
+      const query = url.searchParams.get("query") || "";
 
       if (url.pathname === `${museumBaseUrl}search/`) search(query);
       // Perform full navigation when leaving search page, but ignore hash changes
@@ -121,15 +121,21 @@ const { mode = getMode() } = Astro.props;
     });
 
     searchInput.addEventListener(
-      'input',
+      "input",
       debounce(() => {
         const query = searchInput.value;
 
-        if (location.pathname !== '/search') history.replaceState({}, '', location.href);
+        if (location.pathname !== "/search")
+          history.replaceState({}, "", location.href);
         // No-op if the value didn't change after debounced input events
-        else if (query === new URL(location.href).searchParams.get('query')) return;
+        else if (query === new URL(location.href).searchParams.get("query"))
+          return;
 
-        history.pushState({}, '', `${museumBaseUrl}search/?query=${encodeURIComponent(query)}`);
+        history.pushState(
+          {},
+          "",
+          `${museumBaseUrl}search/?query=${encodeURIComponent(query)}`,
+        );
 
         search(query);
       }, 500),

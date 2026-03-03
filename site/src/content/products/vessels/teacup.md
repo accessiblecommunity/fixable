@@ -1,7 +1,7 @@
 ---
 title: Teacup
 imageDescription: A short dark-colored cup with the Museum logo on one side
-image: '@/assets/images/products/vessels/sixteen-miles-out-ypVS3PmwPR8-unsplash-logo.jpg'
+image: "@/assets/images/products/vessels/sixteen-miles-out-ypVS3PmwPR8-unsplash-logo.jpg"
 price: 18.99
 ---
 
