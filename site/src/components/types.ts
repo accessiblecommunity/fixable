@@ -2,6 +2,7 @@
 
 import type { ComponentProps, HTMLTag, Polymorphic } from "astro/types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AstroComponent = (args: any) => any;
 
 export type TagOrComponent = HTMLTag | AstroComponent;

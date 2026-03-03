@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 
 /** @fileoverview Form shell with general layout styles */
 
-interface Props extends HTMLAttributes<"form"> {}
+type Props = HTMLAttributes<"form">;
 ---
 
 <form {...Astro.props}>

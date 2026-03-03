@@ -163,6 +163,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
     <>
       <form onSubmit={onSubmit}>
         <div>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label for="version">WCAG version:</label>
           <select id="version" name="v" defaultValue={version}>
             <option value="2">2</option>
@@ -170,6 +171,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
           </select>
         </div>
         <div>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label for="query">Filter:</label>
           <input
             id="query"

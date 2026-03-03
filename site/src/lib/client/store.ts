@@ -43,7 +43,7 @@ function initStore() {
   try {
     const json = storage.getItem(storageKey);
     return storeSchema.parse(json ? JSON.parse(json) : {});
-  } catch (error) {
+  } catch {
     // Reset store upon error in parsing JSON or validating schema (e.g. due to upgrades)
     clear();
     return storeSchema.parse({});
