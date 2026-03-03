@@ -1,6 +1,6 @@
-import { z } from "astro/zod";
+import { z } from 'astro/zod';
 
-const storageKey = "fixable-museum";
+const storageKey = 'fixable-museum';
 const storage = localStorage;
 
 /**
@@ -16,16 +16,19 @@ export const storeSchema = z.object({
         name: z.string().min(1),
         quantity: z.number().min(1),
         price: z.number().min(0.01),
-      })
+      }),
     )
     .default({}),
   favorites: z.record(z.string(), z.boolean()).default({}),
   hasDismissedCookieBanner: z.boolean().default(false),
   loggedInAt: z.string().datetime().nullable().default(null),
-  registration: z.object({
-    email: z.string().email(),
-    password: z.string().min(1),
-  }).nullable().default(null),
+  registration: z
+    .object({
+      email: z.string().email(),
+      password: z.string().min(1),
+    })
+    .nullable()
+    .default(null),
 });
 export type Store = z.infer<typeof storeSchema>;
 type StoreKey = keyof Store;
@@ -33,7 +36,7 @@ type StoreKey = keyof Store;
 const storeTarget = new EventTarget();
 type StoreHandler<K extends StoreKey> = (
   value: Store[K],
-  previousValue: Store[K] | undefined
+  previousValue: Store[K] | undefined,
 ) => void;
 
 /** Clears all client-side-stored values. To be called ONLY from top-level index. */
@@ -60,9 +63,7 @@ export function persist<K extends StoreKey>(key: K, value: Store[K]) {
   store[key] = value;
   storage.setItem(storageKey, JSON.stringify(store));
 
-  storeTarget.dispatchEvent(
-    new CustomEvent(key, { detail: [value, previousValue] })
-  );
+  storeTarget.dispatchEvent(new CustomEvent(key, { detail: [value, previousValue] }));
 }
 
 /**
@@ -75,13 +76,10 @@ export function persist<K extends StoreKey>(key: K, value: Store[K]) {
 export function onStoreChange<K extends StoreKey>(
   key: K,
   handler: StoreHandler<K>,
-  shouldRunImmediately = true
+  shouldRunImmediately = true,
 ) {
-  storeTarget.addEventListener(
-    key,
-    (event: CustomEvent<[Store[K], Store[K]]>) => {
-      handler(event.detail[0], event.detail[1]);
-    }
-  );
+  storeTarget.addEventListener(key, (event: CustomEvent<[Store[K], Store[K]]>) => {
+    handler(event.detail[0], event.detail[1]);
+  });
   if (shouldRunImmediately) handler(store[key], undefined);
 }

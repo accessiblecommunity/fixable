@@ -1,15 +1,15 @@
-import { defineCollection, reference, z } from "astro:content";
-import { parseFrontmatter } from "@astrojs/markdown-remark";
-import { file, glob } from "astro/loaders";
-import type { ZodType, ZodTypeDef } from "astro/zod";
-import fg from "fast-glob";
+import { defineCollection, reference, z } from 'astro:content';
+import { parseFrontmatter } from '@astrojs/markdown-remark';
+import { file, glob } from 'astro/loaders';
+import type { ZodType, ZodTypeDef } from 'astro/zod';
+import fg from 'fast-glob';
 
-import { readFile } from "fs/promises";
-import { basename, join } from "path";
+import { readFile } from 'fs/promises';
+import { basename, join } from 'path';
 
-import { regExpMatchGenerator } from "./lib/util";
-import wcag2SuccessCriteria from "./lib/wcag2.json";
-import wcag3Values from "./lib/wcag3.json";
+import { regExpMatchGenerator } from './lib/util';
+import wcag2SuccessCriteria from './lib/wcag2.json';
+import wcag3Values from './lib/wcag3.json';
 
 /** Fields in common between our schemas that use Astro's image() */
 const baseImageSchema = z.object({
@@ -29,13 +29,13 @@ const transformToArray = <T>(value: T | [T, ...T[]]): [T, ...T[]] =>
 
 /** Like transformToArray, but for use specifically with .optional() schemas. */
 const transformToOptionalArray = <T>(
-  value: T | [T, ...T[]] | undefined
+  value: T | [T, ...T[]] | undefined,
 ): [T, ...T[]] | undefined =>
-  typeof value === "undefined" || Array.isArray(value) ? value : [value];
+  typeof value === 'undefined' || Array.isArray(value) ? value : [value];
 
 export const collections = {
   breakProcesses: defineCollection({
-    loader: file("src/content/processes.json"),
+    loader: file('src/content/processes.json'),
     schema: z.object({
       title: z.string(),
       discussionItems: z.array(z.string()).nonempty().optional(),
@@ -44,76 +44,64 @@ export const collections = {
   }),
 
   breakSections: defineCollection({
-    loader: file("src/content/sections.json"),
+    loader: file('src/content/sections.json'),
     schema: z.object({
       description: z.string().optional(),
       discussionItems: z.array(z.string()).nonempty().optional(),
       id: z.string(),
       // Allow empty path for Home but otherwise require trailing slash
-      path: z
-        .string()
-        .regex(/^$|\/$/, "Non-empty path should end with a slash"),
+      path: z.string().regex(/^$|\/$/, 'Non-empty path should end with a slash'),
     }),
   }),
 
   breaks: defineCollection({
     loader: {
-      name: "break-loader",
+      name: 'break-loader',
       load: async ({ generateDigest, parseData, store, watcher }) => {
         async function scan() {
-          const paths = await fg(["**/*.astro", "content/**/[^_]*.md"], {
-            cwd: "src",
+          const paths = await fg(['**/*.astro', 'content/**/[^_]*.md'], {
+            cwd: 'src',
           });
           store.clear();
 
           /** Attempts to resolve a museum page file's path to a default URL path. */
           const resolvePageHref = (path: string) =>
-            path.startsWith("pages/museum/") && !/\[.*\]/.test(path)
-              ? path
-                  .replace(/^pages\/museum/, "")
-                  .replace(/(?:\/index)?\.astro$/, "/#main")
+            path.startsWith('pages/museum/') && !/\[.*\]/.test(path)
+              ? path.replace(/^pages\/museum/, '').replace(/(?:\/index)?\.astro$/, '/#main')
               : undefined;
 
           /** Attempts to resolve a content file's path to a default URL path. */
           const resolveContentHref = (path: string) => {
             if (/\bblog\b/.test(path)) return `/blog/${basename(path)}/#main`;
-            if (/\bexhibit-categories\b/.test(path))
-              return `/collections/${basename(path)}/#main`;
+            if (/\bexhibit-categories\b/.test(path)) return `/collections/${basename(path)}/#main`;
             if (/\bexhibits\b/.test(path))
-              return `/collections/${path.replace(/.*\bexhibits\//, "/#main")}`;
+              return `/collections/${path.replace(/.*\bexhibits\//, '/#main')}`;
             if (/\bproducts\b/.test(path))
-              return `/gift-shop/${path.replace(/.*\bproducts\//, "/#main")}`;
+              return `/gift-shop/${path.replace(/.*\bproducts\//, '/#main')}`;
             return undefined;
           };
 
           for (const path of paths) {
-            const content = await readFile(join("src", path), "utf8");
-            if (path.endsWith(".astro")) {
+            const content = await readFile(join('src', path), 'utf8');
+            if (path.endsWith('.astro')) {
               // Support /** @break ... */ blocks in astro templates
-              const locationMatch =
-                /\/\*[\s\*]*@breaklocation([\s\S]*?)\*\//.exec(content);
+              const locationMatch = /\/\*[\s\*]*@breaklocation([\s\S]*?)\*\//.exec(content);
               const location = locationMatch?.[1].trim() || undefined;
 
-              const processMatch =
-                /\/\*[\s\*]*@breakprocess([\s\S]*?)\*\//.exec(content);
-              const process =
-                processMatch?.[1].trim().split(/\s*,\s*/) || undefined;
+              const processMatch = /\/\*[\s\*]*@breakprocess([\s\S]*?)\*\//.exec(content);
+              const process = processMatch?.[1].trim().split(/\s*,\s*/) || undefined;
 
-              const hrefMatch = /\/\*[\s\*]*@breakhref([\s\S]*?)\*\//.exec(
-                content
-              );
+              const hrefMatch = /\/\*[\s\*]*@breakhref([\s\S]*?)\*\//.exec(content);
               const href = hrefMatch?.[1].trim() || resolvePageHref(path);
 
               for (const match of regExpMatchGenerator(
                 /\/\*[\s\*]*@break\b([\s\S]*?)\*\//g,
-                content
+                content,
               )) {
-                const lineNumber = content
-                  .slice(0, match.index)
-                  .split("\n").length;
+                const lineNumber = content.slice(0, match.index).split('\n').length;
                 const id = `${path}-L${lineNumber}`;
                 // Remove leading '* ' from multiline comment blocks
-                const yaml = match[1].replace(/^\s+\* /gm, "");
+                const yaml = match[1].replace(/^\s+\* /gm, '');
                 const { frontmatter } = parseFrontmatter(`---\n${yaml}\n---`);
                 const data = await parseData({
                   id,
@@ -125,8 +113,8 @@ export const collections = {
                   },
                 });
                 // Allow individual hrefs to override hash while inheriting rest of default path
-                if (href && (data.href === "" || data.href?.startsWith("#")))
-                  data.href = `${href.replace(/#.*$/, "")}${data.href}`;
+                if (href && (data.href === '' || data.href?.startsWith('#')))
+                  data.href = `${href.replace(/#.*$/, '')}${data.href}`;
 
                 store.set({
                   id,
@@ -152,8 +140,8 @@ export const collections = {
                   },
                 });
                 // Allow individual hrefs to override hash while ineriting rest of default path
-                if (href && (data.href === "" || data.href?.startsWith("#")))
-                  data.href = `${href.replace(/#.*$/, "")}${data.href}`;
+                if (href && (data.href === '' || data.href?.startsWith('#')))
+                  data.href = `${href.replace(/#.*$/, '')}${data.href}`;
 
                 store.set({
                   id,
@@ -175,9 +163,9 @@ export const collections = {
           if (scanTimeout) clearTimeout(scanTimeout);
           scanTimeout = setTimeout(scan, 250);
         };
-        watcher.on("change", scheduleScan);
-        watcher.on("add", scheduleScan);
-        watcher.on("unlink", scheduleScan);
+        watcher.on('change', scheduleScan);
+        watcher.on('add', scheduleScan);
+        watcher.on('unlink', scheduleScan);
       },
     },
     // Note: This schema needs to be defined at user level, not loader level,
@@ -187,7 +175,7 @@ export const collections = {
         description: singleOrArray(z.string()).transform(transformToArray),
         discussionItems: z.array(z.string()).nonempty().optional(),
         href: z.string().regex(/^(\/|#|$)/),
-        location: reference("breakSections"),
+        location: reference('breakSections'),
         photosensitivity: z.boolean().optional(),
         process:
           // Using z.string rather than reference makes working with values easier;
@@ -195,11 +183,7 @@ export const collections = {
           // and reference no longer guarantees integrity in Astro 5
           singleOrArray(z.string()).transform(transformToArray),
         wcag2: singleOrArray(
-          z.enum(
-            Object.keys(wcag2SuccessCriteria) as [
-              keyof typeof wcag2SuccessCriteria,
-            ]
-          )
+          z.enum(Object.keys(wcag2SuccessCriteria) as [keyof typeof wcag2SuccessCriteria]),
         )
           .optional()
           .transform(transformToOptionalArray),
@@ -211,24 +195,24 @@ export const collections = {
             .string()
             .refine(
               (value) => wcag3Values.includes(value),
-              "Unrecognized WCAG 3 provision shortname"
-            )
+              'Unrecognized WCAG 3 provision shortname',
+            ),
         )
           .optional()
           .transform(transformToOptionalArray),
       })
       .refine((value) => value.wcag2 || value.wcag3, {
-        message: "One or both of wcag2 and/or wcag3 must be set.",
+        message: 'One or both of wcag2 and/or wcag3 must be set.',
       }),
   }),
 
   blog: defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/blog" }),
+    loader: glob({ pattern: '**/[^_]*.md', base: './src/content/blog' }),
     schema: ({ image }) =>
       baseImageSchema.extend({
         brokenUrl: z.boolean().default(false),
-        category: z.union([z.literal("Events"), z.literal("In the News")]),
-        date: z.date().or(z.literal("now")),
+        category: z.union([z.literal('Events'), z.literal('In the News')]),
+        date: z.date().or(z.literal('now')),
         image: image(),
         video: z.string().optional(),
         videoCover: z.string().optional(),
@@ -236,28 +220,28 @@ export const collections = {
   }),
 
   exhibits: defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/exhibits" }),
+    loader: glob({ pattern: '**/[^_]*.md', base: './src/content/exhibits' }),
     schema: ({ image }) =>
       baseImageSchema.extend({
         image: image(),
       }),
   }),
 
-  "exhibit-categories": defineCollection({
+  'exhibit-categories': defineCollection({
     loader: glob({
-      pattern: "**/[^_]*.md",
-      base: "./src/content/exhibit-categories",
+      pattern: '**/[^_]*.md',
+      base: './src/content/exhibit-categories',
     }),
     schema: z.object({
       dangerous: z.boolean().default(false),
       topDescription: z.string().optional(),
-      topImageItem: reference("exhibits").optional(),
+      topImageItem: reference('exhibits').optional(),
       title: z.string().min(1),
     }),
   }),
 
   products: defineCollection({
-    loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/products" }),
+    loader: glob({ pattern: '**/[^_]*.md', base: './src/content/products' }),
     schema: ({ image }) =>
       baseImageSchema.extend({
         image: image(),

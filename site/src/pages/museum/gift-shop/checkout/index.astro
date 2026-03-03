@@ -1,7 +1,7 @@
 ---
-import CartInventory from "@/components/cart/CartInventory.astro";
-import CartStatus from "@/components/cart/CartStatus.astro";
-import ShopLayout from "@/layouts/ShopLayout.astro";
+import CartInventory from '@/components/cart/CartInventory.astro';
+import CartStatus from '@/components/cart/CartStatus.astro';
+import ShopLayout from '@/layouts/ShopLayout.astro';
 
 /** @breaklocation Gift Shop */
 /** @breakprocess gift-shop */
@@ -43,10 +43,9 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
 </ShopLayout>
 
 <script>
-  import { onStoreChange } from "@/lib/client/store";
+  import { onStoreChange } from '@/lib/client/store';
 
-  onStoreChange("cart", (cart) => {
-    document.getElementById("continue")!.hidden =
-      Object.keys(cart).length === 0;
+  onStoreChange('cart', (cart) => {
+    document.getElementById('continue')!.hidden = Object.keys(cart).length === 0;
   });
 </script>

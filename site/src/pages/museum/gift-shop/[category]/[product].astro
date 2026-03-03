@@ -1,11 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const allProducts = await getCollection("products");
+  const allProducts = await getCollection('products');
 
   return allProducts.map((product) => {
-    const [category, productSlug] = product.id.split("/");
+    const [category, productSlug] = product.id.split('/');
     return {
       params: { category, product: productSlug },
       props: { product },
@@ -13,15 +13,15 @@ export async function getStaticPaths() {
   });
 }
 
-import type { CollectionEntry } from "astro:content";
-import { Icon } from "astro-icon/components";
-import CoverImage from "@/components/CoverImage.astro";
-import FixableRegion from "@/components/FixableRegion.astro";
-import Modal from "@/components/Modal.astro";
-import ShopLayout from "@/layouts/ShopLayout.astro";
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import CoverImage from '@/components/CoverImage.astro';
+import FixableRegion from '@/components/FixableRegion.astro';
+import Modal from '@/components/Modal.astro';
+import ShopLayout from '@/layouts/ShopLayout.astro';
 
 interface Props {
-  product: CollectionEntry<"products">;
+  product: CollectionEntry<'products'>;
   title: string;
 }
 
@@ -82,26 +82,10 @@ const { Content } = await render(product);
              */
           }
           <FixableRegion>
-            <button type="button" id="decrement"
-              ><Icon name="ri:arrow-drop-down-line" /></button
-            >
-            <input
-              id="quantity"
-              type="tel"
-              pattern="[0-9]*"
-              name="quantity"
-              value="1"
-            />
-            <button type="button" id="increment"
-              ><Icon name="ri:arrow-drop-up-line" /></button
-            >
-            <input
-              slot="fixed"
-              id="quantity"
-              type="number"
-              name="quantity"
-              value="1"
-            />
+            <button type="button" id="decrement"><Icon name="ri:arrow-drop-down-line" /></button>
+            <input id="quantity" type="tel" pattern="[0-9]*" name="quantity" value="1" />
+            <button type="button" id="increment"><Icon name="ri:arrow-drop-up-line" /></button>
+            <input slot="fixed" id="quantity" type="number" name="quantity" value="1" />
           </FixableRegion>
         </div>
         <button>Add to cart</button>
@@ -111,11 +95,7 @@ const { Content } = await render(product);
   </div>
   <Modal id="modal-error" closeOnBackdrop closeOnKeyboard>
     <div class="modal-error">
-      <Icon
-        name="ri:error-warning-line"
-        color="var(--red-warm-500)"
-        size={128}
-      />
+      <Icon name="ri:error-warning-line" color="var(--red-warm-500)" size={128} />
       <p>Please enter a valid product quantity.</p>
       <button data-modal-close>OK</button>
     </div>
@@ -123,36 +103,36 @@ const { Content } = await render(product);
 </ShopLayout>
 
 <script>
-  import { showModal } from "@/lib/client/modal";
-  import { persist, recall } from "@/lib/client/store";
+  import { showModal } from '@/lib/client/modal';
+  import { persist, recall } from '@/lib/client/store';
 
-  const form = document.querySelector("main form") as HTMLFormElement;
-  form.addEventListener("submit", (event) => {
+  const form = document.querySelector('main form') as HTMLFormElement;
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const quantity = +form.elements["quantity"].value;
+    const quantity = +form.elements['quantity'].value;
     if (isNaN(quantity) || quantity < 1) {
-      showModal("modal-error");
+      showModal('modal-error');
       return;
     }
 
-    const name = form.elements["name"].value;
-    const slug = form.elements["slug"].value;
-    const price = +form.elements["price"].value;
+    const name = form.elements['name'].value;
+    const slug = form.elements['slug'].value;
+    const price = +form.elements['price'].value;
 
-    const cart = recall("cart");
+    const cart = recall('cart');
     if (cart[slug]) cart[slug].quantity += quantity;
     else cart[slug] = { name, price, quantity };
-    persist("cart", cart);
+    persist('cart', cart);
   });
 
-  document.getElementById("increment")?.addEventListener("click", () => {
-    const value = +form.elements["quantity"].value;
-    form.elements["quantity"].value = value + 1;
+  document.getElementById('increment')?.addEventListener('click', () => {
+    const value = +form.elements['quantity'].value;
+    form.elements['quantity'].value = value + 1;
   });
 
-  document.getElementById("decrement")?.addEventListener("click", () => {
-    const value = +form.elements["quantity"].value;
-    form.elements["quantity"].value = Math.max(value - 1, 1);
+  document.getElementById('decrement')?.addEventListener('click', () => {
+    const value = +form.elements['quantity'].value;
+    form.elements['quantity'].value = Math.max(value - 1, 1);
   });
 </script>
 

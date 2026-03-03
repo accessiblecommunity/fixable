@@ -1,9 +1,9 @@
 ---
 title: Basketball Hoop
 imageDescription: A rusted, washed-out basketball hoop with a partially-detached net.
-image: "@/assets/images/exhibits/sports/jim-kalligas-NWm1hmjV9Po-unsplash.jpg"
+image: '@/assets/images/exhibits/sports/jim-kalligas-NWm1hmjV9Po-unsplash.jpg'
 
-level of education: "lower secondary education"
+level of education: 'lower secondary education'
 ---
 
 Welcome to the Broken Basketball Hoop exhibit.

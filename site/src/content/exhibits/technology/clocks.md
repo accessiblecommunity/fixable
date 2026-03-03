@@ -1,9 +1,9 @@
 ---
 title: Clocks
 imageDescription: A pile of old clocks.
-image: "@/assets/images/exhibits/technology/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg"
+image: '@/assets/images/exhibits/technology/heather-zabriskie-yBzrPGLjMQw-unsplash.jpg'
 
-level of education: "upper secondary education"
+level of education: 'upper secondary education'
 ---
 
 Welcome to the Broken Clocks exhibit.

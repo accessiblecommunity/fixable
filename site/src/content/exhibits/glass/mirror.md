@@ -1,9 +1,9 @@
 ---
 title: Mirrors
-imageDescription: "Two mirrors are held in outstretched hands: in one hand, a mirror in one piece; in the other, a pile of overlapping shards."
-image: "@/assets/images/exhibits/glass/jeremy-yap-u7XEsPFkrkQ-unsplash.jpg"
+imageDescription: 'Two mirrors are held in outstretched hands: in one hand, a mirror in one piece; in the other, a pile of overlapping shards.'
+image: '@/assets/images/exhibits/glass/jeremy-yap-u7XEsPFkrkQ-unsplash.jpg'
 
-level of education: "advanced education"
+level of education: 'advanced education'
 ---
 
 Welcome to the Broken Mirrors exhibit.

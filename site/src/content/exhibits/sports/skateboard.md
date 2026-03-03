@@ -1,9 +1,9 @@
 ---
 title: Skateboard
 imageDescription: A skateboard which has split near one pair of wheels.
-image: "@/assets/images/exhibits/sports/pexels-aleksandr-neplokhov-486399-1230684.jpg"
+image: '@/assets/images/exhibits/sports/pexels-aleksandr-neplokhov-486399-1230684.jpg'
 
-level of education: "lower secondary education"
+level of education: 'lower secondary education'
 ---
 
 Welcome to the Broken Skateboard exhibit.

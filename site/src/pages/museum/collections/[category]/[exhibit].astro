@@ -1,30 +1,30 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import CoverImage from "@/components/CoverImage.astro";
-import Favorite from "@/components/Favorite.astro";
-import Layout from "@/layouts/Layout.astro";
-import { getEntry } from "astro:content";
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import CoverImage from '@/components/CoverImage.astro';
+import Favorite from '@/components/Favorite.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const allExhibits = await getCollection("exhibits");
+  const allExhibits = await getCollection('exhibits');
 
   return Promise.all(
     allExhibits.map(async (exhibit) => {
-      const [categorySlug, exhibitSlug] = exhibit.id.split("/");
+      const [categorySlug, exhibitSlug] = exhibit.id.split('/');
       return {
         params: { category: categorySlug, exhibit: exhibitSlug },
         props: {
-          category: await getEntry("exhibit-categories", categorySlug),
+          category: await getEntry('exhibit-categories', categorySlug),
           exhibit,
         },
       };
-    })
+    }),
   );
 }
 
 interface Props {
-  category: CollectionEntry<"exhibit-categories">;
-  exhibit: CollectionEntry<"exhibits">;
+  category: CollectionEntry<'exhibit-categories'>;
+  exhibit: CollectionEntry<'exhibits'>;
 }
 
 const { category, exhibit } = Astro.props;
@@ -34,10 +34,7 @@ const { Content } = await render(exhibit);
 <Layout title={exhibit.data.title} withInsetMain={!category.data.dangerous}>
   {
     category.data.dangerous ? (
-      <div
-        class="dangerous"
-        style={{ background: `url(${exhibit.data.image.src})` }}
-      >
+      <div class="dangerous" style={{ background: `url(${exhibit.data.image.src})` }}>
         <h1>{exhibit.data.title}</h1>
         <Content />
         <div class="favorite-container">
@@ -69,21 +66,19 @@ const { Content } = await render(exhibit);
 </Layout>
 
 <script>
-  import throttle from "lodash-es/throttle";
-  import { getMode } from "@/lib/mode";
+  import throttle from 'lodash-es/throttle';
+  import { getMode } from '@/lib/mode';
 
-  const dangerousEl = document.querySelector(".dangerous");
-  if (dangerousEl && getMode() === "broken") {
+  const dangerousEl = document.querySelector('.dangerous');
+  if (dangerousEl && getMode() === 'broken') {
     const docEl = document.documentElement;
     const updateScroll = throttle(() => {
-      const scrollPercentage =
-        docEl.scrollTop / (docEl.scrollHeight - window.innerHeight);
-      (dangerousEl as HTMLElement).style.backgroundPositionY =
-        `${scrollPercentage * 100}%`;
+      const scrollPercentage = docEl.scrollTop / (docEl.scrollHeight - window.innerHeight);
+      (dangerousEl as HTMLElement).style.backgroundPositionY = `${scrollPercentage * 100}%`;
     });
 
-    window.addEventListener("resize", updateScroll);
-    window.addEventListener("scroll", updateScroll);
+    window.addEventListener('resize', updateScroll);
+    window.addEventListener('scroll', updateScroll);
   }
 </script>
 
@@ -135,7 +130,7 @@ const { Content } = await render(exhibit);
       );
       position: absolute;
       inset: 0;
-      content: "";
+      content: '';
     }
 
     & h1 {

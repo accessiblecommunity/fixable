@@ -2,7 +2,7 @@
 title: Announcing the Addition of a New Wing
 date: 2024-07-12
 category: In the News
-image: "@/assets/images/blog/patrick-t-kindt-6Qkt920_Ur4-unsplash.jpg"
+image: '@/assets/images/blog/patrick-t-kindt-6Qkt920_Ur4-unsplash.jpg'
 imageDescription: An isometric view of a cityscape.
 ---
 

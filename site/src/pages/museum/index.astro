@@ -1,12 +1,12 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import Carousel from "@/components/Carousel.astro";
-import CoverImage from "@/components/CoverImage.astro";
-import Layout from "@/layouts/Layout.astro";
-import Video from "@/components/Video.astro";
+import { getCollection, getEntry } from 'astro:content';
+import Carousel from '@/components/Carousel.astro';
+import CoverImage from '@/components/CoverImage.astro';
+import Layout from '@/layouts/Layout.astro';
+import Video from '@/components/Video.astro';
 
-const featuredCategories = (await getCollection("exhibit-categories")).filter(
-  ({ data }) => !!data.topDescription && !!data.topImageItem
+const featuredCategories = (await getCollection('exhibit-categories')).filter(
+  ({ data }) => !!data.topDescription && !!data.topImageItem,
 );
 const expandedCategories = await Promise.all(
   featuredCategories.map(async (category) => ({
@@ -16,21 +16,20 @@ const expandedCategories = await Promise.all(
       topDescription: category.data.topDescription!,
       topImageItem: (await getEntry(category.data.topImageItem!)).data,
     },
-  }))
+  })),
 );
 
 // Astro 5.x no longer provides per-item typings and getEntry() can return undefined,
 // so confirm at build time that the entries are defined
 function confirmDefinedEntries<E>(entries: E[]) {
-  for (const entry of entries)
-    if (!entry) throw new Error("Failed to resolve carousel entry");
+  for (const entry of entries) if (!entry) throw new Error('Failed to resolve carousel entry');
   return entries as NonNullable<E>[];
 }
 
 const carouselEntries = confirmDefinedEntries([
-  await getEntry("blog", "events/live-event"),
-  await getEntry("exhibits", "technology/crt-monitor"),
-  await getEntry("products", "vessels/water-bottle"),
+  await getEntry('blog', 'events/live-event'),
+  await getEntry('exhibits', 'technology/crt-monitor'),
+  await getEntry('products', 'vessels/water-bottle'),
 ]);
 
 /** @breaklocation Home & Search */
@@ -58,11 +57,7 @@ const carouselEntries = confirmDefinedEntries([
             <div class="card-image-container">
               <CoverImage
                 src={data.topImageItem.image}
-                alt={
-                  data.topImageItem.skipAlt
-                    ? null
-                    : data.topImageItem.imageDescription
-                }
+                alt={data.topImageItem.skipAlt ? null : data.topImageItem.imageDescription}
                 objectPosition={data.topImageItem.imagePosition}
                 height="200"
               />

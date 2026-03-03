@@ -1,9 +1,9 @@
 ---
 title: Soccer Ball
 imageDescription: An orange and black soccer ball, with some of its pieces torn or separating.
-image: "@/assets/images/exhibits/sports/nick-nice-mpFY7qetBXM-unsplash.jpg"
+image: '@/assets/images/exhibits/sports/nick-nice-mpFY7qetBXM-unsplash.jpg'
 
-level of education: "lower secondary education"
+level of education: 'lower secondary education'
 ---
 
 Welcome to the Soccer Ball exhibit.

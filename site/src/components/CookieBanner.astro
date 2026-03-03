@@ -1,9 +1,9 @@
 ---
-import { getMode } from "@/lib/mode";
-import ConditionalParent from "./ConditionalParent.astro";
-import Fixable from "./Fixable.astro";
+import { getMode } from '@/lib/mode';
+import ConditionalParent from './ConditionalParent.astro';
+import Fixable from './Fixable.astro';
 
-const isBroken = getMode() === "broken";
+const isBroken = getMode() === 'broken';
 
 /** @breaklocation Home & Search */
 /** @breakprocess ALL */
@@ -26,18 +26,15 @@ const isBroken = getMode() === "broken";
     <div class="container">
       <div>
         <p>
-          We store cookies on your device because they are delicious. If you are
-          fine with us doing whatever we want, click <strong>Accept All</strong
-          >.
+          We store cookies on your device because they are delicious. If you are fine with us doing
+          whatever we want, click <strong>Accept All</strong>.
         </p>
         <p>
-          We recognize that some visitors value privacy above extra
-          functionality. To lose out on some features instead, click <strong
-            >Reject All</strong
-          >.
+          We recognize that some visitors value privacy above extra functionality. To lose out on
+          some features instead, click <strong>Reject All</strong>.
         </p>
       </div>
-      <Fixable as="form" action="#" fixed={{ method: "dialog" }}>
+      <Fixable as="form" action="#" fixed={{ method: 'dialog' }}>
         <button>Accept All</button>
         <button>Reject All</button>
       </Fixable>
@@ -46,21 +43,21 @@ const isBroken = getMode() === "broken";
 </ConditionalParent>
 
 <script>
-  import { persist, recall } from "@/lib/client/store";
+  import { persist, recall } from '@/lib/client/store';
 
-  const el = document.getElementById("cookie-banner")!;
+  const el = document.getElementById('cookie-banner')!;
 
-  if (!recall("hasDismissedCookieBanner")) {
-    if (el.tagName === "DIALOG") (el as HTMLDialogElement).show();
+  if (!recall('hasDismissedCookieBanner')) {
+    if (el.tagName === 'DIALOG') (el as HTMLDialogElement).show();
     else el.hidden = false;
   }
 
-  el.querySelector("form")!.addEventListener("submit", (event) => {
-    if (el.tagName !== "DIALOG") {
+  el.querySelector('form')!.addEventListener('submit', (event) => {
+    if (el.tagName !== 'DIALOG') {
       event.preventDefault();
       el.hidden = true;
     }
-    persist("hasDismissedCookieBanner", true);
+    persist('hasDismissedCookieBanner', true);
   });
 
   // Ensure scroll begins at top (e.g. when zoomed to 400%) in fixed version

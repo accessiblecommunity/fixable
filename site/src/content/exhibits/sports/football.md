@@ -1,9 +1,9 @@
 ---
 title: Football
 imageDescription: A deflated football that has been opened at one end.
-image: "@/assets/images/exhibits/sports/adam-cai-C-nzhi1JDvs-unsplash.jpg"
+image: '@/assets/images/exhibits/sports/adam-cai-C-nzhi1JDvs-unsplash.jpg'
 
-level of education: "lower secondary education"
+level of education: 'lower secondary education'
 ---
 
 Welcome to the Broken (American) Football exhibit.

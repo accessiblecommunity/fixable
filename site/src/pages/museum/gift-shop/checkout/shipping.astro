@@ -1,7 +1,7 @@
 ---
-import FixableRegion from "@/components/FixableRegion.astro";
-import FormLayout from "@/components/FormLayout.astro";
-import ShopLayout from "@/layouts/ShopLayout.astro";
+import FixableRegion from '@/components/FixableRegion.astro';
+import FormLayout from '@/components/FormLayout.astro';
+import ShopLayout from '@/layouts/ShopLayout.astro';
 
 /** @breaklocation Gift Shop */
 /** @breakprocess gift-shop */
@@ -23,28 +23,28 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
 </ShopLayout>
 
 <script>
-  import { z } from "astro/zod";
-  import { disableInputs, validateInputs } from "@/lib/client/form";
-  import { showToast } from "@/lib/client/toast";
-  import { getMode } from "@/lib/mode";
+  import { z } from 'astro/zod';
+  import { disableInputs, validateInputs } from '@/lib/client/form';
+  import { showToast } from '@/lib/client/toast';
+  import { getMode } from '@/lib/mode';
 
-  const form = document.querySelector("main form") as HTMLFormElement;
+  const form = document.querySelector('main form') as HTMLFormElement;
   const schema = z.object({
-    name: z.string().min(1, "Name is required."),
-    street1: z.string().min(1, "Street address line 1 is required."),
-    city: z.string().min(1, "City is required."),
-    state: z.string().regex(/^[A-Z]{2}$/, "State is invalid."),
-    zip: z.string().regex(/^\d{5}$/, "ZIP Code is invalid."),
+    name: z.string().min(1, 'Name is required.'),
+    street1: z.string().min(1, 'Street address line 1 is required.'),
+    city: z.string().min(1, 'City is required.'),
+    state: z.string().regex(/^[A-Z]{2}$/, 'State is invalid.'),
+    zip: z.string().regex(/^\d{5}$/, 'ZIP Code is invalid.'),
   });
 
   function refreshErrors() {
     const result = validateInputs(form, schema);
-    const errorEl = document.getElementById("error") as HTMLParagraphElement;
+    const errorEl = document.getElementById('error') as HTMLParagraphElement;
     if (!result.success) {
       errorEl.innerHTML = `
         <p>Invalid shipping information; please try again.</p>
         <ul>
-          ${result.error.issues.map(({ message }) => `<li>${message}</li>`).join("\n")}
+          ${result.error.issues.map(({ message }) => `<li>${message}</li>`).join('\n')}
         </ul>
       `;
     }
@@ -52,14 +52,14 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
 
     return result;
   }
-  if (getMode() === "broken") refreshErrors();
+  if (getMode() === 'broken') refreshErrors();
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener('submit', (event) => {
     const result = refreshErrors();
     if (!result.success) event.preventDefault();
   });
 
-  form.addEventListener("focusout", refreshErrors);
+  form.addEventListener('focusout', refreshErrors);
 
   /**
    * @break
@@ -69,13 +69,13 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
    */
   setTimeout(() => {
     showToast(`The form has expired; you will need to start over.`, {
-      role: "alert",
-      type: "error",
-      actionHref: "../",
-      actionLabel: "Return to checkout",
+      role: 'alert',
+      type: 'error',
+      actionHref: '../',
+      actionLabel: 'Return to checkout',
       withDismiss: false,
     });
-    disableInputs(document.querySelector("main form") as HTMLFormElement);
+    disableInputs(document.querySelector('main form') as HTMLFormElement);
   }, 60000);
 </script>
 

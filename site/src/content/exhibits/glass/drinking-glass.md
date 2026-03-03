@@ -1,9 +1,9 @@
 ---
 title: Drinking Glass
 imageDescription: A glass that may have formerly been quite tall; its entire circumference has been cut to an uneven jagged edge.
-image: "@/assets/images/exhibits/glass/pexels-hatice-baran-153179658-13793427.jpg"
+image: '@/assets/images/exhibits/glass/pexels-hatice-baran-153179658-13793427.jpg'
 
-level of education: "advanced education"
+level of education: 'advanced education'
 ---
 
 Welcome to the Broken Drinking Glasses exhibit.

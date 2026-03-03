@@ -1,10 +1,10 @@
 ---
 title: CRT Monitor
 imageDescription: A CRT monitor on a floor facing upward, its glass thoroughly shattered.
-image: "@/assets/images/exhibits/technology/julia-joppien-XFUqd0u5U7w-unsplash.jpg"
+image: '@/assets/images/exhibits/technology/julia-joppien-XFUqd0u5U7w-unsplash.jpg'
 imagePosition: 50%
 
-level of education: "upper secondary education"
+level of education: 'upper secondary education'
 ---
 
 Welcome to the Broken CRT Monitor exhibit.

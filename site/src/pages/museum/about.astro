@@ -1,15 +1,15 @@
 ---
-import "@fontsource/corinthia";
+import '@fontsource/corinthia';
 
-import Layout from "@/layouts/Layout.astro";
-import { getMode } from "@/lib/mode";
-import { defaultNavLinks } from "@/lib/nav-links";
+import Layout from '@/layouts/Layout.astro';
+import { getMode } from '@/lib/mode';
+import { defaultNavLinks } from '@/lib/nav-links';
 
 const headerNavLinks =
-  getMode() === "broken"
+  getMode() === 'broken'
     ? [
-        ...defaultNavLinks.filter(({ name }) => name === "About"),
-        ...defaultNavLinks.filter(({ name }) => name !== "About"),
+        ...defaultNavLinks.filter(({ name }) => name === 'About'),
+        ...defaultNavLinks.filter(({ name }) => name !== 'About'),
       ]
     : defaultNavLinks;
 
@@ -48,10 +48,10 @@ const headerNavLinks =
      */
   }
   <h1 class="masked about"><span>About The Museum</span></h1>
-  <div class={getMode() === "broken" ? "broken" : undefined}>
+  <div class={getMode() === 'broken' ? 'broken' : undefined}>
     <p>
-      Thank you for wanting to find out more about The Museum Of Broken Things.
-      On this page, you'll find out about our mission and opening times.
+      Thank you for wanting to find out more about The Museum Of Broken Things. On this page, you'll
+      find out about our mission and opening times.
     </p>
 
     {
@@ -75,8 +75,8 @@ const headerNavLinks =
     <aside class="mission-statement">
       The Museum Of Broken Things aims to engage and provoke
       <abbr title="Web Content Accessibility Guidelines">WCAG-y</abbr>
-      discussions through smart discussions to uncover the intricate stories
-      behind broken technology pieces.
+      discussions through smart discussions to uncover the intricate stories behind broken technology
+      pieces.
     </aside>
 
     <h2 class="masked hours"><span>Opening Hours</span></h2>
@@ -175,12 +175,7 @@ const headerNavLinks =
        */
     }
     <div class="header-gradient-backer" id="travel-directions">
-      <svg
-        class="travel-directions"
-        width="219px"
-        height="35px"
-        viewBox="0 0 219 35"
-      >
+      <svg class="travel-directions" width="219px" height="35px" viewBox="0 0 219 35">
         <defs>
           <mask id="text-mask" x="0" y="0" height="100%" width="100%">
             <rect fill="#fff" x="0" y="0" height="100%" width="100%"></rect>
@@ -271,7 +266,7 @@ const headerNavLinks =
     text-indent: 64px;
   }
 
-  [class^="table__"] {
+  [class^='table__'] {
     display: flex;
     flex-flow: column nowrap;
     border: 1px solid #000;
@@ -298,7 +293,7 @@ const headerNavLinks =
     }
   }
 
-  [role="columnheader"] {
+  [role='columnheader'] {
     color: var(--gray-400);
     font-family: Corinthia, cursive;
     font-size: 14pt;

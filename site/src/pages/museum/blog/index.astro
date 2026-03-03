@@ -1,21 +1,21 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import { generateExcerpt } from "@/lib/markdown";
-import { Icon } from "astro-icon/components";
-import { startCase } from "lodash-es";
-import FixableRegion from "@/components/FixableRegion.astro";
-import Fixable from "@/components/Fixable.astro";
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import { generateExcerpt } from '@/lib/markdown';
+import { Icon } from 'astro-icon/components';
+import { startCase } from 'lodash-es';
+import FixableRegion from '@/components/FixableRegion.astro';
+import Fixable from '@/components/Fixable.astro';
 
 const posts = await Promise.all(
-  (await getCollection("blog")).map(async (post) => ({
+  (await getCollection('blog')).map(async (post) => ({
     ...post,
     excerpt: (await generateExcerpt(post.body)).code,
-  }))
+  })),
 );
 posts.sort((a, b) => {
-  if (a.data.date === "now") return -1;
-  if (b.data.date === "now") return 1;
+  if (a.data.date === 'now') return -1;
+  if (b.data.date === 'now') return 1;
   if (a.data.date > b.data.date) return -1;
   if (a.data.date < b.data.date) return 1;
   return 0;
@@ -24,12 +24,12 @@ posts.sort((a, b) => {
 const livePost = posts.shift();
 const postsByCategory = posts.reduce(
   (map, post) => {
-    const category = post.id.split("/")[0];
+    const category = post.id.split('/')[0];
     if (category in map) map[category].push(post);
     else map[category] = [post];
     return map;
   },
-  {} as Record<string, typeof posts>
+  {} as Record<string, typeof posts>,
 );
 
 /** @breaklocation Blog */
@@ -79,17 +79,15 @@ const postsByCategory = posts.reduce(
   {
     livePost && (
       <div class="featured">
-        {
-          /**
-           * @break
-           * wcag2:
-           *   - 1.4.3
-           *   - 1.4.6
-           * wcag3: Text contrast sufficient (minimum)
-           * description: |
-           *   The "Blog" heading is superimposed over an image with no overlay to guarantee minimum contrast.
-           */
-        }
+        {/**
+         * @break
+         * wcag2:
+         *   - 1.4.3
+         *   - 1.4.6
+         * wcag3: Text contrast sufficient (minimum)
+         * description: |
+         *   The "Blog" heading is superimposed over an image with no overlay to guarantee minimum contrast.
+         */}
         <div>
           <a class="image-link" href={`${livePost.id}/`}>
             <div
@@ -109,16 +107,14 @@ const postsByCategory = posts.reduce(
             <FixableRegion>
               <span slot="fixed">Read more</span>
             </FixableRegion>
-            {
-              /**
-               * @break
-               * wcag2: 2.5.5
-               * description: |
-               *   The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
-               * discussionItems:
-               *   - Is there no target size requirement in WCAG 3 anymore?
-               */
-            }
+            {/**
+             * @break
+             * wcag2: 2.5.5
+             * description: |
+             *   The link after the excerpt from the topmost post is smaller than 44 by 44 pixels.
+             * discussionItems:
+             *   - Is there no target size requirement in WCAG 3 anymore?
+             */}
             <Fixable
               as={Icon}
               name="ri:arrow-drop-right-line"
@@ -134,36 +130,31 @@ const postsByCategory = posts.reduce(
     {
       Object.keys(postsByCategory).map((category) => (
         <div class="category">
-          <h2>{startCase(category.replace(/-/g, " "))}</h2>
+          <h2>{startCase(category.replace(/-/g, ' '))}</h2>
           {postsByCategory[category].map((post) => (
             <div class="post">
-              {
-                /**
-                 * @break
-                 * wcag2: 2.3.3
-                 * description: Images zoom in on hover and do not respect <code>prefers-reduced-motion</code>.
-                 * discussionItems:
-                 *   - This does not fail No visual motion in WCAG 3 because of the "lasting longer than 5 seconds" condition
-                 */
-                /**
-                 * @break
-                 * wcag2:
-                 *   - 2.4.4
-                 *   - 2.4.9
-                 * wcag3:
-                 *   - Interactive element names available
-                 *   - Roles, values, states, properties available
-                 * description: |
-                 *   Each post image, as well as the arrow on the topmost post, links to its post,
-                 *   but has no content to describe the link.
-                 * discussionItems:
-                 *   - Does this fail Name, role, value, state under WCAG 3?
-                 */
-              }
-              <a
-                class="image-link"
-                href={`${post.data.brokenUrl ? "broken" : post.id}/`}
-              >
+              {/**
+               * @break
+               * wcag2: 2.3.3
+               * description: Images zoom in on hover and do not respect <code>prefers-reduced-motion</code>.
+               * discussionItems:
+               *   - This does not fail No visual motion in WCAG 3 because of the "lasting longer than 5 seconds" condition
+               */
+              /**
+               * @break
+               * wcag2:
+               *   - 2.4.4
+               *   - 2.4.9
+               * wcag3:
+               *   - Interactive element names available
+               *   - Roles, values, states, properties available
+               * description: |
+               *   Each post image, as well as the arrow on the topmost post, links to its post,
+               *   but has no content to describe the link.
+               * discussionItems:
+               *   - Does this fail Name, role, value, state under WCAG 3?
+               */}
+              <a class="image-link" href={`${post.data.brokenUrl ? 'broken' : post.id}/`}>
                 <div
                   class="background"
                   style={{
@@ -173,7 +164,7 @@ const postsByCategory = posts.reduce(
                 />
               </a>
               <div>
-                <a href={`${post.data.brokenUrl ? "broken" : post.id}/`}>
+                <a href={`${post.data.brokenUrl ? 'broken' : post.id}/`}>
                   <h3>{post.data.title}</h3>
                 </a>
                 <Fragment set:html={post.excerpt} />

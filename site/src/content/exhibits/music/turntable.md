@@ -1,9 +1,9 @@
 ---
 title: Turntable
 imageDescription: A record player with signs of wear, missing various components.
-image: "@/assets/images/exhibits/music/giovanni-randisi-C-LtpT0au3I-unsplash.jpg"
+image: '@/assets/images/exhibits/music/giovanni-randisi-C-LtpT0au3I-unsplash.jpg'
 
-level of education: "primary education"
+level of education: 'primary education'
 ---
 
 Welcome to the Broken Turntable exhibit!

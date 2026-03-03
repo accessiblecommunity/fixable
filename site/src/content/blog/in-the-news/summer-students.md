@@ -1,8 +1,8 @@
 ---
-title: "Student Summer Camp!"
+title: 'Student Summer Camp!'
 date: 2024-07-05
 category: In the News
-image: "@/assets/images/blog/note-thanun-CYlPykF-qAM-unsplash.jpg"
+image: '@/assets/images/blog/note-thanun-CYlPykF-qAM-unsplash.jpg'
 imageDescription: A group of children walk together, sporting a colorful array of T-shirts, shorts/skirts, hats, and backpacks.
 ---
 

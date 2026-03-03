@@ -1,8 +1,8 @@
 ---
-title: "Limited Time Only: Bring-a-Friend Special"
+title: 'Limited Time Only: Bring-a-Friend Special'
 date: 2024-08-02
 category: Events
-image: "@/assets/images/blog/ben-white-EMZxDosijJ4-unsplash.jpg"
+image: '@/assets/images/blog/ben-white-EMZxDosijJ4-unsplash.jpg'
 imageDescription: Two children share a book; one reads aloud, while the other proudly looks on.
 ---
 

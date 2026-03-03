@@ -1,9 +1,9 @@
 ---
 title: Portable Cassette Player
 imageDescription: A worn-out portable radio and cassette player with the cassette door open.
-image: "@/assets/images/exhibits/music/tamim-arafat-89bbAk7at4w-unsplash.jpg"
+image: '@/assets/images/exhibits/music/tamim-arafat-89bbAk7at4w-unsplash.jpg'
 
-level of education: "primary education"
+level of education: 'primary education'
 ---
 
 Welcome to the Broken Portable Cassette Player exhibit!

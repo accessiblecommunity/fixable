@@ -10,15 +10,22 @@ jobs:
     steps:
       - name: git checkout
         uses: actions/checkout@v4
+
       - name: Install node
         uses: actions/setup-node@v4
         with:
           cache: npm
           cache-dependency-path: site/package-lock.json
           node-version: 20
+
       - name: Install dependencies
         working-directory: site
         run: npm ci
+
+      - name: Format Check (Prettier)
+        working-directory: site
+        run: npm run format:check
+
       - name: Check (TypeScript)
         working-directory: site
         run: npm run check

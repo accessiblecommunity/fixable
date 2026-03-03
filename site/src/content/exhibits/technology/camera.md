@@ -1,9 +1,9 @@
 ---
 title: Camera
 imageDescription: A broken and largely-disassembled black camera.
-image: "@/assets/images/exhibits/technology/pexels-alex-andrews-271121-821642.jpg"
+image: '@/assets/images/exhibits/technology/pexels-alex-andrews-271121-821642.jpg'
 
-level of education: "upper secondary education"
+level of education: 'upper secondary education'
 ---
 
 Welcome to the Broken Camera exhibit.

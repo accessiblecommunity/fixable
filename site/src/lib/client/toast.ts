@@ -1,8 +1,8 @@
 /** @fileoverview Functions complementing the Toast component in both broken and fixed states */
 
-import type { ToastType } from "@/components/Toast.astro";
-import { getMode } from "../mode";
-import type { HTMLAttributes } from "astro/types";
+import type { ToastType } from '@/components/Toast.astro';
+import { getMode } from '../mode';
+import type { HTMLAttributes } from 'astro/types';
 
 interface ToastOptions {
   /**
@@ -14,7 +14,7 @@ interface ToastOptions {
    * If specified, passes the given role attribute value
    * (broken mode only, since fixed uses a non-modal dialog instead)
    */
-  role?: HTMLAttributes<"div">["role"];
+  role?: HTMLAttributes<'div'>['role'];
   /** Type of toast; determines icon placed before the message */
   type: ToastType;
   /**
@@ -34,11 +34,11 @@ let toastTransitionPromise: Promise<void> | null = null;
 function createTransitionPromise(el: HTMLElement) {
   toastTransitionPromise = new Promise<void>((resolve) => {
     function handler() {
-      el.removeEventListener("transitionend", handler);
+      el.removeEventListener('transitionend', handler);
       toastTransitionPromise = null;
       resolve();
     }
-    el.addEventListener("transitionend", handler);
+    el.addEventListener('transitionend', handler);
   });
   return toastTransitionPromise;
 }
@@ -50,13 +50,13 @@ function createTransitionPromise(el: HTMLElement) {
 export async function hideToast() {
   // Wait for any existing transition to finish first
   if (toastTransitionPromise) await toastTransitionPromise;
-  const toastEl = document.getElementById("toast")!;
-  if (toastEl.classList.contains("showing")) {
-    toastEl.classList.remove("showing");
+  const toastEl = document.getElementById('toast')!;
+  if (toastEl.classList.contains('showing')) {
+    toastEl.classList.remove('showing');
     await createTransitionPromise(toastEl);
   }
 
-  if (getMode() === "broken") toastEl.hidden = true;
+  if (getMode() === 'broken') toastEl.hidden = true;
   else (toastEl as HTMLDialogElement).close();
   if (toastTimer) {
     clearTimeout(toastTimer);
@@ -76,14 +76,14 @@ export async function showToast(
     type,
     withDismiss = true,
     ...actionOptions
-  }: ToastOptions | ToastOptionsWithAction
+  }: ToastOptions | ToastOptionsWithAction,
 ) {
-  const isBroken = getMode() === "broken";
-  const toastEl = document.getElementById("toast")!;
-  const contentEl = document.getElementById("toast-content");
-  const dismissEl = document.getElementById("toast-dismiss");
+  const isBroken = getMode() === 'broken';
+  const toastEl = document.getElementById('toast')!;
+  const contentEl = document.getElementById('toast-content');
+  const dismissEl = document.getElementById('toast-dismiss');
   if (!toastEl || !contentEl || !dismissEl)
-    throw new Error("showToast used without <Toast /> component present");
+    throw new Error('showToast used without <Toast /> component present');
 
   await hideToast();
 
@@ -91,25 +91,19 @@ export async function showToast(
 
   if (isBroken) {
     dismissEl.hidden = !withDismiss;
-    if (role) toastEl.setAttribute("role", role);
-    else toastEl.removeAttribute("role");
+    if (role) toastEl.setAttribute('role', role);
+    else toastEl.removeAttribute('role');
   }
 
-  const templateEl = document.getElementById(
-    `toast-icon-${type}`
-  ) as HTMLTemplateElement;
-  if (!templateEl)
-    throw new Error(`Template element not found for type ${type}`);
-  contentEl.insertBefore(
-    templateEl.content.cloneNode(true),
-    contentEl.firstChild
-  );
+  const templateEl = document.getElementById(`toast-icon-${type}`) as HTMLTemplateElement;
+  if (!templateEl) throw new Error(`Template element not found for type ${type}`);
+  contentEl.insertBefore(templateEl.content.cloneNode(true), contentEl.firstChild);
 
-  if ("actionLabel" in actionOptions) {
-    const isButton = "actionCallback" in actionOptions;
-    const el = document.createElement(isButton ? "button" : "a");
+  if ('actionLabel' in actionOptions) {
+    const isButton = 'actionCallback' in actionOptions;
+    const el = document.createElement(isButton ? 'button' : 'a');
     if (isButton) {
-      el.addEventListener("click", async () => {
+      el.addEventListener('click', async () => {
         await hideToast();
         actionOptions.actionCallback();
       });
@@ -125,7 +119,7 @@ export async function showToast(
   else (toastEl as HTMLDialogElement).show();
 
   // Give element a chance to paint before adding class, to apply transition
-  setTimeout(() => toastEl.classList.add("showing"), 15);
+  setTimeout(() => toastEl.classList.add('showing'), 15);
   await createTransitionPromise(toastEl);
 
   if (isBroken && duration) toastTimer = setTimeout(hideToast, duration);

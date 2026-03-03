@@ -6,12 +6,12 @@
  * It is effectively a singleton, configured via JS API.
  */
 
-import { getMode } from "@/lib/mode";
-import { Icon } from "astro-icon/components";
+import { getMode } from '@/lib/mode';
+import { Icon } from 'astro-icon/components';
 
 const iconMap = {
-  error: "ri:error-warning-line",
-  info: "ri:information-2-line",
+  error: 'ri:error-warning-line',
+  info: 'ri:information-2-line',
 } as const;
 // Expose ToastType from here for use by API in toast.ts
 export type ToastType = keyof typeof iconMap;
@@ -19,7 +19,7 @@ export type ToastType = keyof typeof iconMap;
 
 <div class="toast-container">
   {
-    getMode() === "broken" ? (
+    getMode() === 'broken' ? (
       <div id="toast" hidden>
         <div id="toast-content" />
         <button id="toast-dismiss">Dismiss</button>
@@ -42,11 +42,11 @@ export type ToastType = keyof typeof iconMap;
 }
 
 <script>
-  import { hideToast } from "@/lib/client/toast";
+  import { hideToast } from '@/lib/client/toast';
 
   // Dismiss needs to be explicitly handled in non-dialog case
-  const dismissEl = document.getElementById("toast-dismiss")!;
-  dismissEl.addEventListener("click", hideToast);
+  const dismissEl = document.getElementById('toast-dismiss')!;
+  dismissEl.addEventListener('click', hideToast);
 </script>
 
 <style>
@@ -88,10 +88,10 @@ export type ToastType = keyof typeof iconMap;
     height: 2rem;
     width: 2rem;
   }
-  svg[data-icon="ri:error-warning-line"] {
+  svg[data-icon='ri:error-warning-line'] {
     color: var(--red-warm-400);
   }
-  svg[data-icon="ri:information-2-line"] {
+  svg[data-icon='ri:information-2-line'] {
     color: var(--blue-400);
   }
 
