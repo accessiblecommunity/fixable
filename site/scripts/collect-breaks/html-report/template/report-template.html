@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.4;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      h1 {
+        border-bottom: 2px solid #333;
+        padding-bottom: 0.25rem;
+        margin-bottom: 0.75rem;
+      }
+      /* Process heading with toggle button */
+      h2 {
+        border-bottom: 1px solid #999;
+        padding-bottom: 0.25rem;
+        margin: 1rem 0 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .toggle-btn {
+        background: none;
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 0.1rem 0.4rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .toggle-btn:hover,
+      .toggle-btn:focus-visible {
+        background: #eee;
+      }
+      .process-body {
+        margin-left: 1rem;
+      }
+      .process-body[hidden] {
+        display: none;
+      }
+      h3 {
+        margin: 0.75rem 0 0.15rem;
+      }
+      h4 {
+        margin: 0.5rem 0.5rem 0.1rem;
+        padding-left: 0.5rem;
+      }
+      h5 {
+        margin: 0.35rem 0 0.1rem;
+        padding-left: 1rem;
+        font-size: 0.95em;
+      }
+      ul {
+        margin: 0.1rem 0 0.25rem 2rem;
+        padding: 0;
+      }
+      ul li {
+        margin: 0.1rem 0;
+      }
+      p {
+        margin: 0.15rem 0;
+      }
+      .discussion-label {
+        font-weight: bold;
+        font-size: 0.9em;
+        margin: 0.15rem 0 0 3rem;
+      }
+      .discussion {
+        margin-top: 0;
+        font-size: 0.9em;
+        margin-left: 2.0rem;
+      }
+      /* Tabs */
+      .tab-list {
+        display: flex;
+        gap: 0;
+        border-bottom: 2px solid #333;
+        margin-bottom: 0;
+      }
+      .tab-list [role="tab"] {
+        padding: 0.5rem 1.25rem;
+        border: 1px solid #999;
+        border-bottom: none;
+        border-radius: 4px 4px 0 0;
+        background: #eee;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: 0.25rem;
+        position: relative;
+        bottom: -1px;
+      }
+      .tab-list [role="tab"][aria-selected="true"] {
+        background: #fff;
+        border-bottom: 2px solid #fff;
+        font-weight: bold;
+      }
+      .tab-list [role="tab"]:hover,
+      .tab-list [role="tab"]:focus-visible {
+        background: #ddd;
+      }
+      .tab-list [role="tab"][aria-selected="true"]:hover,
+      .tab-list [role="tab"][aria-selected="true"]:focus-visible {
+        background: #fff;
+      }
+      [role="tabpanel"] {
+        padding: 0.75rem 0;
+      }
+      [role="tabpanel"][hidden] {
+        display: none;
+      }
+      /* Toolbar */
+      .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        align-items: center;
+      }
+      .toolbar button {
+        padding: 0.4rem 1rem;
+        border: 1px solid #999;
+        border-radius: 3px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .toolbar button[aria-pressed="true"] {
+        background: #333;
+        color: #fff;
+        border-color: #333;
+      }
+      .toolbar span {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .toolbar .separator {
+        border-left: 1px solid #ccc;
+        height: 1.5rem;
+        margin: 0 0.25rem;
+      }
+      /* Hidden by filter */
+      [data-wcag-version="2"].wcag-hidden,
+      [data-wcag-version="3"].wcag-hidden {
+        display: none;
+      }
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.35rem 0.5rem;
+        text-align: left;
+      }
+      th {
+        background: #f5f5f5;
+      }
+      /* Break item */
+      .break-item {
+        margin-left: 0.5rem;
+      }
+      .break-group {
+        margin-bottom: 0.5rem;
+        padding-left: 1.0rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>{{title}}</h1>
+      <div class="tab-list" role="tablist" aria-label="Report sections">
+        <button type="button" role="tab" id="tab-breaks" aria-selected="true" aria-controls="panel-breaks">Breaks</button>
+        <button type="button" role="tab" id="tab-coverage" aria-selected="false" aria-controls="panel-coverage">Coverage</button>
+      </div>
+      <div role="tabpanel" id="panel-breaks" aria-labelledby="tab-breaks">
+        <nav>
+          <div class="toolbar">
+            <span>Show:</span>
+            <button type="button" id="toggle-wcag2" aria-pressed="true">WCAG 2</button>
+            <button type="button" id="toggle-wcag3" aria-pressed="true">WCAG 3</button>
+            <div class="separator"></div>
+            <span>Sections:</span>
+            <button type="button" id="expand-all">Expand All</button>
+            <button type="button" id="collapse-all">Collapse All</button>
+          </div>
+        </nav>
+        {{breaksContent}}
+      </div>
+      <div role="tabpanel" id="panel-coverage" aria-labelledby="tab-coverage" hidden>
+        {{coverageContent}}
+      </div>
+    </main>
+    <script>
+      // Tabs
+      var tabs = document.querySelectorAll('[role="tab"]');
+      var panels = document.querySelectorAll('[role="tabpanel"]');
+
+      // Hide the coverage tab if there is no coverage content
+      var coveragePanel = document.getElementById("panel-coverage");
+      var coverageTab = document.getElementById("tab-coverage");
+      if (coveragePanel && !coveragePanel.children.length) {
+        coverageTab.hidden = true;
+      }
+
+      function selectTab(selectedTab) {
+        tabs.forEach(function (tab) {
+          var selected = tab === selectedTab;
+          tab.setAttribute("aria-selected", String(selected));
+          var panel = document.getElementById(tab.getAttribute("aria-controls"));
+          if (panel) {
+            panel.hidden = !selected;
+          }
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          selectTab(tab);
+        });
+        tab.addEventListener("keydown", function (e) {
+          var tabArr = Array.from(tabs).filter(function (t) { return !t.hidden; });
+          var idx = tabArr.indexOf(tab);
+          var next;
+          if (e.key === "ArrowRight") {
+            next = tabArr[(idx + 1) % tabArr.length];
+          } else if (e.key === "ArrowLeft") {
+            next = tabArr[(idx - 1 + tabArr.length) % tabArr.length];
+          }
+          if (next) {
+            e.preventDefault();
+            next.focus();
+            selectTab(next);
+          }
+        });
+      });
+
+      // Toggle WCAG 2 / WCAG 3 visibility
+      function setupWcagFilter(buttonId, version) {
+        var btn = document.getElementById(buttonId);
+        if (!btn) return;
+        btn.addEventListener("click", function () {
+          var pressed = btn.getAttribute("aria-pressed") === "true";
+          btn.setAttribute("aria-pressed", String(!pressed));
+          var els = document.querySelectorAll(
+            '[data-wcag-version="' + version + '"]',
+          );
+          for (var i = 0; i < els.length; i++) {
+            els[i].classList.toggle("wcag-hidden", pressed);
+          }
+        });
+      }
+      setupWcagFilter("toggle-wcag2", "2");
+      setupWcagFilter("toggle-wcag3", "3");
+
+      // Section toggle buttons
+      var toggleButtons = document.querySelectorAll(".toggle-btn");
+
+      function setExpanded(btn, expanded) {
+        btn.setAttribute("aria-expanded", String(expanded));
+        btn.textContent = expanded ? "▾" : "▸";
+        var targetId = btn.getAttribute("aria-controls");
+        var target = document.getElementById(targetId);
+        if (target) {
+          target.hidden = !expanded;
+        }
+      }
+
+      toggleButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var expanded = btn.getAttribute("aria-expanded") === "true";
+          setExpanded(btn, !expanded);
+        });
+      });
+
+      // Expand / collapse all
+      document.getElementById("expand-all").addEventListener("click", function () {
+        toggleButtons.forEach(function (btn) {
+          setExpanded(btn, true);
+        });
+      });
+      document.getElementById("collapse-all").addEventListener("click", function () {
+        toggleButtons.forEach(function (btn) {
+          setExpanded(btn, false);
+        });
+      });
+    </script>
+  </body>
+</html>
