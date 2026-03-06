@@ -21,6 +21,7 @@ import Layout from "@/layouts/Layout.astro";
       >Last name
       <input name="lastname" />
     </label>
+    {/* eslint-disable-next-line astro/jsx-a11y/label-has-associated-control */}
     <label
       >Email address
       <Fixable
@@ -55,6 +56,7 @@ import Layout from "@/layouts/Layout.astro";
       fixed={{ class: "email-did-you-mean__fixed", role: "alert" }}
       id="email-suggestion"
     />
+    {/* eslint-disable-next-line astro/jsx-a11y/label-has-associated-control */}
     <label
       >Phone number
       <Fixable as="input" fixed={{ type: "tel" }} name="phone" />

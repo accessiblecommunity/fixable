@@ -22,7 +22,7 @@ export async function fetchApi(url: string) {
   try {
     // Prioritize the variation that works when deployed
     return await fetchAndExpect2xx(urlWithoutSlash);
-  } catch (error) {
+  } catch {
     return await fetchAndExpect2xx(urlWithSlash);
   }
 }

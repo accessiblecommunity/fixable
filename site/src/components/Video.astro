@@ -37,6 +37,7 @@ const videoAttributes = backdrop
 ---
 
 <div class={backdrop ? "video-wrapper" : undefined}>
+  {/* eslint-disable-next-line astro/jsx-a11y/media-has-caption */}
   <video {...videoAttributes} {poster} {...rest}>
     <source {src} {type} />
     Your browser does not support the video tag.
