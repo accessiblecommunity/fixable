@@ -84,7 +84,7 @@ const { mode = getMode() } = Astro.props;
   function search(query: string) {
     searchInput.value = query;
     const filteredResults = allResults.filter(({ title }) =>
-      title.toLowerCase().includes(query.toLowerCase())
+      title.toLowerCase().includes(query.toLowerCase()),
     );
     const resultsHtml = query
       ? `<ul>${filteredResults
@@ -134,11 +134,11 @@ const { mode = getMode() } = Astro.props;
         history.pushState(
           {},
           "",
-          `${museumBaseUrl}search/?query=${encodeURIComponent(query)}`
+          `${museumBaseUrl}search/?query=${encodeURIComponent(query)}`,
         );
 
         search(query);
-      }, 500)
+      }, 500),
     );
   }
 </script>

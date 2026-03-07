@@ -46,7 +46,7 @@ export function handleCartRemovals() {
 export function renderCartInventory(
   cart: Store["cart"],
   tableId: string,
-  includeRemove: boolean
+  includeRemove: boolean,
 ) {
   const tbodyEl = document.getElementById(tableId) as HTMLTableSectionElement;
   if (!tbodyEl) throw new Error("table not found");

@@ -9,7 +9,7 @@ import type { ImageFunction, z } from "astro:content";
  */
 export async function getDownsizedSrc(
   image: z.infer<ReturnType<ImageFunction>>,
-  width: number
+  width: number,
 ) {
   const result = await getImage({
     src: image,

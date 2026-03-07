@@ -19,10 +19,7 @@ const { includeRemove } = Astro.props;
 </table>
 
 <script>
-  import {
-    handleCartRemovals,
-    renderCartInventory,
-  } from "@/lib/client/cart";
+  import { handleCartRemovals, renderCartInventory } from "@/lib/client/cart";
   import { onStoreChange, recall } from "@/lib/client/store";
 
   const includeRemove = !!document.querySelector("th[data-actions]");
@@ -31,7 +28,7 @@ const { includeRemove } = Astro.props;
 
   if (includeRemove) {
     onStoreChange("cart", (cart) =>
-      renderCartInventory(cart, "cart-tbody", true)
+      renderCartInventory(cart, "cart-tbody", true),
     );
   } else {
     // Intentionally render "statically" without reacting to further events,

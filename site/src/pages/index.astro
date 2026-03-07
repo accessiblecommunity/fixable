@@ -9,7 +9,7 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
     map[process.id] = process;
     return map;
   },
-  {} as Record<string, CollectionEntry<"breakProcesses">>
+  {} as Record<string, CollectionEntry<"breakProcesses">>,
 );
 ---
 
@@ -22,25 +22,30 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
       failures, for teaching and assessment purposes.
     </p>
     <h3>Site Behavior</h3>
-    <p><strong>This site is an example only. Do not enter real information!</strong></p>
+    <p>
+      <strong
+        >This site is an example only. Do not enter real information!</strong
+      >
+    </p>
     <ul>
       <li>The contents are made up</li>
       <li>The site is static; no data is retained by a server</li>
       <li>No real shipping address or payment processing occurs</li>
       <li>
-          Registration and sign-in is not processed by a server,
-          but it <em>does</em> function locally
-          <ul><li>
-            i.e., whatever email and password you most recently specified during registration
-            will then work on the Sign In page
-          </li></ul>
+        Registration and sign-in is not processed by a server, but it <em
+          >does</em
+        > function locally
+        <ul>
+          <li>
+            i.e., whatever email and password you most recently specified during
+            registration will then work on the Sign In page
+          </li>
+        </ul>
       </li>
+      <li>No cookies are stored, despite what the home page might suggest</li>
       <li>
-        No cookies are stored, despite what the home page might suggest
-      </li>
-      <li>
-        Local storage is used for simulated persistence
-        (e.g., for sign-in and the gift shop cart)
+        Local storage is used for simulated persistence (e.g., for sign-in and
+        the gift shop cart)
       </li>
     </ul>
     <p>
@@ -52,12 +57,12 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
     </p>
   </section>
 
-  { /* Hide summary for built version at the moment; show in dev for confirming content */ }
+  {
+    /* Hide summary for built version at the moment; show in dev for confirming content */
+  }
   <section id="summary-of-failures" hidden={import.meta.env.PROD || undefined}>
     <h2>Summary of failures</h2>
-    <p>
-      This section provides a breakdown of WCAG failures across the site.
-    </p>
+    <p>This section provides a breakdown of WCAG failures across the site.</p>
 
     {
       import.meta.env.DEV && (
@@ -68,13 +73,20 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
       )
     }
 
-    <BreaksList client:load breaks={breaks} breakProcessesMap={breakProcessesMap} />
+    <BreaksList
+      client:load
+      breaks={breaks}
+      breakProcessesMap={breakProcessesMap}
+    />
   </section>
 
   <section id="acknowledgment">
     <h2>Acknowledgment</h2>
     <p>
-      The Museum of Broken Things was created by the <a href="https://www.w3.org/WAI/about/groups/agwg/">W3C Accessibility Guidelines Working Group</a> and <a href="https://accessiblecommunity.org/">Accessible Community</a>.
+      The Museum of Broken Things was created by the <a
+        href="https://www.w3.org/WAI/about/groups/agwg/"
+        >W3C Accessibility Guidelines Working Group</a
+      > and <a href="https://accessiblecommunity.org/">Accessible Community</a>.
     </p>
 
     <h2>Individual Contributors</h2>
@@ -85,7 +97,7 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
       <li>Alastair Campbell</li>
       <li>Asher Kolieboi</li>
       <li>Ellen Liebert</li>
-      <li>Brian Montgomery</li> 
+      <li>Brian Montgomery</li>
       <li>Matt Russell</li>
       <li>Kevin White</li>
     </ul>
@@ -95,7 +107,9 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
     <h2>License</h2>
     <p>
       This repository is licensed under the
-      <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.
+      <a href="https://www.apache.org/licenses/LICENSE-2.0"
+        >Apache License, version 2.0</a
+      >.
     </p>
   </section>
 </MetaLayout>
@@ -103,9 +117,11 @@ const breakProcessesMap = (await getCollection("breakProcesses")).reduce(
 <script>
   import { clear } from "@/lib/client/store";
 
-  document.getElementById("clear-localStorage")!.addEventListener("click", () => {
-    clear();
-  });
+  document
+    .getElementById("clear-localStorage")!
+    .addEventListener("click", () => {
+      clear();
+    });
 
   if (
     import.meta.env.DEV &&

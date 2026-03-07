@@ -12,14 +12,14 @@ import {
 
 const categories = sortBy(
   (await getCollection("exhibit-categories")).filter(
-    ({ data }) => !data.dangerous
+    ({ data }) => !data.dangerous,
   ),
-  ({ data }) => data.title
+  ({ data }) => data.title,
 );
 
 const exhibits = uniqBy(
   await getCollection("exhibits"),
-  ({ id }) => id.split("/")[0]
+  ({ id }) => id.split("/")[0],
 );
 
 const exhibitsMap = {} as Record<
@@ -56,7 +56,7 @@ const seeMoreLinks = defaultNavLinks
   .filter(checkIsNavLink);
 const headerNavLinks = filterNavTreeLinks(
   defaultNavLinks,
-  ({ name }) => !seeMoreLabels.includes(name)
+  ({ name }) => !seeMoreLabels.includes(name),
 );
 
 /**
@@ -106,7 +106,8 @@ const headerNavLinks = filterNavTreeLinks(
   <ul>
     <li class="event">
       <a href="../early-home-computers-event/"
-        >👉 Early Home Computers Event! 👉</a>
+        >👉 Early Home Computers Event! 👉</a
+      >
     </li>
     {
       categories.map(({ data, id }, i) => (

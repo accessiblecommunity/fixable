@@ -9,7 +9,9 @@ import { museumBaseUrl } from "@/lib/constants";
   import { persist, recall } from "@/lib/client/store";
 
   const signInButton = document.getElementById("sign-in") as HTMLButtonElement;
-  const signOutButton = document.getElementById("sign-out") as HTMLButtonElement;
+  const signOutButton = document.getElementById(
+    "sign-out",
+  ) as HTMLButtonElement;
 
   signOutButton.addEventListener("click", () => {
     persist("loggedInAt", null);

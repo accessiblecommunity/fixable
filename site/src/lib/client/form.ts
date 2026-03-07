@@ -4,7 +4,7 @@ import type { ZodObject, ZodRawShape } from "astro/zod";
 export function disableInputs(form: HTMLFormElement) {
   const inputSelectors = ["input", "select", "button"] as const;
   inputSelectors.forEach((selector) =>
-    form.querySelectorAll(selector).forEach((el) => (el.disabled = true))
+    form.querySelectorAll(selector).forEach((el) => (el.disabled = true)),
   );
 }
 
@@ -15,7 +15,7 @@ export function disableInputs(form: HTMLFormElement) {
  */
 export function validateInputs<T extends ZodRawShape>(
   form: HTMLFormElement,
-  schema: ZodObject<T>
+  schema: ZodObject<T>,
 ) {
   const entryMap: Record<string, string> = {};
   const formData = new FormData(form);
@@ -28,7 +28,9 @@ export function validateInputs<T extends ZodRawShape>(
   const result = schema.safeParse(entryMap);
   if (!result.success) {
     for (const { path } of result.error.issues)
-      (form.elements[path.join(".")] as HTMLInputElement).classList.add("error");
+      (form.elements[path.join(".")] as HTMLInputElement).classList.add(
+        "error",
+      );
   }
   return result;
 }

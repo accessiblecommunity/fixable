@@ -66,7 +66,7 @@ const { id, size = 48 } = Astro.props;
       if (oldFavorites && oldFavorites?.[key] === favorites[key]) continue;
 
       const el = document.getElementById(
-        `favorite-${key}`
+        `favorite-${key}`,
       ) as HTMLElement | null;
       if (!el) continue;
 
@@ -108,7 +108,7 @@ const { id, size = 48 } = Astro.props;
 
   document.body.addEventListener("click", (event) => {
     const el = (event.target as HTMLElement).closest(
-      ".favorite[id^='favorite-']"
+      ".favorite[id^='favorite-']",
     );
     if (!el) return;
 

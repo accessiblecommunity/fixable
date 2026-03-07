@@ -68,7 +68,7 @@ const { closeOnBackdrop, closeOnKeyboard, id, mode = getMode() } = Astro.props;
     // Detecting this way allows hiding an open modal via Escape even if
     // focus isn't within it, which is what happens on the site we used for reference
     const el = document.querySelector(
-      "[data-modal-close-on-keyboard]:not([hidden])"
+      "[data-modal-close-on-keyboard]:not([hidden])",
     );
     if (el) hideModal(el.id);
   });

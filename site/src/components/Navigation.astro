@@ -47,7 +47,7 @@ const actualFailureMode = getMode() === "broken" ? failureMode : undefined;
           <li class={rest.headerClass}>
             <a href={rest.href}>{name}</a>
           </li>
-        )
+        ),
       )
     }
   </ul>
@@ -91,7 +91,9 @@ const actualFailureMode = getMode() === "broken" ? failureMode : undefined;
       const parentItemEl = el.closest("nav > ul > li");
       // Collapse submenu if user tabs out of it
       if (parentItemEl && parentItemEl !== relatedEl?.closest("nav > ul > li"))
-        parentItemEl.querySelector("button")?.setAttribute("aria-expanded", "false");
+        parentItemEl
+          .querySelector("button")
+          ?.setAttribute("aria-expanded", "false");
     });
   }
 </script>

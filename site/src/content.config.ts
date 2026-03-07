@@ -29,7 +29,7 @@ const transformToArray = <T>(value: T | [T, ...T[]]): [T, ...T[]] =>
 
 /** Like transformToArray, but for use specifically with .optional() schemas. */
 const transformToOptionalArray = <T>(
-  value: T | [T, ...T[]] | undefined
+  value: T | [T, ...T[]] | undefined,
 ): [T, ...T[]] | undefined =>
   typeof value === "undefined" || Array.isArray(value) ? value : [value];
 
@@ -100,13 +100,13 @@ export const collections = {
                 processMatch?.[1].trim().split(/\s*,\s*/) || undefined;
 
               const hrefMatch = /\/\*[\s\*]*@breakhref([\s\S]*?)\*\//.exec(
-                content
+                content,
               );
               const href = hrefMatch?.[1].trim() || resolvePageHref(path);
 
               for (const match of regExpMatchGenerator(
                 /\/\*[\s\*]*@break\b([\s\S]*?)\*\//g,
-                content
+                content,
               )) {
                 const lineNumber = content
                   .slice(0, match.index)
@@ -198,8 +198,8 @@ export const collections = {
           z.enum(
             Object.keys(wcag2SuccessCriteria) as [
               keyof typeof wcag2SuccessCriteria,
-            ]
-          )
+            ],
+          ),
         )
           .optional()
           .transform(transformToOptionalArray),
@@ -211,8 +211,8 @@ export const collections = {
             .string()
             .refine(
               (value) => wcag3Values.includes(value),
-              "Unrecognized WCAG 3 provision shortname"
-            )
+              "Unrecognized WCAG 3 provision shortname",
+            ),
         )
           .optional()
           .transform(transformToOptionalArray),

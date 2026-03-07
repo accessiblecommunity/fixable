@@ -135,7 +135,7 @@ import Layout from "@/layouts/Layout.astro";
           .min(1)
           .refine((value) => value === form.elements["password"].value),
         captcha: z.string().refine((value) => value.toUpperCase() === codeText),
-      })
+      }),
     );
 
     if (!result.success) {

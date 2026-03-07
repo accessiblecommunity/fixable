@@ -25,7 +25,6 @@ const image = await getImage({
   ...(typeof height === "string" && { height: parseInt(height) }),
   ...(typeof width === "number" && { width }),
   ...(typeof width === "string" && { width: parseInt(width) }),
-
 });
 
 const attributes = {
@@ -37,7 +36,8 @@ const attributes = {
 };
 ---
 
-<img class="cover"
+<img
+  class="cover"
   src={image.src}
   {...attributes}
   {...image.srcSet.values.length && { srcset: image.srcSet.attribute }}

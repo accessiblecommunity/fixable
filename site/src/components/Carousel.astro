@@ -26,7 +26,7 @@ const collectionMap = {
   },
   products: {
     label: "Merch",
-    path: "gift-shop"
+    path: "gift-shop",
   },
 };
 
@@ -42,14 +42,14 @@ const collectionMap = {
 ---
 
 {
-/**
- * @break
- * wcag2: 2.2.2
- * wcag3: No visual motion
- * description:
- *   - The carousel does not include controls to stop moving and updating.
- *   - The promotional video at the bottom of the home page loops infinitely and does not have controls to pause.
- */
+  /**
+   * @break
+   * wcag2: 2.2.2
+   * wcag3: No visual motion
+   * description:
+   *   - The carousel does not include controls to stop moving and updating.
+   *   - The promotional video at the bottom of the home page loops infinitely and does not have controls to pause.
+   */
 }
 <div class:list={["carousel", getMode()]}>
   {
@@ -68,19 +68,23 @@ const collectionMap = {
         {...(i && getMode() === "fixed" && { inert: true })}
       >
         <FixableRegion>
-          {
-            /**
-             * @break
-             * wcag2: 1.3.2
-             * description: The overline text over each title in the carousel uses space characters between each letter.
-             * discussionItems:
-             *   - For WCAG 3, this used to be filed under Unambiguous text, which no longer exists; is there a suitable alternative to fail it under?
-             */
-          }
-          <div class="overline">L A T E S T &nbsp; {
-            collectionMap[entry.collection].label.toUpperCase().split("").join(" ")
-          }</div>
-          <div slot="fixed" class="overline">Latest {collectionMap[entry.collection].label}</div>
+          {/**
+           * @break
+           * wcag2: 1.3.2
+           * description: The overline text over each title in the carousel uses space characters between each letter.
+           * discussionItems:
+           *   - For WCAG 3, this used to be filed under Unambiguous text, which no longer exists; is there a suitable alternative to fail it under?
+           */}
+          <div class="overline">
+            L A T E S T &nbsp;{" "}
+            {collectionMap[entry.collection].label
+              .toUpperCase()
+              .split("")
+              .join(" ")}
+          </div>
+          <div slot="fixed" class="overline">
+            Latest {collectionMap[entry.collection].label}
+          </div>
         </FixableRegion>
         <div class="title">{entry.data.title}</div>
         <a
@@ -103,14 +107,14 @@ const collectionMap = {
   setInterval(() => {
     carousels.forEach((el) => {
       el.querySelector(".out")?.classList.toggle("out");
-      
+
       const previousEl = el.querySelector(".in")!;
       previousEl.classList.toggle("in");
       previousEl.classList.toggle("out");
-      
+
       const nextEl = previousEl.nextElementSibling || el.firstElementChild;
       nextEl?.classList.toggle("in");
-      
+
       if (getMode() === "fixed") {
         (previousEl as HTMLElement).inert = true;
         (nextEl as HTMLElement).inert = false;
@@ -119,7 +123,11 @@ const collectionMap = {
   }, 10000);
 </script>
 
-<style define:vars={{ cursorUrl: `url(${import.meta.env.BASE_URL}radial-cursor.png)` }}>
+<style
+  define:vars={{
+    cursorUrl: `url(${import.meta.env.BASE_URL}radial-cursor.png)`,
+  }}
+>
   .carousel {
     height: 80vh;
     overflow: hidden;
@@ -168,14 +176,16 @@ const collectionMap = {
   a {
     border-radius: 9999px;
     padding: 1rem 2rem;
-    letter-spacing: calc(1rem * var(--ms3))
+    letter-spacing: calc(1rem * var(--ms3));
     text-decoration: none;
     text-transform: uppercase;
   }
 
   .broken {
     & :global(.entry) {
-      cursor: var(--cursorUrl) 16 16, crosshair;
+      cursor:
+        var(--cursorUrl) 16 16,
+        crosshair;
       transition: transform 1s ease-in;
       transform: translateX(100%);
 

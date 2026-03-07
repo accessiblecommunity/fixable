@@ -35,10 +35,10 @@ $("#guidelines h4, #guidelines h5").each((_, el) => {
 
 await writeFile(
   join("src", "lib", "wcag2.json"),
-  JSON.stringify(wcag22Map, null, "  ") + "\n"
+  JSON.stringify(wcag22Map, null, "  ") + "\n",
 );
 
 await writeFile(
   join("src", "lib", "wcag3.json"),
-  JSON.stringify(wcag3Values, null, "  ") + "\n"
+  JSON.stringify(wcag3Values, null, "  ") + "\n",
 );

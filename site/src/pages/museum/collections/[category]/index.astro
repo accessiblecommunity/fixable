@@ -23,7 +23,7 @@ export async function getStaticPaths() {
       category,
       exhibits: sortBy(
         allExhibits.filter(({ id }) => id.startsWith(`${category.id}/`)),
-        ({ data }) => data.title
+        ({ data }) => data.title,
       ),
     } as Props,
   }));
@@ -57,8 +57,7 @@ const { Content } = await render(category);
  * discussionItems:
  *   - Is it a stretch to fail this for Interactive element names available? (The verbosity requirement was removed)
  */
-const shouldWrapImageInLink =
-  getMode() === "broken" && category.id === "music";
+const shouldWrapImageInLink = getMode() === "broken" && category.id === "music";
 /**
  * @break
  * location: Sports Collection
@@ -78,21 +77,21 @@ const shouldWrapImageInLink =
  *   Each collection's image and title are independently linked,
  *   requiring focus to be advanced twice to reach the next unique link.
  */
-const shouldDuplicateLink =
-  getMode() === "broken" && category.id === "sports";
+const shouldDuplicateLink = getMode() === "broken" && category.id === "sports";
 ---
 
 <Layout title={category.data.title}>
   {
-    // TODO: this is currently broken in all collections
-    /**
-     * @break
-     * location: Technology Collection
-     * href: /collections/technology/#main
-     * wcag2: 2.4.10
-     * wcag3: Sections labeled
-     * description: The page doesn't have an H1.
-     */
+
+      // TODO: this is currently broken in all collections
+      /**
+       * @break
+       * location: Technology Collection
+       * href: /collections/technology/#main
+       * wcag2: 2.4.10
+       * wcag3: Sections labeled
+       * description: The page doesn't have an H1.
+       */
   }
   <h2>{category.data.title}</h2>
   <Content />
@@ -131,9 +130,7 @@ const shouldDuplicateLink =
             <a href={museumBaseUrl}>return to the homepage</a> and navigate
             elsewhere.
           </p>
-          <p>
-            If you wish to proceed, select a failure option below.
-          </p>
+          <p>If you wish to proceed, select a failure option below.</p>
           <div class="warning-buttons">
             <button name="submit" value="none">
               None
@@ -159,16 +156,14 @@ const shouldDuplicateLink =
             href={`../${id}/`}
           >
             <div class="image-container">
-              {
-                /**
-                 * @break
-                 * location: Sports Collection
-                 * href: /collections/sports/#main
-                 * wcag2: 2.4.7
-                 * wcag3: Focus indicator contrast sufficient
-                 * description: There is no visible focus outline when a collection's image is focused.
-                 */
-              }
+              {/**
+               * @break
+               * location: Sports Collection
+               * href: /collections/sports/#main
+               * wcag2: 2.4.7
+               * wcag3: Focus indicator contrast sufficient
+               * description: There is no visible focus outline when a collection's image is focused.
+               */}
               <ConditionalParent
                 as="a"
                 if={shouldDuplicateLink}

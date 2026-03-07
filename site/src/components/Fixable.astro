@@ -19,7 +19,7 @@ type Props<Tag extends TagOrComponent> = PolymorphicProps<Tag> & {
   broken?: Partial<PolymorphicProps<Tag> & { as: never }>;
   /** Any attributes that should only be set on the fixed version */
   fixed?: Partial<PolymorphicProps<Tag> & { as: never }>;
-}
+};
 
 const { as: Tag, broken, fixed, ...props } = Astro.props;
 ---

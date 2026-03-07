@@ -11,7 +11,7 @@ interface Props {
 
 export async function getStaticPaths() {
   const allProducts = await getCollection("products");
-  const categories = uniq(allProducts.map(({ id }) => id.split("/")[0] ));
+  const categories = uniq(allProducts.map(({ id }) => id.split("/")[0]));
 
   return categories.map((category) => ({
     params: { category },
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
       category: startCase(category),
       products: sortBy(
         allProducts.filter(({ id }) => id.startsWith(`${category}/`)),
-        ({ data }) => data.title
+        ({ data }) => data.title,
       ),
     } as Props,
   }));

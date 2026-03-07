@@ -23,11 +23,10 @@ const formSchema = z.object({
 });
 
 /** Reduced object format pertaining to a single SC/requirement */
-interface SingleBreak
-  extends Omit<
-    CollectionEntry<"breaks">["data"],
-    "location" | "process" | "wcag2" | "wcag3"
-  > {
+interface SingleBreak extends Omit<
+  CollectionEntry<"breaks">["data"],
+  "location" | "process" | "wcag2" | "wcag3"
+> {
   id: CollectionEntry<"breaks">["id"];
   wcag2?: keyof typeof wcag2SuccessCriteria;
   wcag3?: string;
@@ -88,7 +87,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
       return !!data.wcag2!.find(
         (c) =>
           c.includes(query) ||
-          caseInsensitiveIncludes(wcag2SuccessCriteria[c], query)
+          caseInsensitiveIncludes(wcag2SuccessCriteria[c], query),
       );
     return !!data.wcag3!.find((r) => caseInsensitiveIncludes(r, query));
   });
@@ -128,7 +127,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
         arrangement: formData.get("a"),
         query: formData.get("q"),
         version: formData.get("v"),
-      })
+      }),
     );
     const newUrl = new URL(location.href);
     for (const name of ["a", "q", "v"]) {
@@ -146,7 +145,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
           arrangement: params.get("a") || undefined,
           query: params.get("q") || undefined,
           version: params.get("v") || undefined,
-        })
+        }),
       );
     };
 
@@ -208,7 +207,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
                       getSortableWcag(brk)) && (
                     <dt
                       id={slugger.slug(
-                        `${name}-${brk[wcagProp]?.replace(/\./g, "-")}`
+                        `${name}-${brk[wcagProp]?.replace(/\./g, "-")}`,
                       )}
                     >
                       <BreakWcagLabel
@@ -220,7 +219,7 @@ export const BreaksList = ({ breaks, breakProcessesMap }: BreaksListProps) => {
                   {brk.description.map((description) => (
                     <dd
                       id={slugger.slug(
-                        `${name}-${brk[wcagProp]?.replace(/\./g, "-")}`
+                        `${name}-${brk[wcagProp]?.replace(/\./g, "-")}`,
                       )}
                     >
                       <a href={`${museumBaseUrl.slice(0, -1)}${brk.href}`}>

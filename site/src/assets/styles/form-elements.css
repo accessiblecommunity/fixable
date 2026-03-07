@@ -1,5 +1,12 @@
-select, textarea,
-input:not([type="checkbox"], [type="file"], [type="image"], [type="radio"], [type="range"]) {
+select,
+textarea,
+input:not(
+  [type="checkbox"],
+  [type="file"],
+  [type="image"],
+  [type="radio"],
+  [type="range"]
+) {
   border: 1px solid var(--gray-800);
   font: inherit;
   letter-spacing: inherit;
@@ -15,6 +22,7 @@ input:not([type="checkbox"], [type="file"], [type="image"], [type="radio"], [typ
   }
 }
 
-div.error, p.error {
+div.error,
+p.error {
   color: var(--red-warm-500);
 }

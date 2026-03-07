@@ -315,7 +315,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
        *   - Should text in cards be selectable when the entire card is clickable?
        *     Is this an accessibility issue or general UX?
        */
-      /** 
+      /**
        * @break
        * href: "#commodore-64"
        * wcag3: Pointer accessible
@@ -377,7 +377,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     if (el.tagName === "A" && el.className === "read-more-link-button") {
       event.preventDefault();
       const moreTarget = el.parentElement!.querySelector(
-        ".more"
+        ".more",
       ) as HTMLElement;
       if (el.textContent == "Read More") {
         moreTarget.removeAttribute("hidden");
@@ -390,7 +390,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     }
     if (el.tagName === "BUTTON") {
       const moreTarget = el.parentElement!.parentElement!.querySelector(
-        ".more"
+        ".more",
       ) as HTMLElement;
       controls.querySelector("button[hidden]")?.removeAttribute("hidden");
       el.setAttribute("hidden", "");
@@ -407,8 +407,9 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
 
 <style is:global is:inline>
   :root {
-    --actual-black-not-like-that-other-black:black;
-    scrollbar-color: hsl(0, 0%, 20%) var(--actual-black-not-like-that-other-black);
+    --actual-black-not-like-that-other-black: black;
+    scrollbar-color: hsl(0, 0%, 20%)
+      var(--actual-black-not-like-that-other-black);
   }
 
   body {
@@ -468,14 +469,14 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     -webkit-text-fill-color: transparent;
   }
 
-  @container hd1 (600px <= width <= 720px) {    
+  @container hd1 (600px <= width <= 720px) {
     h1 {
       font-size: calc(var(--ms14) * 1rem);
       text-align: center;
     }
   }
 
-  @container hd1 (width <= 599px) {    
+  @container hd1 (width <= 599px) {
     h1 {
       font-size: 11cqi;
       text-align: center;
@@ -577,7 +578,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       padding: calc(var(--ms-6) * 1em) 0;
       & a {
         @supports (text-decoration-color: hsl(from red h s calc(l - 5%))) {
-        text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5%));
+          text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5%));
         }
         text-decoration-color: hsl(from var(--red-warm-600) h s calc(l - 5));
         text-decoration-thickness: 0.25em;
@@ -593,7 +594,7 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
     &.full-cover {
       position: relative;
       & a::after {
-        content:"";
+        content: "";
         position: absolute;
         inset: 0;
       }
@@ -602,9 +603,9 @@ import vic20 from "@/assets/images/exhibits/early-home-computers/vic20.webp";
       }
       &:focus-within {
         box-shadow:
-        0 0 0 2px white,
-        0 0 0 4px blue;
-      }      
+          0 0 0 2px white,
+          0 0 0 4px blue;
+      }
     }
   }
 

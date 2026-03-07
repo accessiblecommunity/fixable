@@ -128,7 +128,7 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
     form
       .querySelectorAll("input")
       .forEach((input) =>
-        input.addEventListener("paste", (event) => event.preventDefault())
+        input.addEventListener("paste", (event) => event.preventDefault()),
       );
   }
 
@@ -141,7 +141,7 @@ import ShopLayout from "@/layouts/ShopLayout.astro";
         expiration: z.string().regex(/^(0[1-9]|1[0-2])\/(2[4-9]|3\d)$/),
         code: z.string().regex(/^\d{3}$/),
         zip: z.string().regex(/^\d{5}$/),
-      })
+      }),
     );
 
     if (!result.success) {

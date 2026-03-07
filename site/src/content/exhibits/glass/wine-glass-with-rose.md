@@ -13,11 +13,3 @@ The delicate interplay between fragility and resilience is captured through the 
 The glass shards, with their sharp edges and reflective surfaces, serve as both barriers and frames for the roses, whose withered petals cling to life amidst the broken fragments. The tension between these two elements—hard, transparent glass and soft, organic roses—creates a visual and emotional dissonance. The roses, once vibrant and alive, symbolize the fleeting beauty of life, while the broken wine glasses, once used to celebrate moments of joy, now represent the inevitability of time’s wear and tear. The juxtaposition of these materials forces the viewer to confront the delicate balance between celebration and decay, as well as the beauty that can emerge from the act of breaking.
 
 In these pieces, the broken wine glasses become more than shattered objects; they are transformed into vessels of artistic expression. The roses, with their fading petals, take on new meaning when juxtaposed against the broken glass—symbols of beauty in decline, yet preserved in art. These works invite viewers to reconsider the value of imperfection, to find beauty in what is broken, and to embrace the inevitability of change. By marrying the hardness of glass with the softness of roses, these pieces challenge traditional notions of art, offering instead a reminder that even in the midst of destruction, there can be grace, and even in the broken, there can be rebirth.
-
-
-
-
-
-
-
-
