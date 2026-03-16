@@ -1,0 +1,19 @@
+{
+  "inputPath": "src",
+  "outputPath": "reports",
+  "filename": "breaks-report",
+  "verbose": false,
+  "csv": true,
+  "json": false,
+  "html": false,
+  "expand": false,
+  "includeUncovered": false,
+  "group": "byPath",
+  "dataPaths": {
+    "processes": "src/content/processes.json",
+    "sections": "src/content/sections.json",
+    "wcag2Details": "src/lib/wcag2-details.json",
+    "wcag2": "src/lib/wcag2.json",
+    "wcag3": "src/lib/wcag3.json"
+  }
+}

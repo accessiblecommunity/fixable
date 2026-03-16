@@ -1,13 +1,8 @@
 import { defineCollection, reference, z } from "astro:content";
-import { parseFrontmatter } from "@astrojs/markdown-remark";
 import { file, glob } from "astro/loaders";
 import type { ZodType, ZodTypeDef } from "astro/zod";
-import fg from "fast-glob";
 
-import { readFile } from "fs/promises";
-import { basename, join } from "path";
-
-import { regExpMatchGenerator } from "./lib/util";
+import { scanBreaks } from "./lib/scan-breaks";
 import wcag2SuccessCriteria from "./lib/wcag2.json";
 import wcag3Values from "./lib/wcag3.json";
 
@@ -29,7 +24,7 @@ const transformToArray = <T>(value: T | [T, ...T[]]): [T, ...T[]] =>
 
 /** Like transformToArray, but for use specifically with .optional() schemas. */
 const transformToOptionalArray = <T>(
-  value: T | [T, ...T[]] | undefined
+  value: T | [T, ...T[]] | undefined,
 ): [T, ...T[]] | undefined =>
   typeof value === "undefined" || Array.isArray(value) ? value : [value];
 
@@ -61,108 +56,20 @@ export const collections = {
       name: "break-loader",
       load: async ({ generateDigest, parseData, store, watcher }) => {
         async function scan() {
-          const paths = await fg(["**/*.astro", "content/**/[^_]*.md"], {
-            cwd: "src",
-          });
-          store.clear();
-
-          /** Attempts to resolve a museum page file's path to a default URL path. */
-          const resolvePageHref = (path: string) =>
-            path.startsWith("pages/museum/") && !/\[.*\]/.test(path)
-              ? path
-                  .replace(/^pages\/museum/, "")
-                  .replace(/(?:\/index)?\.astro$/, "/#main")
-              : undefined;
-
-          /** Attempts to resolve a content file's path to a default URL path. */
-          const resolveContentHref = (path: string) => {
-            if (/\bblog\b/.test(path)) return `/blog/${basename(path)}/#main`;
-            if (/\bexhibit-categories\b/.test(path))
-              return `/collections/${basename(path)}/#main`;
-            if (/\bexhibits\b/.test(path))
-              return `/collections/${path.replace(/.*\bexhibits\//, "/#main")}`;
-            if (/\bproducts\b/.test(path))
-              return `/gift-shop/${path.replace(/.*\bproducts\//, "/#main")}`;
-            return undefined;
-          };
-
-          for (const path of paths) {
-            const content = await readFile(join("src", path), "utf8");
-            if (path.endsWith(".astro")) {
-              // Support /** @break ... */ blocks in astro templates
-              const locationMatch =
-                /\/\*[\s\*]*@breaklocation([\s\S]*?)\*\//.exec(content);
-              const location = locationMatch?.[1].trim() || undefined;
-
-              const processMatch =
-                /\/\*[\s\*]*@breakprocess([\s\S]*?)\*\//.exec(content);
-              const process =
-                processMatch?.[1].trim().split(/\s*,\s*/) || undefined;
-
-              const hrefMatch = /\/\*[\s\*]*@breakhref([\s\S]*?)\*\//.exec(
-                content
-              );
-              const href = hrefMatch?.[1].trim() || resolvePageHref(path);
-
-              for (const match of regExpMatchGenerator(
-                /\/\*[\s\*]*@break\b([\s\S]*?)\*\//g,
-                content
-              )) {
-                const lineNumber = content
-                  .slice(0, match.index)
-                  .split("\n").length;
-                const id = `${path}-L${lineNumber}`;
-                // Remove leading '* ' from multiline comment blocks
-                const yaml = match[1].replace(/^\s+\* /gm, "");
-                const { frontmatter } = parseFrontmatter(`---\n${yaml}\n---`);
-                const data = await parseData({
-                  id,
-                  data: {
-                    href,
-                    location,
-                    process,
-                    ...frontmatter,
-                  },
-                });
-                // Allow individual hrefs to override hash while inheriting rest of default path
-                if (href && (data.href === "" || data.href?.startsWith("#")))
-                  data.href = `${href.replace(/#.*$/, "")}${data.href}`;
-
-                store.set({
-                  id,
-                  data,
-                  digest: generateDigest(JSON.stringify(frontmatter)),
-                  filePath: path,
-                });
-              }
-            } else {
-              // Support breaks property in markdown frontmatter
-              const { frontmatter } = parseFrontmatter(content);
-              if (!frontmatter.breaks) continue;
-              for (let i = 0; i < frontmatter.breaks.length; i++) {
-                const id = `${path}-E${i}`;
-                const href = frontmatter.breakhref || resolveContentHref(path);
-                const data = await parseData({
-                  id,
-                  data: {
-                    location: frontmatter.breaklocation,
-                    process: frontmatter.breakprocess,
-                    href,
-                    ...frontmatter.breaks[i],
-                  },
-                });
-                // Allow individual hrefs to override hash while ineriting rest of default path
-                if (href && (data.href === "" || data.href?.startsWith("#")))
-                  data.href = `${href.replace(/#.*$/, "")}${data.href}`;
-
-                store.set({
-                  id,
-                  data,
-                  digest: generateDigest(JSON.stringify(frontmatter.breaks[i])),
-                  filePath: path,
-                });
-              }
+          try {
+            const breaks = await scanBreaks("src");
+            store.clear();
+            for (const raw of breaks) {
+              const data = await parseData({ id: raw.id, data: raw.data });
+              store.set({
+                id: raw.id,
+                data,
+                digest: generateDigest(JSON.stringify(raw.data)),
+                filePath: raw.filePath,
+              });
             }
+          } catch (error) {
+            console.error("break-loader: scan failed", error);
           }
         }
         scan();
@@ -198,8 +105,8 @@ export const collections = {
           z.enum(
             Object.keys(wcag2SuccessCriteria) as [
               keyof typeof wcag2SuccessCriteria,
-            ]
-          )
+            ],
+          ),
         )
           .optional()
           .transform(transformToOptionalArray),
@@ -211,8 +118,8 @@ export const collections = {
             .string()
             .refine(
               (value) => wcag3Values.includes(value),
-              "Unrecognized WCAG 3 provision shortname"
-            )
+              "Unrecognized WCAG 3 provision shortname",
+            ),
         )
           .optional()
           .transform(transformToOptionalArray),
